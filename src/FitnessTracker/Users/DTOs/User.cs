@@ -13,6 +13,7 @@ namespace FitnessTracker.Users.DTOs
         public string? TimeZone { get; init; }
         public string? Gender { get; init; }
         public int? Height { get; init; } // In cm
+        public IEnumerable<Guid>? Workouts { get; init; }
         public IEnumerable<SiteConnection>? SiteConnections { get; init; }
     }        
 }

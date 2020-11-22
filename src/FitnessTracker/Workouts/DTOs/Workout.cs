@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace FitnessTracker.DTO
+namespace FitnessTracker.Workouts.DTOs
 {
     public record Workout
     {
-        public string? Id { get; init; }
+        public Guid Id { get; init; }
         public DateTime? StartTime { get; init; }
         public string? Sport { get; init; }
         public int? Cadence { get; init; }

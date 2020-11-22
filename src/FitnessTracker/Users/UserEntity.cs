@@ -6,7 +6,7 @@ namespace FitnessTracker.Users
 {
     public record UserEntity
     {
-        public Guid Id { get; init; } = Guid.NewGuid(); 
+        public Guid Id { get; init; } = Guid.NewGuid();
 
         [JsonPropertyName("FirstName")]
         public string? FirstName { get; init; }
@@ -28,6 +28,8 @@ namespace FitnessTracker.Users
 
         [JsonPropertyName("heigtInCm")]
         public int? HeigtInCm { get; init; }
+
+        public IEnumerable<Guid> Workouts { get; set; } = new List<Guid>();
 
         [JsonPropertyName("SiteConnections")]
         public IEnumerable<SiteConnection>? SiteConnections { get; init; }

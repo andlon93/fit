@@ -1,5 +1,6 @@
 using FitnessTracker.GraphQLTypes;
 using FitnessTracker.Users;
+using FitnessTracker.Workouts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -10,10 +11,7 @@ using System.IO;
 namespace FitnessTracker
 {
     public class Startup
-    {
-        private const string path = "/app/Data/";
-        private const string filename = "endomondo-2020-11-14.zip";
-
+    {   
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -24,24 +22,20 @@ namespace FitnessTracker
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            Unzip();
             services.AddControllers();
 
             GraphTypeRegistrator.Register(services);
 
+            // Workouts
+            services.AddSingleton<WorkoutRepository>();
+            services.AddSingleton<WorkoutService>();
+
+            // Users
             services.AddSingleton<UserRepository>();
             services.AddSingleton<UserService>();
-        }
 
-        private static void Unzip()
-        {
-            if (Directory.Exists(Path.Join(path, Path.GetFileNameWithoutExtension(filename))))
-            {
-                return;
-            }
-
-            System.IO.Compression.ZipFile.ExtractToDirectory(Path.Join(path, filename), path);
-        }
+            services.AddSingleton<EndomondeZipFileReader>();
+        }        
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

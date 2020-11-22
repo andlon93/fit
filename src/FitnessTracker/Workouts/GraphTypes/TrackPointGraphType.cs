@@ -1,8 +1,9 @@
-﻿using FitnessTracker.DTO;
+﻿using FitnessTracker.GraphQLTypes;
+using FitnessTracker.Workouts.DTOs;
 using GraphQL.Types;
 using System;
 
-namespace FitnessTracker.GraphQLTypes
+namespace FitnessTracker.Workouts.GraphTypes
 {
     public class TrackPointGraphType : ObjectGraphType<TrackPoint>
     {
@@ -33,6 +34,6 @@ namespace FitnessTracker.GraphQLTypes
                 .Description("");
         }
 
-        
+
     }
 }

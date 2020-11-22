@@ -1,15 +1,16 @@
 ﻿using FitnessTracker.DTO;
 using GraphQL.Types;
+using System;
 using System.Collections.Generic;
 
-namespace FitnessTracker.GraphQLTypes
+namespace FitnessTracker.Workouts.GraphTypes
 {
     internal class FilterGraphType : InputObjectGraphType<Filter>
     {
         public FilterGraphType()
         {
-            Field<ListGraphType<StringGraphType>, IEnumerable<string>>()
-                .Name(nameof(Filter.Id))
+            Field<ListGraphType<GuidGraphType>, IEnumerable<Guid>>()
+                .Name(nameof(Filter.Ids))
                 .Description("");
         }
     }

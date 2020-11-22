@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace FitnessTracker.DTO
 {
     public record Filter
     {
-        public IEnumerable<string>? Id { get; init; }
+        public IEnumerable<Guid>? Ids { get; init; }
     }
 }

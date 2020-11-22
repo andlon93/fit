@@ -1,4 +1,4 @@
-﻿using FitnessTracker.DTO;
+﻿using FitnessTracker.Workouts.DTOs;
 using GraphQL.Types;
 
 namespace FitnessTracker.GraphQLTypes

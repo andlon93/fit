@@ -1,4 +1,5 @@
 ﻿using FitnessTracker.Users.GraphTypes;
+using FitnessTracker.Workouts.GraphTypes;
 using GraphQL;
 using GraphQL.DataLoader;
 using GraphQL.SystemTextJson;
@@ -22,8 +23,8 @@ namespace FitnessTracker.GraphQLTypes
 
             // GraphTypes
             services.AddSingleton<WorkoutQuery>();
-            services.AddSingleton<WorkoutType>();
-            services.AddSingleton<PagingType>();
+            services.AddSingleton<WorkoutGraphType>();
+            services.AddSingleton<PagingGraphType>();
             services.AddSingleton<UserType>();
             services.AddSingleton<WorkoutGraphType>();
             services.AddSingleton<TrackPointGraphType>();

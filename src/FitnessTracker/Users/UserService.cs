@@ -1,4 +1,5 @@
 ﻿using FitnessTracker.Users.DTOs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -14,11 +15,13 @@ namespace FitnessTracker.Users
 
         public IEnumerable<User> GetUsers()
         {
-            var userEntitties = _userRepository.GetUserEntities();
-            return userEntitties.Select(ue => MapUserEntity(ue));
+            var userEntitties = _userRepository.GetAll();
+            return userEntitties.Select(ue => MapUserEntityToDto(ue));
         }
 
-        private User MapUserEntity(UserEntity entity)
+        public Guid SaveOrUpdateUser(UserEntity user) => _userRepository.SaveOrUpdateUser(user);
+
+        private User MapUserEntityToDto(UserEntity entity)
         {
             return new User
             {

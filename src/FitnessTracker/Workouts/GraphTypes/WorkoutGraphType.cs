@@ -1,9 +1,9 @@
-﻿using FitnessTracker.DTO;
+﻿using FitnessTracker.Workouts.DTOs;
 using GraphQL.Types;
 using System;
 using System.Collections.Generic;
 
-namespace FitnessTracker.GraphQLTypes
+namespace FitnessTracker.Workouts.GraphTypes
 {
     public class WorkoutGraphType : ObjectGraphType<Workout>
     {
