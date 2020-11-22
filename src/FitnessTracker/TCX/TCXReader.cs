@@ -18,8 +18,6 @@ namespace FitnessTracker.TCX
         {
             if (workoutDatabase == null)
             {
-                Unzip(path, filename);
-
                 var response = new HashSet<TrainingCenterDatabase>();
 
                 foreach (string file in Directory.EnumerateFiles($"Data/{Path.GetFileNameWithoutExtension(filename)}/Workouts", "*.tcx"))
@@ -52,16 +50,6 @@ namespace FitnessTracker.TCX
             }
 
             return workoutDatabase;
-        }
-
-        private static void Unzip(string path, string filename)
-        {
-            if (Directory.Exists(Path.Join(path, Path.GetFileNameWithoutExtension(filename))))
-            {
-                return;
-            }
-
-            System.IO.Compression.ZipFile.ExtractToDirectory(Path.Join(path, filename), path);
-        }
+        }        
     }
 }

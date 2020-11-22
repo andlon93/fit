@@ -1,4 +1,5 @@
-﻿using GraphQL;
+﻿using FitnessTracker.Users.GraphTypes;
+using GraphQL;
 using GraphQL.DataLoader;
 using GraphQL.SystemTextJson;
 using Microsoft.Extensions.DependencyInjection;
@@ -23,6 +24,7 @@ namespace FitnessTracker.GraphQLTypes
             services.AddSingleton<WorkoutQuery>();
             services.AddSingleton<WorkoutType>();
             services.AddSingleton<PagingType>();
+            services.AddSingleton<UserType>();
         }
     }
 }

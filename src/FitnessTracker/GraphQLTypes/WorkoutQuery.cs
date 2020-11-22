@@ -1,5 +1,7 @@
 ﻿using FitnessTracker.DTO;
 using FitnessTracker.TCX;
+using FitnessTracker.Users;
+using FitnessTracker.Users.GraphTypes;
 using GraphQL;
 using GraphQL.Types;
 using System;
@@ -10,17 +12,27 @@ namespace FitnessTracker.GraphQLTypes
     public class WorkoutQuery : ObjectGraphType
     {
         private const string _pagingArgumentName = "paging";
-        public WorkoutQuery()
+        private readonly QueryArguments pagingArgument = new QueryArguments(
+                    new QueryArgument<PagingType>
+                    {
+                        Name = _pagingArgumentName,
+                        DefaultValue = new Paging { Rows = 10, Offset = 0 }
+                    });
+        private readonly UserService _userService;
+
+        public WorkoutQuery(UserService userService)
         {
+            _userService = userService;
+
+            Field<ListGraphType<UserType>>(
+                name: "users",
+                arguments: pagingArgument,
+                resolve: context => _userService.GetUsers().ToList()
+            );
+
             Field<ListGraphType<WorkoutType>>(
                 name: "workouts",
-                arguments: new QueryArguments(
-                    new QueryArgument<PagingType> 
-                    { 
-                        Name = _pagingArgumentName, 
-                        DefaultValue = new Paging { Rows = 10, Offset = 0 }                         
-                    }
-                ),
+                arguments: pagingArgument,
                 resolve: context =>
                 {
                     var paging = context.GetArgument<Paging>(_pagingArgumentName);
@@ -35,9 +47,9 @@ namespace FitnessTracker.GraphQLTypes
                              .Skip(paging.Offset)
                              .Take(paging.Rows)
                              .Select(w => MapTcxToWorkout(w));
-                             
-                } 
-            );
+
+                }
+            );            
         }
 
         private static Workout MapTcxToWorkout(TrainingCenterDatabase w)
