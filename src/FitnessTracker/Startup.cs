@@ -22,7 +22,7 @@ namespace FitnessTracker
             services.AddControllers();
 
             GraphTypeRegistrator.Register(services);
-            var t = TCX.TCXReader.ReadWorkouts();
+            Database.Database.FindAll();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
