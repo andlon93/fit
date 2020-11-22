@@ -1,13 +1,18 @@
 ﻿using FitnessTracker.DTO;
 using GraphQL.Types;
 using System;
+using System.Collections.Generic;
 
 namespace FitnessTracker.GraphQLTypes
 {
-    public class WorkoutType : ObjectGraphType<Workout>
+    public class WorkoutGraphType : ObjectGraphType<Workout>
     {
-        public WorkoutType()
+        public WorkoutGraphType()
         {
+            Field<StringGraphType, string>()
+                .Name(nameof(Workout.Id))
+                .Description("");
+
             Field<IntGraphType, string>()
                 .Name(nameof(Workout.AverageHeartRate))
                 .Description("Average heart rate in beats per minute (bpm)");
@@ -39,6 +44,10 @@ namespace FitnessTracker.GraphQLTypes
             Field<DecimalGraphType, string>()
                 .Name(nameof(Workout.TotalTimeSeconds))
                 .Description("Total time in seconds");
+
+            Field<ListGraphType<TrackPointGraphType>, IEnumerable<TrackPoint>>()
+                .Name(nameof(Workout.Positions))
+                .Description("");
         }
     }
 }

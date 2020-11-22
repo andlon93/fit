@@ -1,36 +1,20 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
 namespace FitnessTracker.TCX
 {
     public static class TCXReader
     {
-        private const string path = "/app/Data/";
-        private const string filename = "endomondo-2020-11-14.zip";
-
-        private static IEnumerable<TrainingCenterDatabase>? workoutDatabase;
-
-        public static IEnumerable<TrainingCenterDatabase> ReadWorkouts()
+        public static IEnumerable<TrainingCenterDatabase_t> ReadWorkouts(IEnumerable<string> fileNames)
         {
-            if (workoutDatabase == null)
-            {
-                var response = new HashSet<TrainingCenterDatabase>();
-
-                foreach (string file in Directory.EnumerateFiles($"Data/{Path.GetFileNameWithoutExtension(filename)}/Workouts", "*.tcx"))
+                var response = new HashSet<TrainingCenterDatabase_t>();
+                foreach (string file in fileNames)
                 {
-                    XmlSerializer ser = new XmlSerializer(typeof(TrainingCenterDatabase));
-
-                    using (StreamReader sr = new StreamReader(file))
+                    var seriaLized = ReadTrainingCenterDatabaseFromFile(file);
+                    if (seriaLized != null)
                     {
-                        var seriaLized = ser.Deserialize(sr);
-                        if (seriaLized != null)
-                        {
-                            response.Add((TrainingCenterDatabase)seriaLized);
-                        }                        
+                        response.Add(seriaLized);
                     }
                 }
 
@@ -46,10 +30,18 @@ namespace FitnessTracker.TCX
                 //    var workout = JsonSerializer.Deserialize<List<EndomondoWorkout>>(jsonString, options);
                 //    response2.Add(workout.First());
                 //}
-                workoutDatabase = response;
-            }
 
-            return workoutDatabase;
-        }        
+            return response;
+        }
+
+        public static TrainingCenterDatabase_t? ReadTrainingCenterDatabaseFromFile(string filename)
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(TrainingCenterDatabase_t));
+            using (StreamReader sr = new StreamReader(filename))
+            {
+                var seriaLized = serializer.Deserialize(sr);
+                return (TrainingCenterDatabase_t?)seriaLized;
+            }
+        }
     }
 }

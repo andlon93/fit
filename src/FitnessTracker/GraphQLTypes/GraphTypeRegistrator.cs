@@ -25,6 +25,11 @@ namespace FitnessTracker.GraphQLTypes
             services.AddSingleton<WorkoutType>();
             services.AddSingleton<PagingType>();
             services.AddSingleton<UserType>();
+            services.AddSingleton<WorkoutGraphType>();
+            services.AddSingleton<TrackPointGraphType>();
+            services.AddSingleton<PositionGraphType>();
+            services.AddSingleton<PagingGraphType>();
+            services.AddSingleton<FilterGraphType>();
         }
     }
 }
