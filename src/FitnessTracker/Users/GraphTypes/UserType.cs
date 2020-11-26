@@ -29,7 +29,7 @@ namespace FitnessTracker.Users.GraphTypes
                 {
                     var paging = context.GetArgument<Paging>(PagingArgument.GetArgumentName());
 
-                    return _workoutservice.GetWorkouts(paging, new Filter { Ids = context.Source.Workouts });
+                    return _workoutservice.GetWorkouts(paging, new Filter { Ids = context.Source.WorkoutIds });
                 });           
         }
     }

@@ -1,4 +1,5 @@
-﻿using FitnessTracker.Users.GraphTypes;
+﻿using FitnessTracker.Challenges;
+using FitnessTracker.Users.GraphTypes;
 using FitnessTracker.Workouts.GraphTypes;
 using GraphQL;
 using GraphQL.DataLoader;
@@ -31,6 +32,10 @@ namespace FitnessTracker.GraphQLTypes
             services.AddSingleton<PositionGraphType>();
             services.AddSingleton<PagingGraphType>();
             services.AddSingleton<FilterGraphType>();
+            services.AddSingleton<ChallengeGraphType>();
+            services.AddSingleton<ChallengeTypeEnum>();
+            services.AddSingleton<CompetitorGraphType>();
+            services.AddSingleton<DateTimeRangeGraphType>();
         }
     }
 }

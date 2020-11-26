@@ -1,3 +1,4 @@
+using FitnessTracker.Challenges;
 using FitnessTracker.GraphQLTypes;
 using FitnessTracker.Users;
 using FitnessTracker.Workouts;
@@ -33,6 +34,9 @@ namespace FitnessTracker
             // Users
             services.AddSingleton<UserRepository>();
             services.AddSingleton<UserService>();
+
+            // Challenges
+            services.AddSingleton<ChallengeService>();
 
             services.AddSingleton<EndomondeZipFileReader>();
         }        

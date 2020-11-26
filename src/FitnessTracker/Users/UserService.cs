@@ -13,10 +13,14 @@ namespace FitnessTracker.Users
             _userRepository = userRepository;
         }
 
-        public IEnumerable<User> GetUsers()
+        public IEnumerable<User> GetAllUsers()
         {
-            var userEntitties = _userRepository.GetAll();
-            return userEntitties.Select(ue => MapUserEntityToDto(ue));
+            return _userRepository.GetAll().Select(ue => MapUserEntityToDto(ue));
+        }
+
+        public IEnumerable<User> GetUsersByIds(IEnumerable<Guid> ids)
+        {
+            return _userRepository.GetAll().Where(u => ids.Contains(u.Id)).Select(u => MapUserEntityToDto(u));
         }
 
         public Guid SaveOrUpdateUser(UserEntity user) => _userRepository.SaveOrUpdateUser(user);
@@ -33,25 +37,21 @@ namespace FitnessTracker.Users
                 LastName = entity.LastName,
                 Height = entity.HeigtInCm,
                 TimeZone = entity.TimeZone,
+                WorkoutIds = entity.Workouts,
                 SiteConnections = entity?.SiteConnections?.Select(e => new DTOs.SiteConnection { Site = SiteEnumMapper(e.Site), Identifier = e.Identifier })
             };
         }
 
         private static SiteType SiteEnumMapper(string? site)
         {
-            switch (site?.ToLower().Trim())
+            return (site?.ToLower().Trim()) switch
             {
-                case "facebook":
-                    return SiteType.Facebook;
-                case "google":
-                    return SiteType.Google;
-                case "polar":
-                    return SiteType.Polar;
-                case "garmin":
-                    return SiteType.Garmin;
-                default:
-                    return SiteType.Unknown;
-            }
+                "facebook" => SiteType.Facebook,
+                "google" => SiteType.Google,
+                "polar" => SiteType.Polar,
+                "garmin" => SiteType.Garmin,
+                _ => SiteType.Unknown,
+            };
         }
     }
 }

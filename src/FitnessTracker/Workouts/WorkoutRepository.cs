@@ -1,6 +1,5 @@
 ﻿using FitnessTracker.Workouts.DTOs;
 using System.Collections.Generic;
-using System.Linq;
 using System;
 
 namespace FitnessTracker.Workouts
@@ -15,10 +14,8 @@ namespace FitnessTracker.Workouts
 
         public IEnumerable<Workout> GetAll() => _workouts.Values;
 
-        public void SaveWorkouts(IEnumerable<Workout> workouts)
+        public void SaveOrUpdateWorkouts(IEnumerable<Workout> workouts)
         {
-            if (!_workouts.Any()) { _workouts = workouts.ToDictionary(w => Guid.NewGuid()); }
-
             foreach(var workout in workouts)
             {
                 if (_workouts.ContainsKey(workout.Id))

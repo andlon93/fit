@@ -1,12 +1,11 @@
-﻿using FitnessTracker.DTO;
+﻿using FitnessTracker.Challenges;
+using FitnessTracker.DTO;
 using FitnessTracker.Users;
 using FitnessTracker.Users.GraphTypes;
 using FitnessTracker.Workouts;
-using FitnessTracker.Workouts.DTOs;
 using FitnessTracker.Workouts.GraphTypes;
 using GraphQL;
 using GraphQL.Types;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace FitnessTracker.GraphQLTypes
@@ -15,14 +14,20 @@ namespace FitnessTracker.GraphQLTypes
     {
         private readonly UserService _userService;
         private readonly WorkoutService _workoutService;
+        private readonly ChallengeService _challengeService;
         private readonly EndomondeZipFileReader _endomondeZipFileReader;
 
-        private const string _filterArgumentName = "filter";        
+        private const string _filterArgumentName = "filter";
 
-        public WorkoutQuery(UserService userService, WorkoutService workoutService, EndomondeZipFileReader endomondeZipFileReader)
+        public WorkoutQuery(
+            UserService userService,
+            WorkoutService workoutService,
+            ChallengeService challengeService,
+            EndomondeZipFileReader endomondeZipFileReader)
         {
             _userService = userService;
             _workoutService = workoutService;
+            _challengeService = challengeService;
             _endomondeZipFileReader = endomondeZipFileReader;
             
             _endomondeZipFileReader.ReadZipFile();
@@ -30,7 +35,7 @@ namespace FitnessTracker.GraphQLTypes
             Field<ListGraphType<UserType>>(
                     name: "users",
                     arguments: new QueryArguments(PagingArgument.GetArgument()),
-                    resolve: context => _userService.GetUsers().ToList()
+                    resolve: context => _userService.GetAllUsers().ToList()
                 );
 
             Field<ListGraphType<WorkoutGraphType>>(
@@ -50,7 +55,12 @@ namespace FitnessTracker.GraphQLTypes
                     return _workoutService.GetWorkouts(paging, filter);
 
                 }
-            );            
+            );
+
+            Field<ListGraphType<ChallengeGraphType>>(
+                    name: "challenges",
+                    resolve: context => _challengeService.GetChallenges().ToList()
+                );
         }
     }
 }

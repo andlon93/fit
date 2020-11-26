@@ -18,7 +18,9 @@ namespace FitnessTracker.Workouts
         public IEnumerable<Workout> GetWorkouts(Paging paging, Filter filter)
         {
             return _workoutRepository.GetAll()
-                                     .Where(w => filter?.Ids?.Any() != true || filter.Ids.Contains(w.Id))
+                                     .Where(w => (filter?.Ids?.Any() != true || filter.Ids.Contains(w.Id))
+                                                 //&& (filter?.UserIds?.Any() != true)  // TODO: Workouts must contain UserId || filter.UserId.Contains(w.UserId)
+                                                 && (filter?.StartTime?.Any() != true || filter.StartTime.Any(x => (x.Start == null || w.StartTime >= x.Start) && (x.End == null || w.StartTime <= x.End))))
                                      .OrderByDescending(w => w.StartTime)
                                      .Skip(paging.Offset)
                                      .Take(paging.Rows);
@@ -26,30 +28,33 @@ namespace FitnessTracker.Workouts
 
         public IEnumerable<Guid> SaveWorkoutsFromZipFile(IEnumerable<TrainingCenterDatabase_t> workouts)
         {
-            var mappedWorkouts = workouts.Select(w => MapTcxToWorkout(w));
+            var mappedWorkouts = MapTcxToWorkouts(workouts);
 
-            _workoutRepository.SaveWorkouts(mappedWorkouts);
+            _workoutRepository.SaveOrUpdateWorkouts(mappedWorkouts);
 
             return mappedWorkouts.Select(w => w.Id);
         }
 
-        private Workout MapTcxToWorkout(TrainingCenterDatabase_t w)
+        private List<Workout> MapTcxToWorkouts(IEnumerable<TrainingCenterDatabase_t> workouts)
         {
-            var activity = w.Activities.Activity.FirstOrDefault();
-            var lap = activity?.Lap?.FirstOrDefault();
-            return new Workout
+            return workouts.Select(w =>
             {
-                Id = Guid.NewGuid(),
-                Sport = activity?.Sport.ToString(),
-                StartTime = lap?.StartTime,
-                TotalTimeSeconds = lap?.TotalTimeSeconds,
-                Distance = lap?.DistanceMeters,
-                Calories = lap?.Calories,
-                Cadence = lap?.Cadence,
-                AverageHeartRate = lap?.AverageHeartRateBpm?.Value,
-                MaximumHeartRate = lap?.MaximumHeartRateBpm?.Value,
-                Positions = ConcatenateLaps(activity)
-            };
+                var activity = w.Activities.Activity.FirstOrDefault();
+                var lap = activity?.Lap?.FirstOrDefault();
+                return new Workout
+                {
+                    Id = Guid.NewGuid(),
+                    Sport = activity?.Sport.ToString(),
+                    StartTime = lap?.StartTime, // TODO: Henter kun ut fra første runde (kan de være i en annen rekkefølge enn kronologisk?)
+                    TotalTimeSeconds = lap?.TotalTimeSeconds, // TODO: Henter kun ut fra første runde
+                    Distance = lap?.DistanceMeters, // TODO: Henter kun ut fra første runde
+                    Calories = lap?.Calories, // TODO: Henter kun ut fra første runde
+                    Cadence = lap?.Cadence, // TODO: Henter kun ut fra første runde
+                    AverageHeartRate = lap?.AverageHeartRateBpm?.Value, // TODO: Henter kun ut fra første runde
+                    MaximumHeartRate = lap?.MaximumHeartRateBpm?.Value, // TODO: Henter kun ut fra første runde
+                    Positions = ConcatenateLaps(activity)
+                };
+            }).ToList();
         }
 
         private IEnumerable<TrackPoint>? ConcatenateLaps(Activity_t? activity)
