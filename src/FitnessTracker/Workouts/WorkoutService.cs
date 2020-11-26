@@ -37,33 +37,51 @@ namespace FitnessTracker.Workouts
 
         private List<Workout> MapTcxToWorkouts(IEnumerable<TrainingCenterDatabase_t> workouts)
         {
-            return workouts.Select(w =>
+            var result = new List<Workout>();
+            foreach (var t in workouts)
             {
-                var activity = w.Activities.Activity.FirstOrDefault();
-                var lap = activity?.Lap?.FirstOrDefault();
-                return new Workout
+                if (t?.Activities?.Activity == null)
                 {
-                    Id = Guid.NewGuid(),
-                    Sport = activity?.Sport.ToString(),
-                    StartTime = lap?.StartTime, // TODO: Henter kun ut fra første runde (kan de være i en annen rekkefølge enn kronologisk?)
-                    TotalTimeSeconds = lap?.TotalTimeSeconds, // TODO: Henter kun ut fra første runde
-                    Distance = lap?.DistanceMeters, // TODO: Henter kun ut fra første runde
-                    Calories = lap?.Calories, // TODO: Henter kun ut fra første runde
-                    Cadence = lap?.Cadence, // TODO: Henter kun ut fra første runde
-                    AverageHeartRate = lap?.AverageHeartRateBpm?.Value, // TODO: Henter kun ut fra første runde
-                    MaximumHeartRate = lap?.MaximumHeartRateBpm?.Value, // TODO: Henter kun ut fra første runde
-                    Positions = ConcatenateLaps(activity)
-                };
-            }).ToList();
+                    continue;
+                }
+                foreach (var activity in t.Activities.Activity)
+                {
+                    if (activity == null)
+                    {
+                        continue;
+                    }
+                    result.Add(MapActivityToWorkout(activity));
+                }
+            }
+            return result;
         }
 
-        private IEnumerable<TrackPoint>? ConcatenateLaps(Activity_t? activity)
+        private Workout MapActivityToWorkout(Activity_t activity)
         {
-            if (activity == null) { return null; }
+            var startTime = DateTime.MaxValue;
+            var totalTimeSeconds = 0.0;
+            var distanceMeters = 0.0;
+            var calories = 0;
+            var steps = 0.0;
+            var heartBeats = 0.0;
+            var maximumHeartRate = 0;
 
             var result = new List<TrackPoint>();
             foreach (var lap in activity.Lap)
             {
+                if (lap.StartTime < startTime)
+                {
+                    startTime = lap.StartTime;
+                }
+                totalTimeSeconds += lap.TotalTimeSeconds;
+                distanceMeters += lap.DistanceMeters;
+                calories += lap.Calories;
+                steps += lap.Cadence * lap.TotalTimeSeconds;
+                heartBeats += (lap.AverageHeartRateBpm?.Value ?? 0) * lap.TotalTimeSeconds;
+                if (lap.MaximumHeartRateBpm != null && lap.MaximumHeartRateBpm.Value > maximumHeartRate)
+                {
+                    maximumHeartRate = lap.MaximumHeartRateBpm.Value;
+                }
                 foreach (var track in lap.Track)
                 {
                     result.Add(new TrackPoint
@@ -78,7 +96,19 @@ namespace FitnessTracker.Workouts
                 }
             }
 
-            return result;
+            return new Workout
+            {
+                Id = Guid.NewGuid(),
+                Sport = activity?.Sport.ToString(),
+                StartTime = startTime,
+                TotalTimeSeconds = totalTimeSeconds,
+                Distance = distanceMeters,
+                Calories = calories,
+                Cadence = (int)Math.Round(steps / totalTimeSeconds),
+                AverageHeartRate = (int)Math.Round(heartBeats / totalTimeSeconds),
+                MaximumHeartRate = maximumHeartRate,
+                Positions = result,
+            }; ;
         }
     }
 }
