@@ -5,31 +5,60 @@ import * as React from 'react';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
-import TabOneScreen from '../screens/TabOneScreen';
-import TabTwoScreen from '../screens/TabTwoScreen';
-import { BottomTabParamList, TabOneParamList, TabTwoParamList } from '../types';
+import FeedScreen from '../screens/FeedScreen';
+import HistoryScreen from '../screens/HistoryScreen';
+import WorkoutScreen from '../screens/WorkoutScreen';
+import ChallengesScreen from '../screens/ChallengesScreen';
+import ProfileScreen from '../screens/ProfileScreen';
+import { BottomTabParamList, FeedParamList, HistoryParamList, WorkoutTabParamList, ChallengesTabParamList, ProfileTabParamList } from '../types';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
+const FeedTabName = "Nyhetsstrøm";
+const HistoryTabName = "Historikk";
+const WorkoutTabName = "Treningsøkt";
+const ChallengesTabName = "Utfordringer";
+const ProfileTabName = "Profile";
 
 export default function BottomTabNavigator() {
   const colorScheme = useColorScheme();
 
   return (
     <BottomTab.Navigator
-      initialRouteName="TabOne"
+      initialRouteName="FeedTab"
       tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
       <BottomTab.Screen
-        name="TabOne"
-        component={TabOneNavigator}
+        name="FeedTab"
+        component={FeedTabNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="ios-people" color={color} />,
         }}
       />
       <BottomTab.Screen
-        name="TabTwo"
-        component={TabTwoNavigator}
+        name="HistoryTab"
+        component={HistoryTabNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="ios-list" color={color} />,
+        }}
+      />
+      <BottomTab.Screen
+        name="WorkoutTab"
+        component={WorkoutTabNavigator}
+        options={{
+          tabBarIcon: ({ color }) => <TabBarIcon name="ios-timer" color={color} />,
+        }}
+      />
+      <BottomTab.Screen
+        name="ChallengesTab"
+        component={ChallengesTabNavigator}
+        options={{
+          tabBarIcon: ({ color }) => <TabBarIcon name="ios-ribbon" color={color} />,
+        }}
+      />
+      <BottomTab.Screen
+        name="ProfileTab"
+        component={ProfileTabNavigator}
+        options={{
+          tabBarIcon: ({ color }) => <TabBarIcon name="md-person" color={color} />,
         }}
       />
     </BottomTab.Navigator>
@@ -44,30 +73,72 @@ function TabBarIcon(props: { name: string; color: string }) {
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
 // https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
-const TabOneStack = createStackNavigator<TabOneParamList>();
+const FeedTabStack = createStackNavigator<FeedParamList>();
 
-function TabOneNavigator() {
+function FeedTabNavigator() {
   return (
-    <TabOneStack.Navigator>
-      <TabOneStack.Screen
-        name="TabOneScreen"
-        component={TabOneScreen}
-        options={{ headerTitle: 'Tab One Title' }}
+    <FeedTabStack.Navigator>
+      <FeedTabStack.Screen
+        name="FeedScreen"
+        component={FeedScreen}
+        options={{ headerTitle: FeedTabName }}
       />
-    </TabOneStack.Navigator>
+    </FeedTabStack.Navigator>
   );
 }
 
-const TabTwoStack = createStackNavigator<TabTwoParamList>();
+const HistoryTabStack = createStackNavigator<HistoryParamList>();
 
-function TabTwoNavigator() {
+function HistoryTabNavigator() {
   return (
-    <TabTwoStack.Navigator>
-      <TabTwoStack.Screen
-        name="TabTwoScreen"
-        component={TabTwoScreen}
-        options={{ headerTitle: 'Tab Two Title' }}
+    <HistoryTabStack.Navigator>
+      <HistoryTabStack.Screen
+        name="HistoryScreen"
+        component={HistoryScreen}
+        options={{ headerTitle: HistoryTabName }}
       />
-    </TabTwoStack.Navigator>
+    </HistoryTabStack.Navigator>
+  );
+}
+
+const WorkoutTabStack = createStackNavigator<WorkoutTabParamList>();
+
+function WorkoutTabNavigator() {
+  return (
+    <WorkoutTabStack.Navigator>
+      <WorkoutTabStack.Screen
+        name="WorkoutScreen"
+        component={WorkoutScreen}
+        options={{ headerTitle: WorkoutTabName }}
+      />
+    </WorkoutTabStack.Navigator>
+  );
+}
+
+const ChallengesTabStack = createStackNavigator<ChallengesTabParamList>();
+
+function ChallengesTabNavigator() {
+  return (
+    <ChallengesTabStack.Navigator>
+      <ChallengesTabStack.Screen
+        name="ChallengesScreen"
+        component={ChallengesScreen}
+        options={{ headerTitle: ChallengesTabName }}
+      />
+    </ChallengesTabStack.Navigator>
+  );
+}
+
+const ProfileTabStack = createStackNavigator<ProfileTabParamList>();
+
+function ProfileTabNavigator() {
+  return (
+    <ProfileTabStack.Navigator>
+      <ProfileTabStack.Screen
+        name="ProfileScreen"
+        component={ProfileScreen}
+        options={{ headerTitle: ProfileTabName }}
+      />
+    </ProfileTabStack.Navigator>
   );
 }
