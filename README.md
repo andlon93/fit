@@ -16,7 +16,7 @@ See [Expo docs](https://docs.expo.io/) for more information about the setup.
 
 ``` bash
 # Navigate to the project directory
-$ cd Fit/src/service
+$ cd fit/src/service/FitnessTracker
 
 # Start the development server
 $ dotnet run
