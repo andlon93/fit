@@ -1,0 +1,17 @@
+[
+    {"sport": "HIKING"},
+    {"source": "INPUT_MANUAL_MOBILE"},
+    {"created_date": "2015-08-26 07:43:44.0"},
+    {"start_time": "2015-08-23 09:00:29.0"},
+    {"end_time": "2015-08-23 10:00:29.0"},
+    {"notes": "Tur til Geitfjellet (5.5 timer inkl. pause og bading)"},
+    {"duration_s": 3600},
+    {"distance_km": 0},
+    {"calories_kcal": 367},
+    {"speed_avg_kmh": 0},
+    {"hydration_l": 0.241111},
+    {"points": [[
+        {"distance_km": 0},
+        {"timestamp": "Sun Aug 23 09:00:29 UTC 2015"}
+    ]]}
+]

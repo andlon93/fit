@@ -1,0 +1,17 @@
+[
+    {"sport": "BADMINTON"},
+    {"source": "INPUT_MANUAL_MOBILE"},
+    {"created_date": "2015-02-21 13:44:09.0"},
+    {"start_time": "2015-02-21 09:00:34.0"},
+    {"end_time": "2015-02-21 10:30:34.0"},
+    {"message": "Studentlekene i badminton: 3 kamper á 30 minutter"},
+    {"duration_s": 5400},
+    {"distance_km": 0},
+    {"calories_kcal": 505},
+    {"speed_avg_kmh": 0},
+    {"hydration_l": 0.336},
+    {"points": [[
+        {"distance_km": 0},
+        {"timestamp": "Sat Feb 21 09:00:34 UTC 2015"}
+    ]]}
+]

@@ -1,0 +1,18 @@
+[
+    {"sport": "SPINNING"},
+    {"source": "INPUT_MANUAL_MOBILE"},
+    {"created_date": "2019-05-30 14:44:40.0"},
+    {"start_time": "2019-05-27 14:30:25.0"},
+    {"end_time": "2019-05-27 15:30:25.0"},
+    {"duration_s": 2700},
+    {"distance_km": 0},
+    {"calories_kcal": 481},
+    {"heart_rate_avg_bpm": 158},
+    {"heart_rate_max_bpm": 192},
+    {"speed_avg_kmh": 0},
+    {"hydration_l": 0.326666},
+    {"points": [[
+        {"distance_km": 0},
+        {"timestamp": "Mon May 27 14:30:25 UTC 2019"}
+    ]]}
+]

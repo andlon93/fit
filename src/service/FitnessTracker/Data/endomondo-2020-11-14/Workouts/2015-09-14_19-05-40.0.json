@@ -1,0 +1,16 @@
+[
+    {"sport": "BADMINTON"},
+    {"source": "INPUT_MANUAL_MOBILE"},
+    {"created_date": "2015-09-14 19:05:40.0"},
+    {"start_time": "2015-09-14 18:15:50.0"},
+    {"end_time": "2015-09-14 20:00:50.0"},
+    {"duration_s": 6300},
+    {"distance_km": 0},
+    {"calories_kcal": 589},
+    {"speed_avg_kmh": 0},
+    {"hydration_l": 0.392},
+    {"points": [[
+        {"distance_km": 0},
+        {"timestamp": "Mon Sep 14 18:15:50 UTC 2015"}
+    ]]}
+]

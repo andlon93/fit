@@ -1,0 +1,17 @@
+[
+    {"sport": "TREADMILL_RUNNING"},
+    {"source": "INPUT_MANUAL_MOBILE"},
+    {"created_date": "2015-08-29 11:11:13.0"},
+    {"start_time": "2015-08-29 10:30:27.0"},
+    {"end_time": "2015-08-29 11:05:27.0"},
+    {"notes": "4x4-intervall:\nHR-AVG: 167\nHR-MAX: 195\nAktiv: 10-12 km/t\nHvile: 6-9 km/t"},
+    {"duration_s": 2100},
+    {"distance_km": 0},
+    {"calories_kcal": 286},
+    {"speed_avg_kmh": 0},
+    {"hydration_l": 0.180574},
+    {"points": [[
+        {"distance_km": 0},
+        {"timestamp": "Sat Aug 29 10:30:27 UTC 2015"}
+    ]]}
+]

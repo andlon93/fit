@@ -1,0 +1,17 @@
+[
+    {"sport": "TREADMILL_RUNNING"},
+    {"source": "INPUT_MANUAL_MOBILE"},
+    {"created_date": "2015-03-22 12:35:42.0"},
+    {"start_time": "2015-03-22 11:45:19.0"},
+    {"end_time": "2015-03-22 12:30:19.0"},
+    {"message": "4x4-intervall"},
+    {"duration_s": 2700},
+    {"distance_km": 0},
+    {"calories_kcal": 367},
+    {"speed_avg_kmh": 0},
+    {"hydration_l": 0.232166},
+    {"points": [[
+        {"distance_km": 0},
+        {"timestamp": "Sun Mar 22 11:45:19 UTC 2015"}
+    ]]}
+]

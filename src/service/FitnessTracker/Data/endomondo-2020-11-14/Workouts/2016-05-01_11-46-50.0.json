@@ -1,0 +1,16 @@
+[
+    {"sport": "CROSSFIT"},
+    {"source": "INPUT_MANUAL_MOBILE"},
+    {"created_date": "2016-05-01 11:46:50.0"},
+    {"start_time": "2016-05-01 09:30:33.0"},
+    {"end_time": "2016-05-01 11:30:33.0"},
+    {"duration_s": 7200},
+    {"distance_km": 2.5},
+    {"calories_kcal": 737},
+    {"speed_avg_kmh": 1.25},
+    {"hydration_l": 0.482222},
+    {"points": [[
+        {"distance_km": 2.5},
+        {"timestamp": "Sun May 01 09:30:33 UTC 2016"}
+    ]]}
+]

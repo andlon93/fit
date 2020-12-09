@@ -1,0 +1,17 @@
+[
+    {"sport": "SPINNING"},
+    {"source": "INPUT_MANUAL_MOBILE"},
+    {"created_date": "2015-05-11 21:38:53.0"},
+    {"start_time": "2015-05-11 19:00:25.0"},
+    {"end_time": "2015-05-11 20:00:25.0"},
+    {"notes": "HR-AVG: 174\nHR-MAX: 192"},
+    {"duration_s": 3600},
+    {"distance_km": 0},
+    {"calories_kcal": 520},
+    {"speed_avg_kmh": 0},
+    {"hydration_l": 0.326666},
+    {"points": [[
+        {"distance_km": 0},
+        {"timestamp": "Mon May 11 19:00:25 UTC 2015"}
+    ]]}
+]

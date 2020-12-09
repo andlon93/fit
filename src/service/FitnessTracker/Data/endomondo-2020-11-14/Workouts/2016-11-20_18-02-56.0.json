@@ -1,0 +1,13 @@
+[
+    {"sport": "CROSS_TRAINING"},
+    {"source": "INPUT_MANUAL"},
+    {"created_date": "2016-11-20 18:02:56.0"},
+    {"start_time": "2016-11-19 15:21:00.0"},
+    {"end_time": "2016-11-19 15:21:02.0"},
+    {"duration_s": 2417},
+    {"distance_km": 16},
+    {"calories_kcal": 536.139},
+    {"heart_rate_avg_bpm": 183},
+    {"heart_rate_max_bpm": 196},
+    {"speed_avg_kmh": 23.83119569714522}
+]

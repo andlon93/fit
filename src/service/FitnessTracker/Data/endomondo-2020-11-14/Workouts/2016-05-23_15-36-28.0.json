@@ -1,0 +1,17 @@
+[
+    {"sport": "WEIGHT_TRAINING"},
+    {"source": "INPUT_MANUAL_MOBILE"},
+    {"created_date": "2016-05-23 15:36:28.0"},
+    {"start_time": "2016-05-23 14:00:59.0"},
+    {"end_time": "2016-05-23 15:30:59.0"},
+    {"notes": "2.5 km: 13 min. og 30 sek."},
+    {"duration_s": 5400},
+    {"distance_km": 2.5},
+    {"calories_kcal": 553},
+    {"speed_avg_kmh": 1.6666666666666667},
+    {"hydration_l": 0.361666},
+    {"points": [[
+        {"distance_km": 2.5},
+        {"timestamp": "Mon May 23 14:00:59 UTC 2016"}
+    ]]}
+]

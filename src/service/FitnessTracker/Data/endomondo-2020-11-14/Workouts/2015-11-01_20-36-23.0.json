@@ -1,0 +1,17 @@
+[
+    {"sport": "BADMINTON"},
+    {"source": "INPUT_MANUAL_MOBILE"},
+    {"created_date": "2015-11-01 20:36:23.0"},
+    {"start_time": "2015-10-31 08:00:59.0"},
+    {"end_time": "2015-10-31 09:00:59.0"},
+    {"notes": "Lagserie i Grong:\nMotstander: Verdal\nTapte 0-10"},
+    {"duration_s": 3600},
+    {"distance_km": 0},
+    {"calories_kcal": 337},
+    {"speed_avg_kmh": 0},
+    {"hydration_l": 0.224},
+    {"points": [[
+        {"distance_km": 0},
+        {"timestamp": "Sat Oct 31 08:00:59 UTC 2015"}
+    ]]}
+]

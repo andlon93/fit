@@ -1,0 +1,17 @@
+[
+    {"sport": "SPINNING"},
+    {"source": "INPUT_MANUAL_MOBILE"},
+    {"created_date": "2015-03-18 21:45:22.0"},
+    {"start_time": "2015-03-18 19:45:04.0"},
+    {"end_time": "2015-03-18 20:30:04.0"},
+    {"message": "4x4-intervall"},
+    {"duration_s": 2700},
+    {"distance_km": 0},
+    {"calories_kcal": 390},
+    {"speed_avg_kmh": 0},
+    {"hydration_l": 0.245},
+    {"points": [[
+        {"distance_km": 0},
+        {"timestamp": "Wed Mar 18 19:45:04 UTC 2015"}
+    ]]}
+]

@@ -1,0 +1,16 @@
+[
+    {"sport": "RUNNING"},
+    {"source": "INPUT_MANUAL_MOBILE"},
+    {"created_date": "2017-11-02 18:16:29.0"},
+    {"start_time": "2017-11-02 16:59:14.0"},
+    {"end_time": "2017-11-02 16:59:17.0"},
+    {"duration_s": 3208},
+    {"distance_km": 9},
+    {"calories_kcal": 556.357},
+    {"speed_avg_kmh": 10.099750623441397},
+    {"hydration_l": 0.338277},
+    {"points": [[
+        {"distance_km": 8.9},
+        {"timestamp": "Thu Nov 02 16:59:14 UTC 2017"}
+    ]]}
+]

@@ -1,0 +1,16 @@
+[
+    {"sport": "WEIGHT_TRAINING"},
+    {"source": "INPUT_MANUAL_MOBILE"},
+    {"created_date": "2017-11-19 21:11:32.0"},
+    {"start_time": "2017-11-19 18:00:17.0"},
+    {"end_time": "2017-11-19 20:00:17.0"},
+    {"duration_s": 7200},
+    {"distance_km": 0},
+    {"calories_kcal": 740},
+    {"speed_avg_kmh": 0},
+    {"hydration_l": 0.482222},
+    {"points": [[
+        {"distance_km": 0},
+        {"timestamp": "Sun Nov 19 18:00:17 UTC 2017"}
+    ]]}
+]

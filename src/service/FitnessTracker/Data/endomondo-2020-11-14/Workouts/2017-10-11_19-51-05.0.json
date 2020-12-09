@@ -1,0 +1,17 @@
+[
+    {"sport": "RUNNING"},
+    {"source": "INPUT_MANUAL_MOBILE"},
+    {"created_date": "2017-10-11 19:51:05.0"},
+    {"start_time": "2017-10-11 17:50:02.0"},
+    {"end_time": "2017-10-11 18:37:19.0"},
+    {"notes": "Naturlige intervaller i lysløypa ved løpebanen."},
+    {"duration_s": 2837},
+    {"distance_km": 6.699999809265137},
+    {"calories_kcal": 424},
+    {"speed_avg_kmh": 8.501938425574371},
+    {"hydration_l": 0.26348},
+    {"points": [[
+        {"distance_km": 6.7},
+        {"timestamp": "Wed Oct 11 17:50:02 UTC 2017"}
+    ]]}
+]

@@ -1,0 +1,16 @@
+[
+    {"sport": "CROSS_TRAINING"},
+    {"source": "INPUT_MANUAL_MOBILE"},
+    {"created_date": "2018-02-28 20:16:54.0"},
+    {"start_time": "2018-02-25 14:00:22.0"},
+    {"end_time": "2018-02-25 14:36:22.0"},
+    {"duration_s": 2160},
+    {"distance_km": 6},
+    {"calories_kcal": 160},
+    {"speed_avg_kmh": 10},
+    {"hydration_l": 0.10976},
+    {"points": [[
+        {"distance_km": 6},
+        {"timestamp": "Sun Feb 25 14:00:22 UTC 2018"}
+    ]]}
+]

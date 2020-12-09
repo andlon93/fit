@@ -1,0 +1,19 @@
+[
+    {"sport": "TREADMILL_RUNNING"},
+    {"source": "INPUT_MANUAL_MOBILE"},
+    {"created_date": "2019-08-21 18:51:22.0"},
+    {"start_time": "2019-08-21 18:00:59.0"},
+    {"end_time": "2019-08-21 18:44:59.0"},
+    {"message": "2 min/1 min x 7 (øk 0.2 per)\n2 min pause\n2 min/1 min x 5 (øk 0.1 per)\n\n12.5, 12.7, 12.9, 13.1, 13.6, 13.8, 14.0\n14.0, 13.5, 13.0, 13.0, 13.0"},
+    {"duration_s": 2640},
+    {"distance_km": 8},
+    {"calories_kcal": 536},
+    {"heart_rate_avg_bpm": 172},
+    {"heart_rate_max_bpm": 192},
+    {"speed_avg_kmh": 10.909090909090908},
+    {"hydration_l": 0.227007},
+    {"points": [[
+        {"distance_km": 8},
+        {"timestamp": "Wed Aug 21 18:00:59 UTC 2019"}
+    ]]}
+]

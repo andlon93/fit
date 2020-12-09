@@ -1,0 +1,846 @@
+[
+    {"identifier": 868210237},
+    {"name": "2 x Gåshølet"},
+    {"created_date": "2017-02-04 14:23:47.0"},
+    {"sport": "RUNNING"},
+    {"privacy": "PRIVATE_ROUTES"},
+    {"distance_km": 5.130738741054024},
+    {"start_location": [[
+        {"latitude": 60.02408},
+        {"longitude": 11.1151}
+    ]]},
+    {"end_location": [[
+        {"latitude": 60.02408},
+        {"longitude": 11.1151}
+    ]]},
+    {"points": [
+        [{"location": [[
+            {"latitude": 60.02408},
+            {"longitude": 11.1151}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02406},
+            {"longitude": 11.11477}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02477},
+            {"longitude": 11.11485}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02493},
+            {"longitude": 11.11492}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02504},
+            {"longitude": 11.11503}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02521},
+            {"longitude": 11.11517}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02541},
+            {"longitude": 11.11541}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02582},
+            {"longitude": 11.11594}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02591},
+            {"longitude": 11.11596}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02596},
+            {"longitude": 11.11593}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02603},
+            {"longitude": 11.11586}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02613},
+            {"longitude": 11.1158}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.0262},
+            {"longitude": 11.11576}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02629},
+            {"longitude": 11.11578}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02634},
+            {"longitude": 11.1159}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.0264},
+            {"longitude": 11.11608}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02638},
+            {"longitude": 11.11622}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02629},
+            {"longitude": 11.11628}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02623},
+            {"longitude": 11.11632}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02617},
+            {"longitude": 11.11633}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02613},
+            {"longitude": 11.11627}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02611},
+            {"longitude": 11.11622}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02612},
+            {"longitude": 11.11621}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02612},
+            {"longitude": 11.1162}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02613},
+            {"longitude": 11.11619}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02642},
+            {"longitude": 11.11606}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02693},
+            {"longitude": 11.11593}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02715},
+            {"longitude": 11.11586}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02734},
+            {"longitude": 11.11581}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02752},
+            {"longitude": 11.11587}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02767},
+            {"longitude": 11.11599}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02781},
+            {"longitude": 11.11605}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02787},
+            {"longitude": 11.11603}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02799},
+            {"longitude": 11.11596}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02826},
+            {"longitude": 11.11583}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02843},
+            {"longitude": 11.11575}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02865},
+            {"longitude": 11.11562}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02883},
+            {"longitude": 11.11552}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02922},
+            {"longitude": 11.11527}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02944},
+            {"longitude": 11.11512}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02956},
+            {"longitude": 11.11506}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.0297},
+            {"longitude": 11.11503}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02988},
+            {"longitude": 11.11503}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.03006},
+            {"longitude": 11.11502}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02996},
+            {"longitude": 11.11419}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02992},
+            {"longitude": 11.11395}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02921},
+            {"longitude": 11.11335}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02897},
+            {"longitude": 11.11316}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02852},
+            {"longitude": 11.11279}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02833},
+            {"longitude": 11.11257}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02813},
+            {"longitude": 11.1124}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02785},
+            {"longitude": 11.11216}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02729},
+            {"longitude": 11.11162}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02708},
+            {"longitude": 11.11143}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02692},
+            {"longitude": 11.11125}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02675},
+            {"longitude": 11.11095}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02661},
+            {"longitude": 11.11058}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02633},
+            {"longitude": 11.10981}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02618},
+            {"longitude": 11.10943}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02607},
+            {"longitude": 11.10916}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02593},
+            {"longitude": 11.10881}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02573},
+            {"longitude": 11.10809}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02562},
+            {"longitude": 11.10776}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.0255},
+            {"longitude": 11.10744}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02522},
+            {"longitude": 11.1068}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02526},
+            {"longitude": 11.10667}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.0251},
+            {"longitude": 11.10617}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02507},
+            {"longitude": 11.10603}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02497},
+            {"longitude": 11.1052}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02496},
+            {"longitude": 11.10486}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02493},
+            {"longitude": 11.104}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02489},
+            {"longitude": 11.10374}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.0248},
+            {"longitude": 11.1038}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02471},
+            {"longitude": 11.10331}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.0246},
+            {"longitude": 11.10297}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02452},
+            {"longitude": 11.10299}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02419},
+            {"longitude": 11.10386}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02387},
+            {"longitude": 11.1047}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02381},
+            {"longitude": 11.10496}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.0237},
+            {"longitude": 11.10514}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02365},
+            {"longitude": 11.10527}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02363},
+            {"longitude": 11.10539}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02363},
+            {"longitude": 11.10557}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02361},
+            {"longitude": 11.10576}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.0236},
+            {"longitude": 11.10591}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02357},
+            {"longitude": 11.10633}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02354},
+            {"longitude": 11.10716}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02359},
+            {"longitude": 11.10776}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02366},
+            {"longitude": 11.10815}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02366},
+            {"longitude": 11.10839}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02353},
+            {"longitude": 11.10918}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02366},
+            {"longitude": 11.10945}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02379},
+            {"longitude": 11.1096}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02391},
+            {"longitude": 11.10994}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.0239},
+            {"longitude": 11.1101}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02371},
+            {"longitude": 11.11094}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02366},
+            {"longitude": 11.11124}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02346},
+            {"longitude": 11.1121}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02339},
+            {"longitude": 11.11242}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02329},
+            {"longitude": 11.1127}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02324},
+            {"longitude": 11.11303}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02327},
+            {"longitude": 11.11328}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02368},
+            {"longitude": 11.11423}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02376},
+            {"longitude": 11.11474}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.024},
+            {"longitude": 11.11477}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02407},
+            {"longitude": 11.11484}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02424},
+            {"longitude": 11.1148}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.0246},
+            {"longitude": 11.1148}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.0247},
+            {"longitude": 11.11482}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02492},
+            {"longitude": 11.11493}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02529},
+            {"longitude": 11.11522}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02547},
+            {"longitude": 11.11545}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02582},
+            {"longitude": 11.11593}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02591},
+            {"longitude": 11.11596}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02596},
+            {"longitude": 11.11593}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.0261},
+            {"longitude": 11.11582}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.0262},
+            {"longitude": 11.11577}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02634},
+            {"longitude": 11.1159}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.0264},
+            {"longitude": 11.11606}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02637},
+            {"longitude": 11.11624}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02617},
+            {"longitude": 11.11634}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02611},
+            {"longitude": 11.11627}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02614},
+            {"longitude": 11.11619}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02622},
+            {"longitude": 11.11614}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02647},
+            {"longitude": 11.11605}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02667},
+            {"longitude": 11.11598}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02689},
+            {"longitude": 11.11592}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02701},
+            {"longitude": 11.11589}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02728},
+            {"longitude": 11.11581}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02737},
+            {"longitude": 11.1158}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02745},
+            {"longitude": 11.11584}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02761},
+            {"longitude": 11.11595}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02783},
+            {"longitude": 11.11604}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02837},
+            {"longitude": 11.11577}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02891},
+            {"longitude": 11.11546}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02917},
+            {"longitude": 11.11528}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02932},
+            {"longitude": 11.11516}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02949},
+            {"longitude": 11.1151}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.0297},
+            {"longitude": 11.11503}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02987},
+            {"longitude": 11.11503}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.03006},
+            {"longitude": 11.11502}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02996},
+            {"longitude": 11.11418}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02993},
+            {"longitude": 11.11395}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02953},
+            {"longitude": 11.11363}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02938},
+            {"longitude": 11.11351}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.0292},
+            {"longitude": 11.11336}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02877},
+            {"longitude": 11.11301}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02854},
+            {"longitude": 11.1128}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02842},
+            {"longitude": 11.11267}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02788},
+            {"longitude": 11.11215}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02752},
+            {"longitude": 11.11181}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02696},
+            {"longitude": 11.11127}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02682},
+            {"longitude": 11.11104}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02664},
+            {"longitude": 11.11066}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02654},
+            {"longitude": 11.11038}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.0263},
+            {"longitude": 11.10974}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02617},
+            {"longitude": 11.1094}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02595},
+            {"longitude": 11.1088}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.0258},
+            {"longitude": 11.1083}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02566},
+            {"longitude": 11.10787}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02552},
+            {"longitude": 11.10751}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02541},
+            {"longitude": 11.10724}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02534},
+            {"longitude": 11.1071}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02522},
+            {"longitude": 11.10679}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02525},
+            {"longitude": 11.10667}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02513},
+            {"longitude": 11.10627}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02506},
+            {"longitude": 11.10596}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02498},
+            {"longitude": 11.10531}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02497},
+            {"longitude": 11.10495}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02493},
+            {"longitude": 11.10426}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02492},
+            {"longitude": 11.10401}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.0249},
+            {"longitude": 11.10374}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.0248},
+            {"longitude": 11.10381}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02471},
+            {"longitude": 11.10328}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.0246},
+            {"longitude": 11.10297}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02452},
+            {"longitude": 11.10298}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02416},
+            {"longitude": 11.10387}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02399},
+            {"longitude": 11.10432}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.0239},
+            {"longitude": 11.10462}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02381},
+            {"longitude": 11.10495}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02367},
+            {"longitude": 11.10521}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02361},
+            {"longitude": 11.10564}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02361},
+            {"longitude": 11.10588}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02359},
+            {"longitude": 11.10606}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02354},
+            {"longitude": 11.1067}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02354},
+            {"longitude": 11.10703}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02356},
+            {"longitude": 11.10756}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02361},
+            {"longitude": 11.10791}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02365},
+            {"longitude": 11.10828}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.0236},
+            {"longitude": 11.10873}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02353},
+            {"longitude": 11.10918}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02358},
+            {"longitude": 11.10934}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02374},
+            {"longitude": 11.10959}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02392},
+            {"longitude": 11.10994}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.0239},
+            {"longitude": 11.11012}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.0238},
+            {"longitude": 11.11057}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02353},
+            {"longitude": 11.11174}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02345},
+            {"longitude": 11.11209}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02338},
+            {"longitude": 11.11245}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02328},
+            {"longitude": 11.11277}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02324},
+            {"longitude": 11.11305}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02328},
+            {"longitude": 11.11329}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02336},
+            {"longitude": 11.1135}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02359},
+            {"longitude": 11.11401}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02376},
+            {"longitude": 11.11475}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02403},
+            {"longitude": 11.11482}
+        ]]}],
+        [{"location": [[
+            {"latitude": 60.02408},
+            {"longitude": 11.1151}
+        ]]}]
+    ]}
+]

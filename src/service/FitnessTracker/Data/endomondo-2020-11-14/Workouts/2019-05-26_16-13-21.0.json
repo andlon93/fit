@@ -1,0 +1,16 @@
+[
+    {"sport": "CLIMBING"},
+    {"source": "INPUT_MANUAL_MOBILE"},
+    {"created_date": "2019-05-26 16:13:21.0"},
+    {"start_time": "2019-05-22 15:00:47.0"},
+    {"end_time": "2019-05-22 16:00:47.0"},
+    {"duration_s": 3600},
+    {"distance_km": 0},
+    {"calories_kcal": 496},
+    {"speed_avg_kmh": 0},
+    {"hydration_l": 0.309555},
+    {"points": [[
+        {"distance_km": 0},
+        {"timestamp": "Wed May 22 15:00:47 UTC 2019"}
+    ]]}
+]

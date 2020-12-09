@@ -1,0 +1,16 @@
+[
+    {"sport": "RUNNING"},
+    {"source": "INPUT_MANUAL_MOBILE"},
+    {"created_date": "2020-03-23 17:08:57.0"},
+    {"start_time": "2020-03-23 16:15:46.0"},
+    {"end_time": "2020-03-23 16:45:21.0"},
+    {"duration_s": 1775},
+    {"distance_km": 5.150000095367432},
+    {"calories_kcal": 319},
+    {"speed_avg_kmh": 10.445070615956482},
+    {"hydration_l": 0.192927},
+    {"points": [[
+        {"distance_km": 5.15},
+        {"timestamp": "Mon Mar 23 16:15:46 UTC 2020"}
+    ]]}
+]

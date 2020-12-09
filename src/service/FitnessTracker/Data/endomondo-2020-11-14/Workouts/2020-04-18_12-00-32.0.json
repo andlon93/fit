@@ -1,0 +1,16 @@
+[
+    {"sport": "CROSSFIT"},
+    {"source": "INPUT_MANUAL_MOBILE"},
+    {"created_date": "2020-04-18 12:00:32.0"},
+    {"start_time": "2020-04-18 11:00:27.0"},
+    {"end_time": "2020-04-18 11:50:27.0"},
+    {"duration_s": 3000},
+    {"distance_km": 0},
+    {"calories_kcal": 311},
+    {"speed_avg_kmh": 0},
+    {"hydration_l": 0.200926},
+    {"points": [[
+        {"distance_km": 0},
+        {"timestamp": "Sat Apr 18 11:00:27 UTC 2020"}
+    ]]}
+]

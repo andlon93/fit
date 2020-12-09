@@ -1,0 +1,16 @@
+[
+    {"sport": "RUNNING"},
+    {"source": "INPUT_MANUAL_MOBILE"},
+    {"created_date": "2016-07-22 13:24:07.0"},
+    {"start_time": "2016-07-22 08:15:55.0"},
+    {"end_time": "2016-07-22 08:55:55.0"},
+    {"duration_s": 2400},
+    {"distance_km": 6},
+    {"calories_kcal": 376},
+    {"speed_avg_kmh": 9},
+    {"hydration_l": 0.233486},
+    {"points": [[
+        {"distance_km": 6},
+        {"timestamp": "Fri Jul 22 08:15:55 UTC 2016"}
+    ]]}
+]

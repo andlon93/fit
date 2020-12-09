@@ -1,0 +1,17 @@
+[
+    {"sport": "HIKING"},
+    {"source": "INPUT_MANUAL_MOBILE"},
+    {"created_date": "2015-08-09 21:05:44.0"},
+    {"start_time": "2015-08-09 08:45:26.0"},
+    {"end_time": "2015-08-09 12:45:26.0"},
+    {"notes": "Fjelltur fra Krækkja turisthytte til Haugastøl stasjon (5 timer og 45 minutter)"},
+    {"duration_s": 14400},
+    {"distance_km": 0},
+    {"calories_kcal": 1469},
+    {"speed_avg_kmh": 0},
+    {"hydration_l": 0.964443},
+    {"points": [[
+        {"distance_km": 0},
+        {"timestamp": "Sun Aug 09 08:45:26 UTC 2015"}
+    ]]}
+]

@@ -1,0 +1,17 @@
+[
+    {"sport": "TREADMILL_RUNNING"},
+    {"source": "INPUT_MANUAL_MOBILE"},
+    {"created_date": "2020-01-19 11:51:14.0"},
+    {"start_time": "2020-01-19 11:05:42.0"},
+    {"end_time": "2020-01-19 11:50:42.0"},
+    {"message": "Bakkeintervall:\n12 x 40/20 (10 km/h)\n- 4 x høyde 6\n- 4 x høyde 8\n- 4 x høyde 10\n1 minutt pause\n12 x 30/20\n- 4 x høyde 10 +0.5 km/h (eller +0.2 km/h per)\n- 4 x høyde 8 +0.5 km/h (eller +0.2 km/h per)\n- 4 x høyde 6 +0.5 km/h (eller +0.2 km/h per)"},
+    {"duration_s": 2700},
+    {"distance_km": 6.699999809265137},
+    {"calories_kcal": 373},
+    {"speed_avg_kmh": 8.933333079020182},
+    {"hydration_l": 0.232166},
+    {"points": [[
+        {"distance_km": 6.7},
+        {"timestamp": "Sun Jan 19 11:05:42 UTC 2020"}
+    ]]}
+]

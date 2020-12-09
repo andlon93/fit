@@ -1,0 +1,17 @@
+[
+    {"sport": "TREADMILL_RUNNING"},
+    {"source": "INPUT_MANUAL_MOBILE"},
+    {"created_date": "2017-10-02 14:15:30.0"},
+    {"start_time": "2017-10-02 10:45:09.0"},
+    {"end_time": "2017-10-02 11:20:09.0"},
+    {"notes": "4x4-intervaller: 12.5 km/t på alle utenom det nest siste minuttet av siste intervall."},
+    {"duration_s": 2100},
+    {"distance_km": 6.5},
+    {"calories_kcal": 288},
+    {"speed_avg_kmh": 11.142857142857142},
+    {"hydration_l": 0.180574},
+    {"points": [[
+        {"distance_km": 6.5},
+        {"timestamp": "Mon Oct 02 10:45:09 UTC 2017"}
+    ]]}
+]

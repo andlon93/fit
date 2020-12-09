@@ -1,0 +1,16 @@
+[
+    {"sport": "CYCLING_TRANSPORTATION"},
+    {"source": "INPUT_MANUAL_MOBILE"},
+    {"created_date": "2016-09-20 05:16:40.0"},
+    {"start_time": "2016-09-16 13:00:38.0"},
+    {"end_time": "2016-09-16 15:00:38.0"},
+    {"duration_s": 7200},
+    {"distance_km": 40},
+    {"calories_kcal": 941},
+    {"speed_avg_kmh": 20},
+    {"hydration_l": 0.595596},
+    {"points": [[
+        {"distance_km": 40},
+        {"timestamp": "Fri Sep 16 13:00:38 UTC 2016"}
+    ]]}
+]

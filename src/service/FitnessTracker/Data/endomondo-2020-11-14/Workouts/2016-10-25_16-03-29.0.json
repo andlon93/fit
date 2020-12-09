@@ -1,0 +1,18 @@
+[
+    {"sport": "CROSS_TRAINING"},
+    {"source": "INPUT_MANUAL_MOBILE"},
+    {"created_date": "2016-10-25 16:03:29.0"},
+    {"start_time": "2016-10-23 13:30:53.0"},
+    {"end_time": "2016-10-23 13:30:55.0"},
+    {"duration_s": 2700},
+    {"distance_km": 15.100000381469727},
+    {"calories_kcal": 560.436},
+    {"heart_rate_avg_bpm": 175},
+    {"heart_rate_max_bpm": 185},
+    {"speed_avg_kmh": 20.133333841959637},
+    {"hydration_l": 0.245},
+    {"points": [[
+        {"distance_km": 15.1},
+        {"timestamp": "Sun Oct 23 13:30:53 UTC 2016"}
+    ]]}
+]

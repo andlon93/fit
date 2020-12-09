@@ -1,0 +1,16 @@
+[
+    {"sport": "TREADMILL_RUNNING"},
+    {"source": "INPUT_MANUAL_MOBILE"},
+    {"created_date": "2015-12-10 14:34:55.0"},
+    {"start_time": "2015-12-10 13:45:23.0"},
+    {"end_time": "2015-12-10 14:30:23.0"},
+    {"duration_s": 2700},
+    {"distance_km": 0},
+    {"calories_kcal": 367},
+    {"speed_avg_kmh": 0},
+    {"hydration_l": 0.232166},
+    {"points": [[
+        {"distance_km": 0},
+        {"timestamp": "Thu Dec 10 13:45:23 UTC 2015"}
+    ]]}
+]

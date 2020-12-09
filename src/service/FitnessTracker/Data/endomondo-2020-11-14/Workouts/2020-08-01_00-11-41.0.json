@@ -1,0 +1,17 @@
+[
+    {"sport": "HIKING"},
+    {"source": "INPUT_MANUAL_MOBILE"},
+    {"created_date": "2020-08-01 00:11:41.0"},
+    {"start_time": "2020-07-31 10:00:49.0"},
+    {"end_time": "2020-07-31 14:30:49.0"},
+    {"message": "Honstadknyken, 1071 moh."},
+    {"duration_s": 16200},
+    {"distance_km": 13},
+    {"calories_kcal": 1681},
+    {"speed_avg_kmh": 2.888888888888889},
+    {"hydration_l": 1.085},
+    {"points": [[
+        {"distance_km": 13},
+        {"timestamp": "Fri Jul 31 10:00:49 UTC 2020"}
+    ]]}
+]

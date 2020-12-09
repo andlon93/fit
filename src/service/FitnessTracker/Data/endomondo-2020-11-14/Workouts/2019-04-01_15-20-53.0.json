@@ -1,0 +1,16 @@
+[
+    {"sport": "SNOWBOARDING"},
+    {"source": "INPUT_MANUAL_MOBILE"},
+    {"created_date": "2019-04-01 15:20:53.0"},
+    {"start_time": "2019-03-31 09:00:42.0"},
+    {"end_time": "2019-03-31 11:00:42.0"},
+    {"duration_s": 7200},
+    {"distance_km": 0},
+    {"calories_kcal": 658},
+    {"speed_avg_kmh": 0},
+    {"hydration_l": 0.434311},
+    {"points": [[
+        {"distance_km": 0},
+        {"timestamp": "Sun Mar 31 09:00:42 UTC 2019"}
+    ]]}
+]

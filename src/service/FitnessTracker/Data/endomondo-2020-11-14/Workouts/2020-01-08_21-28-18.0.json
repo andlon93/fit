@@ -1,0 +1,16 @@
+[
+    {"sport": "PILATES"},
+    {"source": "INPUT_MANUAL_MOBILE"},
+    {"created_date": "2020-01-08 21:28:18.0"},
+    {"start_time": "2020-01-08 19:30:55.0"},
+    {"end_time": "2020-01-08 20:30:55.0"},
+    {"duration_s": 3600},
+    {"distance_km": 0},
+    {"calories_kcal": 186},
+    {"speed_avg_kmh": 0},
+    {"hydration_l": 0.138444},
+    {"points": [[
+        {"distance_km": 0},
+        {"timestamp": "Wed Jan 08 19:30:55 UTC 2020"}
+    ]]}
+]

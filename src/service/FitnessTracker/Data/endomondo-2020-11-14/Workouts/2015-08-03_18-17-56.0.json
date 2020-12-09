@@ -1,0 +1,16 @@
+[
+    {"sport": "KAYAKING"},
+    {"source": "INPUT_MANUAL_MOBILE"},
+    {"created_date": "2015-08-03 18:17:56.0"},
+    {"start_time": "2015-07-20 09:00:32.0"},
+    {"end_time": "2015-07-20 12:00:32.0"},
+    {"duration_s": 10800},
+    {"distance_km": 0},
+    {"calories_kcal": 918},
+    {"speed_avg_kmh": 0},
+    {"hydration_l": 0.620666},
+    {"points": [[
+        {"distance_km": 0},
+        {"timestamp": "Mon Jul 20 09:00:32 UTC 2015"}
+    ]]}
+]

@@ -1,0 +1,17 @@
+[
+    {"sport": "CLIMBING"},
+    {"source": "INPUT_MANUAL_MOBILE"},
+    {"created_date": "2015-06-27 08:28:46.0"},
+    {"start_time": "2015-06-25 15:00:56.0"},
+    {"end_time": "2015-06-25 16:30:56.0"},
+    {"notes": "4 timer på Høyt & Lavt i Vestfold."},
+    {"duration_s": 5400},
+    {"distance_km": 0},
+    {"calories_kcal": 735},
+    {"speed_avg_kmh": 0},
+    {"hydration_l": 0.464333},
+    {"points": [[
+        {"distance_km": 0},
+        {"timestamp": "Thu Jun 25 15:00:56 UTC 2015"}
+    ]]}
+]

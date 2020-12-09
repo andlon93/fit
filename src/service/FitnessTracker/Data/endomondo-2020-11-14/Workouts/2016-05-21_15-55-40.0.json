@@ -1,0 +1,17 @@
+[
+    {"sport": "TREADMILL_RUNNING"},
+    {"source": "INPUT_MANUAL_MOBILE"},
+    {"created_date": "2016-05-21 15:55:40.0"},
+    {"start_time": "2016-05-21 13:50:53.0"},
+    {"end_time": "2016-05-21 14:25:53.0"},
+    {"notes": "4x4-intervall"},
+    {"duration_s": 2100},
+    {"distance_km": 5.5},
+    {"calories_kcal": 287},
+    {"speed_avg_kmh": 9.428571428571429},
+    {"hydration_l": 0.180574},
+    {"points": [[
+        {"distance_km": 5.5},
+        {"timestamp": "Sat May 21 13:50:53 UTC 2016"}
+    ]]}
+]

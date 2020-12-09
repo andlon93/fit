@@ -1,0 +1,16 @@
+[
+    {"sport": "HIKING"},
+    {"source": "INPUT_MANUAL_MOBILE"},
+    {"created_date": "2019-08-17 17:42:10.0"},
+    {"start_time": "2019-08-05 08:30:15.0"},
+    {"end_time": "2019-08-05 16:30:15.0"},
+    {"duration_s": 28800},
+    {"distance_km": 20},
+    {"calories_kcal": 2978},
+    {"speed_avg_kmh": 2.5},
+    {"hydration_l": 1.92889},
+    {"points": [[
+        {"distance_km": 20},
+        {"timestamp": "Mon Aug 05 08:30:15 UTC 2019"}
+    ]]}
+]

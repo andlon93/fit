@@ -1,0 +1,16 @@
+[
+    {"sport": "TREADMILL_RUNNING"},
+    {"source": "INPUT_MANUAL_MOBILE"},
+    {"created_date": "2017-06-03 14:45:54.0"},
+    {"start_time": "2017-06-03 14:00:59.0"},
+    {"end_time": "2017-06-03 14:30:59.0"},
+    {"duration_s": 1800},
+    {"distance_km": 5},
+    {"calories_kcal": 247},
+    {"speed_avg_kmh": 10},
+    {"hydration_l": 0.154778},
+    {"points": [[
+        {"distance_km": 5},
+        {"timestamp": "Sat Jun 03 14:00:59 UTC 2017"}
+    ]]}
+]

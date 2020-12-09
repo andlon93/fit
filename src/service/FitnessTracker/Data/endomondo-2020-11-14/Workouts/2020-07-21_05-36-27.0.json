@@ -1,0 +1,16 @@
+[
+    {"sport": "YOGA"},
+    {"source": "INPUT_MANUAL_MOBILE"},
+    {"created_date": "2020-07-21 05:36:27.0"},
+    {"start_time": "2020-07-22 04:30:22.0"},
+    {"end_time": "2020-07-22 05:22:22.0"},
+    {"duration_s": 3120},
+    {"distance_km": 0},
+    {"calories_kcal": 178},
+    {"speed_avg_kmh": 0},
+    {"hydration_l": 0.128883},
+    {"points": [[
+        {"distance_km": 0},
+        {"timestamp": "Wed Jul 22 04:30:22 UTC 2020"}
+    ]]}
+]
