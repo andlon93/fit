@@ -30,7 +30,7 @@ namespace FitnessTracker
 
             // Workouts
             services.AddSingleton<WorkoutRepository>();
-            services.AddSingleton<WorkoutService>();
+            services.AddSingleton<WorkoutQueryService>();
             services.AddSingleton<WorkoutCommandService>();
             services.AddSingleton<WorkoutInputType>();
             services.AddSingleton<WorkoutUpdateInputType>();

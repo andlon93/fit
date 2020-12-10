@@ -11,9 +11,9 @@ namespace FitnessTracker.Challenges
 {
     public class ChallengeGraphType : ObjectGraphType<Challenge>
     {
-        private readonly WorkoutService _workoutService;
+        private readonly WorkoutQueryService _workoutService;
         private readonly UserService _userService;
-        public ChallengeGraphType(WorkoutService workoutService, UserService userService)
+        public ChallengeGraphType(WorkoutQueryService workoutService, UserService userService)
         {
             _workoutService = workoutService;
             _userService = userService;

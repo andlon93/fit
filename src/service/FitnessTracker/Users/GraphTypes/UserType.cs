@@ -15,9 +15,9 @@ namespace FitnessTracker.Users.GraphTypes
 {
     public class UserType : ObjectGraphType<User>
     {
-        private readonly WorkoutService _workoutservice;
+        private readonly WorkoutQueryService _workoutservice;
         private readonly IDataLoaderContextAccessor _dataLoaderContextAccessor;
-        public UserType(WorkoutService workoutservice, IDataLoaderContextAccessor dataLoaderContextAccessor)
+        public UserType(WorkoutQueryService workoutservice, IDataLoaderContextAccessor dataLoaderContextAccessor)
         {
             _workoutservice = workoutservice;
             _dataLoaderContextAccessor = dataLoaderContextAccessor;
