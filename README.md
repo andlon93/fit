@@ -11,11 +11,18 @@ Requirements:
 # Navigate to the project directory
 $ cd fit/src/app
 
+# Install dependencies
+$ npm install
+
 # Start the development server
 $ expo start
 ```
 
-See [Expo docs](https://docs.expo.io/) for more information about the setup.
+- See [Expo docs](https://docs.expo.io/) for more information about the setup.
+- **UI Kit** [React Native Elements
+](https://reactnativeelements.com/docs/)
+- **Navigation** [React Navigation](https://reactnavigation.org/docs)
+- **GraphQL** [Apollo](https://www.apollographql.com/docs/)
 
 ## Service
 
