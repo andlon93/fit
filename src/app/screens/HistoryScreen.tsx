@@ -5,18 +5,35 @@ import { gql, useQuery } from '@apollo/client'
 
 import useColorScheme from '../hooks/useColorScheme';
 import { Text, View } from '../components/Themed';
-import { Section, WorkoutListItem, Workout, HistoryData } from '../types';
+import { Section, WorkoutListItem, Workout, HistoryData, WorkoutGroup } from '../types';
 import { AppLoading } from 'expo';
 
 const HISTORY_QUERY = gql`
   query History {
-    workouts(paging: {rows: 99999999}) {
-      id
-      startTime
-      totalTimeSeconds
+    firstGroup: groupedWorkouts(paging:{rows:1 offset:0} groupBy:MONTH ) {
+      title
+      numberOfWorkouts
+      durationInSeconds
+      distanceInMeters
       calories
-      sport
-      distance
+      workouts {
+        id
+        sport
+        startTime
+        calories
+        totalTimeSeconds
+        distance
+      }
+    }
+    otherGroups: groupedWorkouts(paging:{rows:4 offset:1} groupBy:MONTH ) {
+      title
+      numberOfWorkouts
+      durationInSeconds
+      distanceInMeters
+      calories
+      workouts {
+        id
+      }
     }
   }
 `
@@ -35,21 +52,20 @@ export default function HistoryScreen() {
       <TouchableWithoutFeedback
         key={section.key.header}
         onPress={() => console.log('Expand/Collapse section: ' + section.key.header)}>
-          <ListItem>
-            <Text style={styles.title}>{section.key.number}</Text>
-            <ListItem.Content>
-              <ListItem.Title>{section.key.header}</ListItem.Title>
-              <ListItem.Subtitle>                
-                <Icon name='place' color='#0384fc' />
-                <Text style={styles.subheaderItem}>{section.key.distance}</Text>
-                <Icon name='timer' color='#fc0303' />
-                <Text style={styles.subheaderItem}>{section.key.duration}</Text>
-                <Icon name='fire' color='#fc9804' type='material-community
-' />
-                <Text style={styles.subheaderItem}>{section.key.calories}</Text>
-              </ListItem.Subtitle>
-            </ListItem.Content>
-          </ListItem>
+        <ListItem>
+          <Text style={styles.title}>{section.key.number}</Text>
+          <ListItem.Content>
+            <ListItem.Title>{section.key.header}</ListItem.Title>
+            <ListItem.Subtitle>
+              <Icon name='place' color='#0384fc' />
+              <Text style={styles.subheaderItem}>{section.key.distance}</Text>
+              <Icon name='timer' color='#fc0303' />
+              <Text style={styles.subheaderItem}>{section.key.duration}</Text>
+              <Icon name='fire' color='#fc9804' type='material-community' />
+              <Text style={styles.subheaderItem}>{section.key.calories}</Text>
+            </ListItem.Subtitle>
+          </ListItem.Content>
+        </ListItem>
       </TouchableWithoutFeedback>
     )
   };
@@ -59,47 +75,36 @@ export default function HistoryScreen() {
       <TouchableWithoutFeedback
         key={workout.item.id}
         onPress={() => console.log('Navigate to: ' + workout.item.id)}>
-          <ListItem key={workout.item.id}>
-            <Icon name='rowing' color='#03cefc' reverse />
-            <ListItem.Content>
-              <ListItem.Title>{workout.item.startTime.toDateString}</ListItem.Title>
-              <ListItem.Subtitle>{workout.item.distance} {workout.item.totalTimeSeconds} {workout.item.totalTimeSeconds}</ListItem.Subtitle>
-            </ListItem.Content>
-          </ListItem>
+        <ListItem key={workout.item.id}>
+          <Icon name='rowing' color='#03cefc' reverse />
+          <ListItem.Content>
+            <ListItem.Title>{workout.item.startTime.toDateString}</ListItem.Title>
+            <ListItem.Subtitle>{workout.item.distance} {workout.item.totalTimeSeconds} {workout.item.totalTimeSeconds}</ListItem.Subtitle>
+          </ListItem.Content>
+        </ListItem>
       </TouchableWithoutFeedback>
     )
   };
 
-  const ConvertToSection = (data: HistoryData) => {
-    var temp: Section[] = [
-          {
-            key: { header: 'November 2020', number: 8, distance: 33920, duration: 18300, calories: 2315 },
-            data: [
-              { id: '1', totalTimeSeconds: 3600, startTime: new Date(2020, 18, 11, 19, 0, 0), sport: "Løping", calories: 0, distance: 0 },
-              { id: '2', totalTimeSeconds: 3600, startTime: new Date(2020, 18, 11, 19, 0, 0), sport: "Løping", calories: 0, distance: 0 },
-              { id: '3', totalTimeSeconds: 3600, startTime: new Date(2020, 18, 11, 19, 0, 0), sport: "Løping", calories: 0, distance: 0 },
-              { id: '4', totalTimeSeconds: 3600, startTime: new Date(2020, 18, 11, 19, 0, 0), sport: "Løping", calories: 0, distance: 0 },
-              { id: '5', totalTimeSeconds: 3600, startTime: new Date(2020, 18, 11, 19, 0, 0), sport: "Løping", calories: 0, distance: 0 },
-            ]
-          },
-          {
-            key: { header: 'Oktober 2020', number: 8, distance: 33920, duration: 18300, calories: 2315 }, data: []
-          },
-          {
-            key: { header: 'September 2020', number: 8, distance: 33920, duration: 18300, calories: 2315 }, data: []
-          },
-          {
-            key: { header: 'August 2020', number: 8, distance: 33920, duration: 18300, calories: 2315 }, data: []
-          },
-        ];
-      return temp;
+  const ConvertToSection = (group: WorkoutGroup, mapData: boolean) => {
+    var section: Section = {
+      key: { header: group.title, number: group.numberOfWorkouts, distance: group.distanceInMeters, duration: group.durationInSeconds, calories: group.calories },
+      data: mapData ? group.workouts : []
+    }
+    return section;
+  }
+
+  const ConvertToSections = (data: HistoryData) => {
+    var sections: Section[] = [ConvertToSection(data.firstGroup[0], true)]
+    sections = sections.concat(data.otherGroups.map(group => ConvertToSection(group, false)))
+    return sections;
   }
 
   return (
     <View style={styles.container}>
       {loading ? <ActivityIndicator /> : (
         <SectionList
-          sections={ConvertToSection(data)}
+          sections={ConvertToSections(data)}
           renderItem={workoutItem}
           renderSectionHeader={({ section }) => sectionItem(section)}
           keyExtractor={(item: WorkoutListItem) => item.id}

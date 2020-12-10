@@ -1,7 +1,7 @@
 export type RootStackParamList = {
   Root: undefined;
   NotFound: undefined;
-  WorkoutDetailScreen: { id : string } | undefined;
+  WorkoutDetailScreen: { id: string } | undefined;
 };
 
 export type BottomTabParamList = {
@@ -40,7 +40,7 @@ export type WorkoutListItem = {
   id: string;
   sport: string;
   startTime: Date;
-  totalTimeSeconds: number;  
+  totalTimeSeconds: number;
   calories: number;
   distance: number;
 };
@@ -62,9 +62,19 @@ export type SectionListItem = {
   distance: number;
   duration: number;
   calories: number;
-}; 
+};
 
 export interface HistoryData {
+  firstGroup: WorkoutGroup[];
+  otherGroups: WorkoutGroup[];
+}
+
+export type WorkoutGroup = {
+  title: string;
+  numberOfWorkouts: number;
+  durationInSeconds: number;
+  distanceInMeters: number;
+  calories: number;
   workouts: WorkoutListItem[];
 }
 
