@@ -23,6 +23,7 @@ $ expo start
 ](https://reactnativeelements.com/docs/)
 - **Navigation** [React Navigation](https://reactnavigation.org/docs)
 - **GraphQL** [Apollo](https://www.apollographql.com/docs/)
+- **Maps** [React Native Maps](https://github.com/react-native-maps/react-native-maps)
 
 ## Service
 

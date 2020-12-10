@@ -9,7 +9,8 @@ import { RouteProp } from '@react-navigation/native';
 import { gql, useQuery } from '@apollo/client'
 
 import EditScreenInfo from '../components/EditScreenInfo';
-import { Card, ListItem, Button, Icon, Avatar } from 'react-native-elements';
+import { Card, Header, ListItem, Button, Icon, Avatar } from 'react-native-elements';
+import useColorScheme from '../hooks/useColorScheme';
 import { Text, View } from '../components/Themed';
 import { RootStackParamList, DetailsData } from '../types';
 import { AppLoading } from 'expo';
@@ -46,7 +47,9 @@ interface IconLabelContentPresenterProps {
 
 const IconLabelContentPresenter = (props : IconLabelContentPresenterProps) => {
   return (
-    <ListItem leftIcon={{name: props.iconName, color: props.iconColor}}>
+    <ListItem 
+      leftIcon={{name: props.iconName, color: props.iconColor}}
+      style={styles.summaryItem}>
       <ListItem.Content>
       <ListItem.Subtitle>{props.label}</ListItem.Subtitle>
         <ListItem.Title>{props.content}</ListItem.Title>
@@ -57,6 +60,8 @@ const IconLabelContentPresenter = (props : IconLabelContentPresenterProps) => {
 
 
 export default function WorkoutDetailScreen(props : Props) {
+  
+  const colorScheme = useColorScheme();
   
   const { data, loading } = useQuery<DetailsData>(DETAILS_QUERY, {
     variables: { filter: {ids: [props.route.params?.id]} },
@@ -70,6 +75,20 @@ export default function WorkoutDetailScreen(props : Props) {
 
   return (
     <View style={styles.container}>
+      <Header
+        barStyle={colorScheme == 'dark' ? 'dark-content' : 'light-content'}
+        placement="left"    
+        leftComponent={<Button
+          icon={{ name: 'west' }}
+          type="clear"
+          onPress={() => props.navigation.goBack()}
+        />}
+        centerComponent={{ text: 'MY TITLE' }}
+        containerStyle={{
+          justifyContent: 'space-around',
+        }}
+
+      />
       <Card>
         <ListItem>
           <Icon reverse name='sport' color='#0384fc'/>
@@ -80,7 +99,7 @@ export default function WorkoutDetailScreen(props : Props) {
         </ListItem>
       </Card>
       <Card>
-        <View style={styles.itemsContainer}>
+        <View style={styles.summaryContainer}>
           <IconLabelContentPresenter 
             iconName='timer'
             iconColor='#3471eb'
@@ -191,11 +210,13 @@ const styles = StyleSheet.create({
     height: 1,
     width: '80%',
   },
-  itemsContainer: {
+  summaryContainer: {
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
+    width: '100%',
+  },
+  summaryItem: {
+    width: '50%'
   },
 });
