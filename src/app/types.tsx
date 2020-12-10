@@ -37,14 +37,22 @@ export type HeaderParamList = {
 
 export type WorkoutListItem = {
   id: string;
-  type: string;
+  sport: string;
   startTime: Date;
-  durationSeconds: number;
+  totalTimeSeconds: number;  
+  calories: number;
+  distance: number;
 };
 
 export type Section = {
   key: SectionListItem;
   data: WorkoutListItem[];
+}
+
+
+export type Workout = {
+  section: SectionListItem;
+  item: WorkoutListItem;
 }
 
 export type SectionListItem = {
@@ -54,3 +62,13 @@ export type SectionListItem = {
   duration: number;
   calories: number;
 }; 
+
+export interface HistoryData {
+  workouts: WorkoutListItem[];
+}
+
+export enum Sport {
+  Biking = "Biking",
+  Other = "Other",
+  Running = "Running",
+}
