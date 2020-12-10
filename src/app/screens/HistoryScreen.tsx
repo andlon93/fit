@@ -1,12 +1,18 @@
 import React from 'react';
 import { ActivityIndicator, SectionList, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import { ListItem, Icon } from 'react-native-elements';
+import {
+  NavigationParams,
+  NavigationScreenProp,
+  NavigationState,
+} from 'react-navigation';
 import { gql, useQuery } from '@apollo/client'
 
 import useColorScheme from '../hooks/useColorScheme';
 import { Text, View } from '../components/Themed';
 import { Section, WorkoutListItem, Workout, HistoryData, WorkoutGroup } from '../types';
 import { AppLoading } from 'expo';
+import { dateToStringMinimal, metersToString, secondsToDuration } from './utility_functions';
 
 const HISTORY_QUERY = gql`
   query History {
@@ -38,7 +44,11 @@ const HISTORY_QUERY = gql`
   }
 `
 
-export default function HistoryScreen() {
+interface Props {
+  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
+}
+
+export default function HistoryScreen(props : Props) {
   const colorScheme = useColorScheme();
 
   const { data, loading } = useQuery<HistoryData>(HISTORY_QUERY)
@@ -51,18 +61,18 @@ export default function HistoryScreen() {
     return (
       <TouchableWithoutFeedback
         key={section.key.header}
-        onPress={() => console.log('Expand/Collapse section: ' + section.key.header)}>
+        onPress={() => console.log('TODO: Expand/Collapse section: ' + section.key.header)}>
         <ListItem>
           <Text style={styles.title}>{section.key.number}</Text>
           <ListItem.Content>
             <ListItem.Title>{section.key.header}</ListItem.Title>
             <ListItem.Subtitle>
               <Icon name='place' color='#0384fc' />
-              <Text style={styles.subheaderItem}>{section.key.distance}</Text>
+              <Text style={styles.subheaderItem}>{metersToString(section.key.distance)}</Text>
               <Icon name='timer' color='#fc0303' />
-              <Text style={styles.subheaderItem}>{section.key.duration}</Text>
+              <Text style={styles.subheaderItem}>{secondsToDuration(section.key.duration)}</Text>
               <Icon name='fire' color='#fc9804' type='material-community' />
-              <Text style={styles.subheaderItem}>{section.key.calories}</Text>
+              <Text style={styles.subheaderItem}>{section.key.calories + ' kcal'}</Text>
             </ListItem.Subtitle>
           </ListItem.Content>
         </ListItem>
@@ -70,16 +80,21 @@ export default function HistoryScreen() {
     )
   };
 
+  const convertToSubtitle = (workout : WorkoutListItem) => {  
+    return metersToString(workout.distance, 2)
+      + ' ' + secondsToDuration(workout.totalTimeSeconds, false) + ' ' + workout.calories + ' kcal';
+  }
+
   const workoutItem = (workout: Workout) => {
     return (
       <TouchableWithoutFeedback
         key={workout.item.id}
-        onPress={() => console.log('Navigate to: ' + workout.item.id)}>
+        onPress={() => props.navigation.navigate('WorkoutDetailScreen', { id: workout.item.id })}>
         <ListItem key={workout.item.id}>
           <Icon name='rowing' color='#03cefc' reverse />
           <ListItem.Content>
-            <ListItem.Title>{workout.item.startTime.toDateString}</ListItem.Title>
-            <ListItem.Subtitle>{workout.item.distance} {workout.item.totalTimeSeconds} {workout.item.totalTimeSeconds}</ListItem.Subtitle>
+            <ListItem.Title>{dateToStringMinimal(new Date(workout.item.startTime))}</ListItem.Title>
+            <ListItem.Subtitle>{convertToSubtitle(workout.item)}</ListItem.Subtitle>
           </ListItem.Content>
         </ListItem>
       </TouchableWithoutFeedback>

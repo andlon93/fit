@@ -10,7 +10,7 @@ import Navigation from './navigation';
 
 // Initialize Apollo Client
 const client = new ApolloClient({
-  uri: 'http://localhost:32779/graphql',
+  uri: 'http://localhost:32779/graphql', // TODO
   cache: new InMemoryCache()
 });
 
