@@ -16,17 +16,18 @@ namespace FitnessTracker.Workouts
             _workoutRepository = workoutRepository;
         }
 
-        public IEnumerable<Workout> GetWorkouts(Paging paging, Filter filter)
+        public List<Workout> GetWorkouts(Paging paging, Filter filter)
         {
             return _workoutRepository.GetAll()
                                      .Where(w => (filter?.Ids?.Any() != true || filter.Ids.Contains(w.Id))
                                                  && (filter?.StartTime?.Any() != true || filter.StartTime.Any(x => (x.Start == null || w.StartTime >= x.Start) && (x.End == null || w.StartTime <= x.End))))
                                      .OrderByDescending(w => w.StartTime)
                                      .Skip(paging.Offset)
-                                     .Take(paging.Rows < 0 ? int.MaxValue : paging.Rows);
+                                     .Take(paging.Rows < 0 ? int.MaxValue : paging.Rows)
+                                     .ToList();
         }
 
-        public IEnumerable<GroupedWorkout> GetGroupedWorkouts(WorkoutGroupType groupBy, Paging paging)
+        public List<GroupedWorkout> GetGroupedWorkouts(WorkoutGroupType groupBy, Paging paging)
         {
             var groupedWorkouts = _workoutRepository.GetAll()
                 .Where(workout => workout.StartTime != null)
@@ -45,16 +46,18 @@ namespace FitnessTracker.Workouts
                     DurationInSeconds = workoutGroup.Sum(w => w.TotalTimeSeconds) ?? 0,
                 });
 
-            return groupedWorkouts;
+            return groupedWorkouts.ToList();
         }
 
         private string CreateGroupTitle(WorkoutGroupType groupBy, object groupKey)
         {
+            var keyAsString = groupKey?.ToString();
+            if (keyAsString == null) { return string.Empty; }
             return groupBy switch
             {
-                WorkoutGroupType.Day => groupKey.ToString(),
-                WorkoutGroupType.Month => MapMonthGroupTitle(groupKey.ToString()),
-                WorkoutGroupType.Year => groupKey.ToString(),
+                WorkoutGroupType.Day => keyAsString,
+                WorkoutGroupType.Month => MapMonthGroupTitle(keyAsString),
+                WorkoutGroupType.Year => keyAsString,
                 _ => throw new ArgumentOutOfRangeException($"No conversion for the enum type {groupBy} exists."),
             };
         }

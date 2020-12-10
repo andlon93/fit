@@ -9,7 +9,7 @@ namespace FitnessTracker.Workouts.GraphTypes
     public class WorkoutMutationGraphType : ObjectGraphType
     {
         private readonly WorkoutCommandService _workoutCommandService;
-
+        private readonly Guid _userId = new Guid("ae3db2eb-c260-473a-bc57-48e65946aa2d");
         public WorkoutMutationGraphType(WorkoutCommandService workoutCommandService)
         {
             _workoutCommandService = workoutCommandService;
@@ -20,8 +20,9 @@ namespace FitnessTracker.Workouts.GraphTypes
                 resolve: context =>
                 {
                     var arguments = context.GetArgument<Workout>("createWorkoutRequest");
-                    var workout = new Workout {Id = Guid.NewGuid(), StartTime = arguments.StartTime, Sport = arguments.Sport, TotalTimeSeconds = arguments.TotalTimeSeconds};
-                    return _workoutCommandService.CreateWorkout(workout);
+                    return _workoutCommandService.CreateWorkout(
+                        new Workout { Id = Guid.NewGuid(), StartTime = arguments.StartTime, Sport = arguments.Sport, TotalTimeSeconds = arguments.TotalTimeSeconds }
+                        , _userId);
                 }
             );
 
@@ -31,19 +32,14 @@ namespace FitnessTracker.Workouts.GraphTypes
                 resolve: context =>
                 {
                     var arguments = context.GetArgument<Workout>("updateWorkoutRequest");
-                    var workout = new Workout { Id = arguments.Id, StartTime = arguments.StartTime, Sport = arguments.Sport, TotalTimeSeconds = arguments.TotalTimeSeconds };
-                    return _workoutCommandService.UpdateWorkout(workout);
+                    return _workoutCommandService.UpdateWorkout(new Workout { Id = arguments.Id, StartTime = arguments.StartTime, Sport = arguments.Sport, TotalTimeSeconds = arguments.TotalTimeSeconds });
                 }
             );
 
             Field<WorkoutGraphType>(
                 "deleteWorkout",
                 arguments: new QueryArguments(new QueryArgument<NonNullGraphType<WorkoutDeleteInputType>> { Name = "deleteWorkoutRequest" }),
-                resolve: context =>
-                {
-                    var arguments = context.GetArgument<Workout>("deleteWorkoutRequest");
-                    return _workoutCommandService.DeleteWorkout(new Workout { Id = arguments.Id });
-                }
+                resolve: context => _workoutCommandService.DeleteWorkout(new Workout { Id = context.GetArgument<Workout>("deleteWorkoutRequest").Id }, _userId)
             );
         }
     }

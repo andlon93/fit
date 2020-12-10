@@ -1,4 +1,5 @@
 ﻿using FitnessTracker.DTO;
+using FitnessTracker.Users.GraphTypes;
 using FitnessTracker.Workouts;
 using FitnessTracker.Workouts.DTOs;
 using FitnessTracker.Workouts.GraphTypes;
@@ -16,7 +17,7 @@ namespace FitnessTracker.WorkoutsGrouped.GraphTypes
     {
         private readonly WorkoutQueryService _workoutQueryService;
         private readonly IDataLoaderContextAccessor _dataLoaderContextAccessor;
-
+        private const string _workoutsNodeName = "workouts";
         public GroupedWorkoutsGraphType(WorkoutQueryService workoutQueryService, IDataLoaderContextAccessor dataLoaderContextAccessor)
         {
             _workoutQueryService = workoutQueryService;
@@ -27,9 +28,7 @@ namespace FitnessTracker.WorkoutsGrouped.GraphTypes
             Field<FloatGraphType>().Name(nameof(GroupedWorkout.DistanceInMeters)).Description("DistanceInMeters");
             Field<LongGraphType>().Name(nameof(GroupedWorkout.Calories)).Description("Calories");
             Field<IntGraphType>().Name(nameof(GroupedWorkout.NumberOfWorkouts)).Description("Total number of workouts within group");
-            Field<ListGraphType<WorkoutGraphType>>()
-                .Name("workouts")
-                .Resolve(ResolveWorkouts);
+            Field<ListGraphType<WorkoutGraphType>>().Name(_workoutsNodeName).Resolve(ResolveWorkouts);
         }
 
         private IDataLoaderResult<Workout[]> ResolveWorkouts(IResolveFieldContext<GroupedWorkout> arg)
@@ -37,6 +36,11 @@ namespace FitnessTracker.WorkoutsGrouped.GraphTypes
             if (arg?.Source?.WorkoutIds?.Any() != true)
             {
                 return new DataLoaderResult<Workout[]>(Array.Empty<Workout>());
+            }
+
+            if (arg.SubFields.Count == 1 && arg.IsFieldSpecified("id"))
+            {
+                return new DataLoaderResult<Workout[]>(arg.Source.WorkoutIds.Select(w => new Workout { Id = w }).ToArray());
             }
 
             var loader = _dataLoaderContextAccessor.Context.GetOrAddBatchLoader<Guid, Workout>(

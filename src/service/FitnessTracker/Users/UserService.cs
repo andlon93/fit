@@ -37,7 +37,7 @@ namespace FitnessTracker.Users
                 LastName = entity.LastName,
                 Height = entity.HeigtInCm,
                 TimeZone = entity.TimeZone,
-                WorkoutIds = entity.Workouts,
+                WorkoutIds = entity.WorkoutIds,
                 SiteConnections = entity?.SiteConnections?.Select(e => new DTOs.SiteConnection { Site = SiteEnumMapper(e.Site), Identifier = e.Identifier })
             };
         }

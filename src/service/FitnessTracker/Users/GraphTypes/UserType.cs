@@ -40,6 +40,11 @@ namespace FitnessTracker.Users.GraphTypes
                 return new DataLoaderResult<Workout[]>(new Workout[0]);
             }
 
+            if (arg.SubFields.Count == 1 && arg.IsFieldSpecified("id"))
+            {
+                return new DataLoaderResult<Workout[]>(arg.Source.WorkoutIds.Select(w => new Workout { Id = w }).ToArray());
+            }
+
             var loader = _dataLoaderContextAccessor.Context.GetOrAddBatchLoader<Guid, Workout>(
                 Guid.NewGuid().ToString(), // All dataloaders need a unique identifier to access the same loader each time.
                 async context =>
@@ -50,6 +55,7 @@ namespace FitnessTracker.Users.GraphTypes
                     });
                     return await Task.FromResult(workouts.ToDictionary(w => w.Id)); // TODO: remove async hack when dataaccess layer truly is async.
                 });
+
             return loader.LoadAsync(arg.Source.WorkoutIds);
         }
     }

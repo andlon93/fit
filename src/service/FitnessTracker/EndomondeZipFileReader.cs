@@ -30,7 +30,7 @@ namespace FitnessTracker
             var user = GetUserEntityFromFile();
             if (user != null) 
             {
-                user.Workouts = workoutIds;
+                user.WorkoutIds = workoutIds;
                 _userService.SaveOrUpdateUser(user);
             }           
         }
