@@ -6,14 +6,29 @@ export default {
     screens: {
       Root: {
         screens: {
-          TabOne: {
+          ChallengesScreen: {
             screens: {
-              TabOneScreen: 'one',
+              ChallengesScreen: 'challenges',
             },
           },
-          TabTwo: {
+          FeedScreen: {
             screens: {
-              TabTwoScreen: 'two',
+              FeedScreen: 'feed',
+            },
+          },
+          HistoryScreen: {
+            screens: {
+              HistoryScreen: 'history',
+            },
+          },
+          ProfileScreen: {
+            screens: {
+              ProfileScreen: 'profile',
+            },
+          },
+          WorkoutScreen: {
+            screens: {
+              WorkoutScreen: 'workoutDetails',
             },
           },
         },
