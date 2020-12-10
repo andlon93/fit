@@ -1,82 +1,105 @@
-import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, FlatList, Image, SectionList, SectionListData, StyleSheet, TouchableWithoutFeedback } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import React from 'react';
+import { ActivityIndicator, SectionList, StyleSheet, TouchableWithoutFeedback } from 'react-native';
+import { ListItem, Icon } from 'react-native-elements';
+import { gql, useQuery } from '@apollo/client'
 
-import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import { Text, View } from '../components/Themed';
-import { Section, SectionListItem, WorkoutListItem } from '../types';
+import { Section, WorkoutListItem, Workout, HistoryData } from '../types';
+import { AppLoading } from 'expo';
+
+const HISTORY_QUERY = gql`
+  query History {
+    workouts(paging: {rows: 99999999}) {
+      id
+      startTime
+      totalTimeSeconds
+      calories
+      sport
+      distance
+    }
+  }
+`
 
 export default function HistoryScreen() {
   const colorScheme = useColorScheme();
 
-  const [loading, setLoading] = useState(true);
-  const [sections, setSections] = useState<Section[]>([]);
+  const { data, loading } = useQuery<HistoryData>(HISTORY_QUERY)
 
-  useEffect(() => {
-    var temp: Section[] = [
-      {
-        // key: 'November 2020',
-        key: { header: 'November 2020', number: 8, distance: 33920, duration: 18300, calories: 2315 },
-        data: [
-          { id: '1', durationSeconds: 3600, startTime: new Date(2020, 18, 11, 19, 0, 0), type: "Løping" },
-          { id: '2', durationSeconds: 3600, startTime: new Date(2020, 18, 11, 19, 0, 0), type: "Løping" },
-          { id: '3', durationSeconds: 3600, startTime: new Date(2020, 18, 11, 19, 0, 0), type: "Løping" },
-          { id: '4', durationSeconds: 3600, startTime: new Date(2020, 18, 11, 19, 0, 0), type: "Løping" },
-          { id: '5', durationSeconds: 3600, startTime: new Date(2020, 18, 11, 19, 0, 0), type: "Løping" },
-        ]
-      },
-      {
-        key: { header: 'Oktober 2020', number: 8, distance: 33920, duration: 18300, calories: 2315 }, data: []
-      },
-      {
-        key: { header: 'September 2020', number: 8, distance: 33920, duration: 18300, calories: 2315 }, data: []
-      },
-      {
-        key: { header: 'August 2020', number: 8, distance: 33920, duration: 18300, calories: 2315 }, data: []
-      },
-    ];
-    setSections(temp);
-    setLoading(false);
-  }, []);
+  if (loading) {
+    return <AppLoading />
+  }
 
   const sectionItem = (section: Section) => {
     return (
       <TouchableWithoutFeedback
-        onPress={() => console.log('Navigate to workout: navigation.navigate(WorkoutDetail, {url: item.url}')}>
-        <View style={styles.subheader}>
-          <Text style={styles.title}>{section.key.number}</Text>
-          <View>
-            <Text style={styles.title}>{section.key.header}</Text>
-            <View style={styles.subheaderItems}>
-              <Text style={styles.subheaderItem}>{section.key.distance}</Text>
-              <Text style={styles.subheaderItem}>{section.key.duration}</Text>
-              <Text style={styles.subheaderItem}>{section.key.calories}</Text>
-            </View>
-          </View>
-        </View>
+        key={section.key.header}
+        onPress={() => console.log('Expand/Collapse section: ' + section.key.header)}>
+          <ListItem>
+            <Text style={styles.title}>{section.key.number}</Text>
+            <ListItem.Content>
+              <ListItem.Title>{section.key.header}</ListItem.Title>
+              <ListItem.Subtitle>                
+                <Icon name='place' color='#0384fc' />
+                <Text style={styles.subheaderItem}>{section.key.distance}</Text>
+                <Icon name='timer' color='#fc0303' />
+                <Text style={styles.subheaderItem}>{section.key.duration}</Text>
+                <Icon name='fire' color='#fc9804' type='material-community
+' />
+                <Text style={styles.subheaderItem}>{section.key.calories}</Text>
+              </ListItem.Subtitle>
+            </ListItem.Content>
+          </ListItem>
       </TouchableWithoutFeedback>
     )
   };
 
-  const workoutItem = (item: WorkoutListItem) => {
+  const workoutItem = (workout: Workout) => {
     return (
       <TouchableWithoutFeedback
-        onPress={() => console.log('Navigate to workout: navigation.navigate(WorkoutDetail, {url: item.url}')}>
-        <View style={styles.listings}>
-          <Text style={styles.title}>{item.type}</Text>
-          <Ionicons name="ios-walk" size={24} color={Colors[colorScheme].text} />
-          <Text style={styles.duration}>{item.durationSeconds}</Text>
-        </View>
+        key={workout.item.id}
+        onPress={() => console.log('Navigate to: ' + workout.item.id)}>
+          <ListItem key={workout.item.id}>
+            <Icon name='rowing' color='#03cefc' reverse />
+            <ListItem.Content>
+              <ListItem.Title>{workout.item.startTime.toDateString}</ListItem.Title>
+              <ListItem.Subtitle>{workout.item.distance} {workout.item.totalTimeSeconds} {workout.item.totalTimeSeconds}</ListItem.Subtitle>
+            </ListItem.Content>
+          </ListItem>
       </TouchableWithoutFeedback>
     )
   };
+
+  const ConvertToSection = (data: HistoryData) => {
+    var temp: Section[] = [
+          {
+            key: { header: 'November 2020', number: 8, distance: 33920, duration: 18300, calories: 2315 },
+            data: [
+              { id: '1', totalTimeSeconds: 3600, startTime: new Date(2020, 18, 11, 19, 0, 0), sport: "Løping", calories: 0, distance: 0 },
+              { id: '2', totalTimeSeconds: 3600, startTime: new Date(2020, 18, 11, 19, 0, 0), sport: "Løping", calories: 0, distance: 0 },
+              { id: '3', totalTimeSeconds: 3600, startTime: new Date(2020, 18, 11, 19, 0, 0), sport: "Løping", calories: 0, distance: 0 },
+              { id: '4', totalTimeSeconds: 3600, startTime: new Date(2020, 18, 11, 19, 0, 0), sport: "Løping", calories: 0, distance: 0 },
+              { id: '5', totalTimeSeconds: 3600, startTime: new Date(2020, 18, 11, 19, 0, 0), sport: "Løping", calories: 0, distance: 0 },
+            ]
+          },
+          {
+            key: { header: 'Oktober 2020', number: 8, distance: 33920, duration: 18300, calories: 2315 }, data: []
+          },
+          {
+            key: { header: 'September 2020', number: 8, distance: 33920, duration: 18300, calories: 2315 }, data: []
+          },
+          {
+            key: { header: 'August 2020', number: 8, distance: 33920, duration: 18300, calories: 2315 }, data: []
+          },
+        ];
+      return temp;
+  }
 
   return (
     <View style={styles.container}>
       {loading ? <ActivityIndicator /> : (
         <SectionList
-          sections={sections}
+          sections={ConvertToSection(data)}
           renderItem={workoutItem}
           renderSectionHeader={({ section }) => sectionItem(section)}
           keyExtractor={(item: WorkoutListItem) => item.id}
