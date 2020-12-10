@@ -1,5 +1,4 @@
 ﻿using FitnessTracker.DTO;
-using FitnessTracker.GraphQLTypes;
 using FitnessTracker.Users.DTOs;
 using FitnessTracker.Workouts;
 using FitnessTracker.Workouts.DTOs;
@@ -9,6 +8,8 @@ using GraphQL.DataLoader;
 using GraphQL.Types;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
+using Filter = FitnessTracker.Workouts.DTOs.Filter;
 
 namespace FitnessTracker.Users.GraphTypes
 {
@@ -47,7 +48,7 @@ namespace FitnessTracker.Users.GraphTypes
                     {
                         Ids = context
                     });
-                    return workouts.ToDictionary(w => w.Id);
+                    return await Task.FromResult(workouts.ToDictionary(w => w.Id)); // TODO: remove async hack when dataaccess layer truly is async.
                 });
             return loader.LoadAsync(arg.Source.WorkoutIds);
         }

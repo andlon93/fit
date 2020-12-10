@@ -28,11 +28,14 @@ namespace FitnessTracker
             var workoutIds = _workoutService.SaveWorkoutsFromZipFile(workouts);
 
             var user = GetUserEntityFromFile();
-            user.Workouts = workoutIds;
-            _userService.SaveOrUpdateUser(user);
+            if (user != null) 
+            {
+                user.Workouts = workoutIds;
+                _userService.SaveOrUpdateUser(user);
+            }           
         }
 
-        private UserEntity GetUserEntityFromFile() =>
+        private UserEntity? GetUserEntityFromFile() =>
             JsonSerializer.Deserialize<UserEntity>(File.ReadAllText($"Data/{Path.GetFileNameWithoutExtension(_filename)}/Profile/Profile.json"));
 
         private void TryUnzip(string filename)

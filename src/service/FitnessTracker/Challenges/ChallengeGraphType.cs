@@ -51,7 +51,7 @@ namespace FitnessTracker.Challenges
 
             var workouts = _workoutService.GetWorkouts(
                 new DTO.Paging { Offset = 0, Rows = 999999 },
-                new DTO.Filter
+                new Filter
                 {
                     StartTime = new List<DateTimeRange>
                     {
@@ -60,8 +60,7 @@ namespace FitnessTracker.Challenges
                             Start = challenge.StartTime,
                             End = challenge.EndTime
                         }
-                    },
-                    UserIds = challenge.UserIds,
+                    }
                 });
 
             var users = _userService.GetUsersByIds(challenge.UserIds);

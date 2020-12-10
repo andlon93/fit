@@ -31,11 +31,12 @@ namespace FitnessTracker.GraphQLTypes
             services.AddSingleton<TrackPointGraphType>();
             services.AddSingleton<PositionGraphType>();
             services.AddSingleton<PagingGraphType>();
-            services.AddSingleton<FilterGraphType>();
+            services.AddSingleton<Workouts.GraphTypes.FilterGraphType>();
             services.AddSingleton<ChallengeGraphType>();
             services.AddSingleton<ChallengeTypeEnum>();
             services.AddSingleton<CompetitorGraphType>();
             services.AddSingleton<DateTimeRangeGraphType>();
+            services.AddSingleton<Users.GraphTypes.FilterGraphType>();
         }
     }
 }

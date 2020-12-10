@@ -19,7 +19,6 @@ namespace FitnessTracker.Workouts
         {
             return _workoutRepository.GetAll()
                                      .Where(w => (filter?.Ids?.Any() != true || filter.Ids.Contains(w.Id))
-                                                 //&& (filter?.UserIds?.Any() != true)  // TODO: Workouts must contain UserId || filter.UserId.Contains(w.UserId)
                                                  && (filter?.StartTime?.Any() != true || filter.StartTime.Any(x => (x.Start == null || w.StartTime >= x.Start) && (x.End == null || w.StartTime <= x.End))))
                                      .OrderByDescending(w => w.StartTime)
                                      .Skip(paging.Offset)
