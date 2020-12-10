@@ -28,5 +28,17 @@ namespace FitnessTracker.Workouts
             }
             return workouts;
         }
+        public int DeleteWorkouts(IEnumerable<Workout> workouts)
+        {
+            int deleteCount = 0;
+            foreach(var workout in workouts)
+            {
+                if(_workouts.Remove(workout.Id))
+                {
+                    deleteCount++;
+                }
+            }
+            return deleteCount;
+        }
     }
 }
