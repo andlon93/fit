@@ -10,10 +10,10 @@ namespace FitnessTracker
     {
         private const string _pathToZipFiles = "/app/Data/";
         private const string _filename = "endomondo-2020-11-14.zip";
-        private readonly WorkoutService _workoutService;
+        private readonly WorkoutCommandService _workoutService;
         private readonly UserService _userService;
 
-        public EndomondeZipFileReader(WorkoutService workoutService, UserService userService)
+        public EndomondeZipFileReader(WorkoutCommandService workoutService, UserService userService)
         {
             _workoutService = workoutService;
             _userService = userService;

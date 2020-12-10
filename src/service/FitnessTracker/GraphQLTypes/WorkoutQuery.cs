@@ -14,7 +14,7 @@ namespace FitnessTracker.GraphQLTypes
     public class WorkoutQuery : ObjectGraphType
     {
         private readonly UserService _userService;
-        private readonly WorkoutService _workoutService;
+        private readonly WorkoutQueryService _workoutService;
         private readonly ChallengeService _challengeService;
         private readonly EndomondeZipFileReader _endomondeZipFileReader;
 
@@ -22,7 +22,7 @@ namespace FitnessTracker.GraphQLTypes
 
         public WorkoutQuery(
             UserService userService,
-            WorkoutService workoutService,
+            WorkoutQueryService workoutService,
             ChallengeService challengeService,
             EndomondeZipFileReader endomondeZipFileReader)
         {
