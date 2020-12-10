@@ -1,6 +1,7 @@
 ﻿using FitnessTracker.Challenges;
 using FitnessTracker.Users.GraphTypes;
 using FitnessTracker.Workouts.GraphTypes;
+using FitnessTracker.WorkoutsGrouped.GraphTypes;
 using GraphQL;
 using GraphQL.DataLoader;
 using GraphQL.SystemTextJson;
@@ -37,7 +38,10 @@ namespace FitnessTracker.GraphQLTypes
             services.AddSingleton<CompetitorGraphType>();
             services.AddSingleton<DateTimeRangeGraphType>();
             services.AddSingleton<Users.GraphTypes.FilterGraphType>();
-            services.AddSingleton<Workouts.GraphTypes.WorkoutMutationGraphType>();
+            services.AddSingleton<WorkoutMutationGraphType>();
+            services.AddSingleton<WorkoutInputType>();
+            services.AddSingleton<GroupedWorkoutsGraphType>();
+            services.AddSingleton<WorkoutGroupTypeGraphType>();
         }
     }
 }
