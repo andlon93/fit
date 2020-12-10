@@ -53,10 +53,16 @@ namespace FitnessTracker.Workouts
             return groupBy switch
             {
                 WorkoutGroupType.Day => groupKey.ToString(),
-                WorkoutGroupType.Month => Utilities.TranslateToMonthInNorwegian(Convert.ToInt32(groupKey.ToString().Split("__")[1])),
+                WorkoutGroupType.Month => MapMonthGroupTitle(groupKey.ToString()),
                 WorkoutGroupType.Year => groupKey.ToString(),
                 _ => throw new ArgumentOutOfRangeException($"No conversion for the enum type {groupBy} exists."),
             };
+        }
+
+        private string MapMonthGroupTitle(string key)
+        {
+            var splited = key.ToString().Split("__");
+            return $"{Utilities.TranslateToMonthInNorwegian(Convert.ToInt32(splited[1]))} {splited[0]}";
         }
 
         private object GroupByMapper(WorkoutGroupType groupBy, DateTime time)
