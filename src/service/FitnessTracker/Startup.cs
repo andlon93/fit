@@ -2,6 +2,7 @@ using FitnessTracker.Challenges;
 using FitnessTracker.GraphQLTypes;
 using FitnessTracker.Users;
 using FitnessTracker.Workouts;
+using FitnessTracker.Workouts.GraphTypes;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -30,6 +31,8 @@ namespace FitnessTracker
             // Workouts
             services.AddSingleton<WorkoutRepository>();
             services.AddSingleton<WorkoutService>();
+            services.AddSingleton<WorkoutCommandService>();
+            services.AddSingleton<WorkoutInputType>();
 
             // Users
             services.AddSingleton<UserRepository>();

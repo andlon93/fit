@@ -37,6 +37,7 @@ namespace FitnessTracker.GraphQLTypes
             services.AddSingleton<CompetitorGraphType>();
             services.AddSingleton<DateTimeRangeGraphType>();
             services.AddSingleton<Users.GraphTypes.FilterGraphType>();
+            services.AddSingleton<Workouts.GraphTypes.WorkoutMutationGraphType>();
         }
     }
 }

@@ -14,8 +14,9 @@ namespace FitnessTracker.Workouts
 
         public IEnumerable<Workout> GetAll() => _workouts.Values;
 
-        public void SaveOrUpdateWorkouts(IEnumerable<Workout> workouts)
+        public IEnumerable<Workout> SaveOrUpdateWorkouts(IEnumerable<Workout> workouts)
         {
+
             foreach(var workout in workouts)
             {
                 if (_workouts.ContainsKey(workout.Id))
@@ -25,6 +26,7 @@ namespace FitnessTracker.Workouts
                 }
                 _workouts.Add(workout.Id, workout);
             }
+            return workouts;
         }
     }
 }
