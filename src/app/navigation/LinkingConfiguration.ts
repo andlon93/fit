@@ -6,11 +6,6 @@ export default {
     screens: {
       Root: {
         screens: {
-          ChallengesScreen: {
-            screens: {
-              ChallengesScreen: 'challenges',
-            },
-          },
           FeedScreen: {
             screens: {
               FeedScreen: 'feed',
@@ -21,14 +16,24 @@ export default {
               HistoryScreen: 'history',
             },
           },
+          NewWorkoutScreen: {
+            screens: {
+              WorkoutScreen: 'newWorkout',
+            },
+          },
+          ChallengesScreen: {
+            screens: {
+              ChallengesScreen: 'challenges',
+            },
+          },
           ProfileScreen: {
             screens: {
               ProfileScreen: 'profile',
             },
           },
-          WorkoutScreen: {
+          WorkoutDetailScreen: {
             screens: {
-              WorkoutScreen: 'workoutDetails',
+              WorkoutDetailScreen: 'workoutDetails',
             },
           },
         },

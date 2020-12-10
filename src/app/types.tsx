@@ -1,6 +1,7 @@
 export type RootStackParamList = {
   Root: undefined;
   NotFound: undefined;
+  WorkoutDetailScreen: { id : string } | undefined;
 };
 
 export type BottomTabParamList = {
@@ -66,6 +67,22 @@ export type SectionListItem = {
 export interface HistoryData {
   workouts: WorkoutListItem[];
 }
+
+export interface DetailsData {
+  workouts: WorkoutDetails[];
+}
+
+export type WorkoutDetails = {
+  id: string;
+  startTime: Date;
+  totalTimeSeconds: number;
+  calories: number;
+  sport: string;
+  distance: number;
+  averageHeartRate: number;
+  maximumHeartRate: number;
+  cadence: number;
+};
 
 export enum Sport {
   Biking = "Biking",
