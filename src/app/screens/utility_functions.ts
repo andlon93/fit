@@ -6,9 +6,17 @@ export function secondsToDuration(seconds : number, includeHour : boolean = true
     return (hours == 0 ? '' : hours + ':') + minutes + ':' + seconds;
 }
 
+export function secondsToWaterNeed(seconds : number, includeHour : boolean = true) {
+    return round(seconds / 60.0 / 20.0 * 0.15, 2) + ' L';
+}
+
 export function metersToString(meters : number, numberOfDecimals : number = 0) {
+    return round(meters / 1000.0, numberOfDecimals) + ' km'
+}
+
+function round(number : number, numberOfDecimals : number = 0) {
     let factor = Math.pow(10, numberOfDecimals);
-    return Math.round((meters / 1000.0 + Number.EPSILON) * factor) / factor + ' km'
+    return Math.round((number + Number.EPSILON) * factor) / factor;
 }
 
 export function dateToString(date : Date) {
