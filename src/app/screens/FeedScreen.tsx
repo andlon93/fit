@@ -53,7 +53,8 @@ export default function FeedScreen(props : Props) {
           <TouchableWithoutFeedback key={i}
             onPress={() => props.navigation.navigate('WorkoutDetailScreen', { id: workout.id })}>
             <Card>
-              <ListItem leftIcon={{reverse: true, name: 'rowing', color: '#517fa4' }}>
+              <ListItem>
+                <Icon reverse name='directions-run' color='#517fa4' />
                 <ListItem.Content>
                   <ListItem.Title>{dateToStringMinimal(new Date(workout.startTime))}</ListItem.Title>
                   <ListItem.Subtitle>{convertToSubtitle(workout)}</ListItem.Subtitle>

@@ -7,6 +7,7 @@ import { AppLoading } from 'expo';
 import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
 import Navigation from './navigation';
+import { ThemeProvider } from 'react-native-elements';
 
 // Initialize Apollo Client
 const client = new ApolloClient({
@@ -23,10 +24,12 @@ export default function App() {
   } else {
     return (
       <ApolloProvider client={client}>
-        <SafeAreaProvider>
-          <Navigation colorScheme={colorScheme} />
-          <StatusBar />
-        </SafeAreaProvider>
+        <ThemeProvider useDark={colorScheme === 'dark'}>
+          <SafeAreaProvider>
+            <Navigation colorScheme={colorScheme} />
+            <StatusBar />
+          </SafeAreaProvider>
+        </ThemeProvider>
       </ApolloProvider>
     );
   }
