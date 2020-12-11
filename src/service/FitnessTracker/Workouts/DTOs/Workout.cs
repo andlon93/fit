@@ -17,6 +17,8 @@ namespace FitnessTracker.Workouts.DTOs
         public IEnumerable<TrackPoint>? Positions { get; init; }
         public double? MaxAltitudeMeters { get; init; }
         public double? MinAltitudeMeters { get; init; }
+        public double? MinMinutesPerKm { get; init; }
+        public double? AvgMinutesPerKm { get; init; }
     }
 
     public record TrackPoint

@@ -56,6 +56,14 @@ namespace FitnessTracker.Workouts.GraphTypes
             Field<DecimalGraphType, string>()
                 .Name(nameof(Workout.MinAltitudeMeters))
                 .Description("Minimum altitude in meters");
+
+            Field<DecimalGraphType, string>()
+                .Name(nameof(Workout.MinMinutesPerKm))
+                .Description("Minumum minutes per kilometer");
+
+            Field<DecimalGraphType, string>()
+                .Name(nameof(Workout.AvgMinutesPerKm))
+                .Description("Average minutes per kilometer");
         }
     }
 }

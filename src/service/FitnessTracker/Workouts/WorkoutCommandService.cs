@@ -76,6 +76,9 @@ namespace FitnessTracker.Workouts
 
             var maxAltitudeMeters = double.MinValue;
             var minAltitudeMeters = double.MaxValue;
+            
+            var minMinutesPerKm = double.MaxValue;
+
 
             var result = new List<TrackPoint>();
             foreach (var lap in activity.Lap)
@@ -93,6 +96,8 @@ namespace FitnessTracker.Workouts
                 {
                     maximumHeartRate = lap.MaximumHeartRateBpm.Value;
                 }
+
+                Trackpoint_t? prevTrack = null;
                 foreach (var track in lap.Track)
                 {
                     result.Add(new TrackPoint
@@ -113,8 +118,23 @@ namespace FitnessTracker.Workouts
                     {
                         minAltitudeMeters = track.AltitudeMeters;
                     }
+                    //TODO: Something either wrong with logic or data, give wonky results occasionally..
+                    if (prevTrack != null && track.Time > prevTrack.Time && track.DistanceMeters > prevTrack.DistanceMeters)
+                    {
+                        var elapsedMinutes = (track.Time.Subtract(prevTrack.Time)).TotalMinutes;
+                        var kmMoved = ((track.DistanceMeters - prevTrack.DistanceMeters) / 1000.0);
+                        var minutesPerKm = elapsedMinutes / kmMoved;
+                        if (minutesPerKm < minMinutesPerKm)
+                        {
+                            minMinutesPerKm = minutesPerKm;
+                        }
+                    }
+
+                    prevTrack = track;
                 }
             }
+
+            var avgMinutesPerKm = (totalTimeSeconds / 60.0) / (distanceMeters / 1000.0);
 
             return new Workout
             {
@@ -129,7 +149,9 @@ namespace FitnessTracker.Workouts
                 MaximumHeartRate = maximumHeartRate,
                 Positions = result,
                 MaxAltitudeMeters = maxAltitudeMeters,
-                MinAltitudeMeters = minAltitudeMeters
+                MinAltitudeMeters = minAltitudeMeters,
+                MinMinutesPerKm = minMinutesPerKm,
+                AvgMinutesPerKm = avgMinutesPerKm
             }; 
         }
     }
