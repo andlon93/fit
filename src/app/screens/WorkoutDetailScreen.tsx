@@ -8,13 +8,12 @@ import {
 import { RouteProp } from '@react-navigation/native';
 import { gql, useQuery } from '@apollo/client'
 
-import EditScreenInfo from '../components/EditScreenInfo';
 import { Card, Header, ListItem, Button, Icon, Avatar } from 'react-native-elements';
 import useColorScheme from '../hooks/useColorScheme';
 import { Text, View } from '../components/Themed';
 import { RootStackParamList, DetailsData } from '../types';
 import { AppLoading } from 'expo';
-import { secondsToDuration, metersToString, dateToString } from './utility_functions';
+import { secondsToDuration, secondsToWaterNeed, metersToString, dateToString } from './utility_functions';
 
 const DETAILS_QUERY = gql`
   query Details($filter: WorkoutFilter) {
@@ -40,6 +39,7 @@ interface Props {
 
 interface IconLabelContentPresenterProps {
   iconName: string;
+  iconType?: string | undefined;
   iconColor?: string | undefined;
   label: string;
   content: string;
@@ -47,9 +47,8 @@ interface IconLabelContentPresenterProps {
 
 const IconLabelContentPresenter = (props : IconLabelContentPresenterProps) => {
   return (
-    <ListItem 
-      leftIcon={{name: props.iconName, color: props.iconColor}}
-      style={styles.summaryItem}>
+    <ListItem style={styles.summaryItem}>        
+      <Icon name={props.iconName} type={props.iconType} color={props.iconColor} />
       <ListItem.Content>
       <ListItem.Subtitle>{props.label}</ListItem.Subtitle>
         <ListItem.Title>{props.content}</ListItem.Title>
@@ -79,11 +78,11 @@ export default function WorkoutDetailScreen(props : Props) {
         barStyle={colorScheme == 'dark' ? 'dark-content' : 'light-content'}
         placement="left"    
         leftComponent={<Button
-          icon={{ name: 'west' }}
+          icon={{ name: 'arrow-back' }}
           type="clear"
           onPress={() => props.navigation.goBack()}
         />}
-        centerComponent={{ text: 'MY TITLE' }}
+        centerComponent={{ text: 'John Doe' }} // TODO
         containerStyle={{
           justifyContent: 'space-around',
         }}
@@ -91,7 +90,7 @@ export default function WorkoutDetailScreen(props : Props) {
       />
       <Card>
         <ListItem>
-          <Icon reverse name='sport' color='#0384fc'/>
+          <Icon reverse name='directions-run' color='#517fa4'/>
           <ListItem.Content>
             <ListItem.Title>{workout.sport}</ListItem.Title>
             <ListItem.Subtitle>{dateToString(new Date(workout.startTime))}</ListItem.Subtitle>
@@ -113,40 +112,45 @@ export default function WorkoutDetailScreen(props : Props) {
             content={metersToString(workout.distance, 2)} />
 
           <IconLabelContentPresenter 
-            iconName='speed'
+            iconName='speedometer-medium'
+            iconType='material-community'
             iconColor='#5bb05e'
             label='Snittempo'
             content='X' />
 
           <IconLabelContentPresenter 
-              iconName='speed'
-              iconColor='#0a630d'
-              label='Makstempo'
-              content='X' />  
+            iconName='speedometer'
+            iconType='material-community'
+            iconColor='#0a630d'
+            label='Makstempo'
+            content='X' />  
             
           <IconLabelContentPresenter 
-            iconName='speed'
+            iconName='speedometer-medium'
+            iconType='material-community'
             iconColor='#bf5050'
             label='Snittfart'
             content='X' />
 
           <IconLabelContentPresenter 
-              iconName='speed'
-              iconColor='#c20000'
-              label='Maksfart'
-              content='X' />
+            iconName='speedometer'
+            iconType='material-community'
+            iconColor='#c20000'
+            label='Maksfart'
+            content='X' />
 
           <IconLabelContentPresenter 
-              iconName='whatshot'
-              iconColor='#f77a20'
-              label='Kalorier'
-              content={workout.calories.toString()} />
+            iconName='whatshot'
+            iconColor='#f77a20'
+            label='Kalorier'
+            content={workout.calories.toString()} />
 
           <IconLabelContentPresenter 
-            iconName='invert_colors'
+            iconName='water'
+            iconType='entypo'
             iconColor='#3e9bc9'
             label='Væskebalanse'
-            content='X' />
+            content={secondsToWaterNeed(workout.totalTimeSeconds)} />
 
           <IconLabelContentPresenter 
               iconName='timer'
@@ -179,13 +183,15 @@ export default function WorkoutDetailScreen(props : Props) {
             content='X' />
           
           <IconLabelContentPresenter 
-            iconName='arrow_circle_up'
+            iconName='arrow-up-circle'
+            iconType='feather'
             iconColor='#0b7478'
             label='Total stigning'
             content='X' />
 
           <IconLabelContentPresenter 
-            iconName='arrow_circle_down'
+            iconName='arrow-down-circle'
+            iconType='feather'
             iconColor='#6cc1c4'
             label='Total nedstigning'
             content='X' />
@@ -200,6 +206,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    width: '100%',
   },
   title: {
     fontSize: 20,
