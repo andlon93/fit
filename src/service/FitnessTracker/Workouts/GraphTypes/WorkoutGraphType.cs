@@ -48,6 +48,14 @@ namespace FitnessTracker.Workouts.GraphTypes
             Field<ListGraphType<TrackPointGraphType>, IEnumerable<TrackPoint>>()
                 .Name(nameof(Workout.Positions))
                 .Description("");
+
+            Field<DecimalGraphType, string>()
+                .Name(nameof(Workout.MaxAltitudeMeters))
+                .Description("Maximum altitude in meters");
+
+            Field<DecimalGraphType, string>()
+                .Name(nameof(Workout.MinAltitudeMeters))
+                .Description("Minimum altitude in meters");
         }
     }
 }

@@ -74,6 +74,9 @@ namespace FitnessTracker.Workouts
             var heartBeats = 0.0;
             var maximumHeartRate = 0;
 
+            var maxAltitudeMeters = double.MinValue;
+            var minAltitudeMeters = double.MaxValue;
+
             var result = new List<TrackPoint>();
             foreach (var lap in activity.Lap)
             {
@@ -101,6 +104,15 @@ namespace FitnessTracker.Workouts
                         Position = new Position { LatitudeDegrees = track.Position?.LatitudeDegrees, LongitudeDegrees = track.Position?.LongitudeDegrees },
                         Time = track.Time,
                     });
+
+                    if (track.AltitudeMeters > maxAltitudeMeters)
+                    {
+                        maxAltitudeMeters = track.AltitudeMeters;
+                    }
+                    if (track.AltitudeMeters < minAltitudeMeters)
+                    {
+                        minAltitudeMeters = track.AltitudeMeters;
+                    }
                 }
             }
 
@@ -116,6 +128,8 @@ namespace FitnessTracker.Workouts
                 AverageHeartRate = (int)Math.Round(heartBeats / totalTimeSeconds),
                 MaximumHeartRate = maximumHeartRate,
                 Positions = result,
+                MaxAltitudeMeters = maxAltitudeMeters,
+                MinAltitudeMeters = minAltitudeMeters
             }; 
         }
     }
