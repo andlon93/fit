@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
 namespace FitnessTracker.TCX
 {
-    public partial class EndomondoWorkout
+    public partial class DynamicEndomondoWorkout
     {
         [JsonPropertyName("sport")]
         public string? Sport { get; set; }
@@ -13,13 +11,13 @@ namespace FitnessTracker.TCX
         public string? Source { get; set; }
 
         [JsonPropertyName("created_date")]
-        public DateTime? CreatedDate { get; set; }
+        public string? CreatedDate { get; set; }
 
         [JsonPropertyName("start_time")]
-        public DateTime? StartTime { get; set; }
+        public string? StartTime { get; set; }
 
         [JsonPropertyName("end_time")]
-        public DateTime? EndTime { get; set; }
+        public string? EndTime { get; set; }
 
         [JsonPropertyName("duration_s")]
         public long? DurationS { get; set; }
@@ -58,13 +56,13 @@ namespace FitnessTracker.TCX
         public double? DescendM { get; set; }
 
         [JsonPropertyName("points")]
-        public IList<Point>? Points { get; set; }
+        public DynamicPoint[][]? Points { get; set; }
     }
 
-    public partial class Point
+    public partial class DynamicPoint
     {
         [JsonPropertyName("location")]
-        public Location? Location { get; set; }
+        public Location[][]? Location { get; set; }
 
         [JsonPropertyName("heart_rate_bpm")]
         public long? HeartRateBpm { get; set; }
@@ -73,18 +71,9 @@ namespace FitnessTracker.TCX
         public double? DistanceKm { get; set; }
 
         [JsonPropertyName("timestamp")]
-        public DateTime? Timestamp { get; set; }
+        public string? Timestamp { get; set; }
 
         [JsonPropertyName("altitude")]
         public double? Altitude { get; set; }
-    }
-
-    public partial class Location
-    {
-        [JsonPropertyName("latitude")]
-        public double? Latitude { get; set; }
-
-        [JsonPropertyName("longitude")]
-        public double? Longitude { get; set; }
     }
 }

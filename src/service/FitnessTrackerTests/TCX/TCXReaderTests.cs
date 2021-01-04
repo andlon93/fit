@@ -2,13 +2,13 @@
 
 namespace FitnessTracker.TCX.Tests
 {
-    [TestClass()]
+    [TestClass]
     public class TCXReaderTests
     {
-        [TestMethod()]
+        [TestMethod]
         public void ReadTrainingCenterDatabaseFromFileTest()
         {
-            var trainingCenterDatabase = TCXReader.ReadTrainingCenterDatabaseFromFile(@"C:\Users\andre\GIT\FitnessTracker\src\FitnessTrackerTests\TCX\2020-09-19_11-52-42.0.tcx");
+            var trainingCenterDatabase = TCXReader.ReadTrainingCenterDatabaseFromFile(@"C:\Users\ola\git\fit2\src\service\FitnessTrackerTests\TCX\2020-09-19_11-52-42.0.tcx");
 
             Assert.AreEqual(1, trainingCenterDatabase.Activities.Activity.Length);
             var activity = trainingCenterDatabase.Activities.Activity[0];

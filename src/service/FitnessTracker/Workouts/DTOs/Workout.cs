@@ -7,7 +7,7 @@ namespace FitnessTracker.Workouts.DTOs
     {
         public Guid Id { get; init; }
         public DateTime? StartTime { get; init; }
-        public string? Sport { get; init; }
+        public SportType? Sport { get; init; }
         public int? Cadence { get; init; }
         public double? TotalTimeSeconds { get; init; }
         public double? Distance { get; init; }
@@ -17,8 +17,10 @@ namespace FitnessTracker.Workouts.DTOs
         public IEnumerable<TrackPoint>? Positions { get; init; }
         public double? MaxAltitudeMeters { get; init; }
         public double? MinAltitudeMeters { get; init; }
-        public double? MinMinutesPerKm { get; init; }
-        public double? AvgMinutesPerKm { get; init; }
+        public double? MaximumPace { get; init; }
+        public double? AveragePace { get; init; }
+        public double? MaximumSpeed { get; init; }
+        public double? AverageSpeed { get; init; }
     }
 
     public record TrackPoint

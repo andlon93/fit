@@ -10,11 +10,13 @@ namespace FitnessTracker.Workouts
     {
         private readonly WorkoutRepository _workoutRepository;
         private readonly UserRepository _userRepository;
+
         public WorkoutCommandService(WorkoutRepository workoutRepository, UserRepository userRepository)
         {
             _workoutRepository = workoutRepository;
             _userRepository = userRepository;
         }
+
         public Workout CreateWorkout(Workout workout, Guid userId)
         {
             var savedWorkout = _workoutRepository.SaveOrUpdateWorkouts(new List<Workout> { workout }).First();
@@ -64,7 +66,7 @@ namespace FitnessTracker.Workouts
             return result;
         }
 
-        private Workout MapActivityToWorkout(Activity_t activity)
+        private static Workout MapActivityToWorkout(Activity_t activity)
         {
             var startTime = DateTime.MaxValue;
             var totalTimeSeconds = 0.0;
@@ -76,10 +78,8 @@ namespace FitnessTracker.Workouts
 
             var maxAltitudeMeters = double.MinValue;
             var minAltitudeMeters = double.MaxValue;
-            
-            var minMinutesPerKm = double.MaxValue;
 
-
+            var maxSpeed = 0.0;
             var result = new List<TrackPoint>();
             foreach (var lap in activity.Lap)
             {
@@ -95,6 +95,10 @@ namespace FitnessTracker.Workouts
                 if (lap.MaximumHeartRateBpm != null && lap.MaximumHeartRateBpm.Value > maximumHeartRate)
                 {
                     maximumHeartRate = lap.MaximumHeartRateBpm.Value;
+                }
+                if (lap.MaximumSpeedSpecified && lap.MaximumSpeed > maxSpeed)
+                {
+                    maxSpeed = lap.MaximumSpeed;
                 }
 
                 Trackpoint_t? prevTrack = null;
@@ -118,15 +122,15 @@ namespace FitnessTracker.Workouts
                     {
                         minAltitudeMeters = track.AltitudeMeters;
                     }
-                    //TODO: Something either wrong with logic or data, give wonky results occasionally..
+                    //TODO: Something either wrong with logic or data, give wonky results occasionally.. Read from JSON file instead.
                     if (prevTrack != null && track.Time > prevTrack.Time && track.DistanceMeters > prevTrack.DistanceMeters)
                     {
-                        var elapsedMinutes = (track.Time.Subtract(prevTrack.Time)).TotalMinutes;
-                        var kmMoved = ((track.DistanceMeters - prevTrack.DistanceMeters) / 1000.0);
-                        var minutesPerKm = elapsedMinutes / kmMoved;
-                        if (minutesPerKm < minMinutesPerKm)
+                        var seconds = track.Time.Subtract(prevTrack.Time).TotalSeconds;
+                        var meters = track.DistanceMeters - prevTrack.DistanceMeters;
+                        var speed = meters / seconds * 3.6;
+                        if (speed > maxSpeed)
                         {
-                            minMinutesPerKm = minutesPerKm;
+                            maxSpeed = speed;
                         }
                     }
 
@@ -134,12 +138,14 @@ namespace FitnessTracker.Workouts
                 }
             }
 
-            var avgMinutesPerKm = (totalTimeSeconds / 60.0) / (distanceMeters / 1000.0);
+            var avgSpeed = 3.6 * distanceMeters / totalTimeSeconds;
+            var maxPace = 60.0 / maxSpeed;
+            var avgPace = 60.0 / avgSpeed;
 
             return new Workout
             {
                 Id = Guid.NewGuid(),
-                Sport = activity?.Sport.ToString(),
+                Sport = MapToSport(activity?.Sport),
                 StartTime = startTime,
                 TotalTimeSeconds = totalTimeSeconds,
                 Distance = distanceMeters,
@@ -150,9 +156,26 @@ namespace FitnessTracker.Workouts
                 Positions = result,
                 MaxAltitudeMeters = maxAltitudeMeters,
                 MinAltitudeMeters = minAltitudeMeters,
-                MinMinutesPerKm = minMinutesPerKm,
-                AvgMinutesPerKm = avgMinutesPerKm
-            }; 
+                MaximumPace = maxPace,
+                AveragePace = avgPace,
+                AverageSpeed = avgSpeed,
+                MaximumSpeed = maxSpeed,
+            };
+        }
+
+        private static SportType? MapToSport(Sport_t? sport)
+        {
+            if (sport == null)
+            {
+                return SportType.Other;
+            }
+
+            return sport switch
+            {
+                Sport_t.Biking => SportType.CyclingSport,
+                Sport_t.Running => SportType.Running,
+                _ => SportType.Other,
+            };
         }
     }
 }

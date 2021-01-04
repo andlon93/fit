@@ -1,5 +1,6 @@
 ﻿using FitnessTracker.Challenges;
 using FitnessTracker.Users.GraphTypes;
+using FitnessTracker.Workouts;
 using FitnessTracker.Workouts.GraphTypes;
 using FitnessTracker.WorkoutsGrouped.GraphTypes;
 using GraphQL;
@@ -26,6 +27,7 @@ namespace FitnessTracker.GraphQLTypes
             // GraphTypes
             services.AddSingleton<WorkoutQuery>();
             services.AddSingleton<WorkoutGraphType>();
+            services.AddSingleton<SportTypeEnum>();
             services.AddSingleton<PagingGraphType>();
             services.AddSingleton<UserType>();
             services.AddSingleton<WorkoutGraphType>();
