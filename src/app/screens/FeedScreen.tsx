@@ -1,6 +1,6 @@
 import React from 'react';
-import { ActivityIndicator, SectionList, StyleSheet, TouchableWithoutFeedback, ScrollView } from 'react-native';
-import { Card, ListItem, Button, Icon, Avatar } from 'react-native-elements';
+import { StyleSheet, TouchableWithoutFeedback, ScrollView } from 'react-native';
+import { Card, ListItem, Icon } from 'react-native-elements';
 import {
   NavigationParams,
   NavigationScreenProp,
@@ -10,7 +10,7 @@ import { gql, useQuery } from '@apollo/client'
 
 import useColorScheme from '../hooks/useColorScheme';
 import { Text, View } from '../components/Themed';
-import { Section, WorkoutListItem, Workout, HistoryData } from '../types';
+import { WorkoutListItem, FeedData } from '../types';
 import { AppLoading } from 'expo';
 import { secondsToDuration, metersToString, dateToStringMinimal } from './utility_functions';
 
@@ -40,7 +40,7 @@ interface Props {
 export default function FeedScreen(props : Props) {
   const colorScheme = useColorScheme();
 
-  const { data, loading } = useQuery<HistoryData>(FEED_QUERY)
+  const { data, loading } = useQuery<FeedData>(FEED_QUERY)
 
   if (loading) {
     return <AppLoading />

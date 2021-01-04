@@ -6,12 +6,12 @@ import {
   NavigationState,
 } from 'react-navigation';
 import { RouteProp } from '@react-navigation/native';
-import { gql, useQuery } from '@apollo/client'
+import { gql, useQuery, useMutation } from '@apollo/client'
 
 import { Card, Header, ListItem, Button, Icon, Avatar } from 'react-native-elements';
 import useColorScheme from '../hooks/useColorScheme';
 import { Text, View } from '../components/Themed';
-import { RootStackParamList, DetailsData } from '../types';
+import { RootStackParamList, DetailsData, WorkoutDetails } from '../types';
 import { AppLoading } from 'expo';
 import { secondsToDuration, secondsToWaterNeed, metersToString, dateToString } from './utility_functions';
 
@@ -29,8 +29,15 @@ const DETAILS_QUERY = gql`
       cadence
     }
   }
-  
 `
+
+const DELETE_WORKOUT = gql`
+  mutation DeleteWorkout($id: String!) {
+    deleteWorkout(deleteWorkoutRequest: { id: $id }) {
+      id
+    }
+  }
+`;
 
 interface Props {
   navigation: NavigationScreenProp<NavigationState, NavigationParams>;
@@ -50,7 +57,7 @@ const IconLabelContentPresenter = (props : IconLabelContentPresenterProps) => {
     <ListItem style={styles.summaryItem}>        
       <Icon name={props.iconName} type={props.iconType} color={props.iconColor} />
       <ListItem.Content>
-      <ListItem.Subtitle>{props.label}</ListItem.Subtitle>
+        <ListItem.Subtitle>{props.label}</ListItem.Subtitle>
         <ListItem.Title>{props.content}</ListItem.Title>
       </ListItem.Content>
     </ListItem>
@@ -66,6 +73,23 @@ export default function WorkoutDetailScreen(props : Props) {
     variables: { filter: {ids: [props.route.params?.id]} },
   });
 
+  const [deleteWorkout] = useMutation<
+    { deleteWorkout: WorkoutDetails },
+    { id: string }
+  >(DELETE_WORKOUT);
+  
+  const handleDelete = async (): Promise<void> => {
+    try {
+      let response = await deleteWorkout({
+        variables: {
+          id: props.route.params?.id
+        }
+      });
+    } catch (exception) {
+      console.log(exception);
+    }
+  };
+
   if (loading || !data) {
     return <AppLoading />
   }
@@ -78,11 +102,20 @@ export default function WorkoutDetailScreen(props : Props) {
         barStyle={colorScheme == 'dark' ? 'dark-content' : 'light-content'}
         placement="left"    
         leftComponent={<Button
-          icon={{ name: 'arrow-back' }}
+          icon={{ name: 'arrow-back', color: 'white' }}
           type="clear"
           onPress={() => props.navigation.goBack()}
         />}
-        centerComponent={{ text: 'John Doe' }} // TODO
+        centerComponent={{ text: 'John Doe', color: 'white' }} // TODO: Use the name of the user
+        rightComponent={<Button
+          icon={
+            <Icon
+              name="delete"
+              color="white"
+            />
+          }             
+          onPress={handleDelete}
+        />}
         containerStyle={{
           justifyContent: 'space-around',
         }}
@@ -105,11 +138,11 @@ export default function WorkoutDetailScreen(props : Props) {
             label='Varighet'
             content={secondsToDuration(workout.totalTimeSeconds)} />
             
-          <IconLabelContentPresenter 
+          {workout.distance !== 0 && <IconLabelContentPresenter 
             iconName='place'
             iconColor='#8120f7'
             label='Distanse'
-            content={metersToString(workout.distance, 2)} />
+            content={metersToString(workout.distance, 2)} />}
 
           <IconLabelContentPresenter 
             iconName='speedometer-medium'
@@ -139,36 +172,36 @@ export default function WorkoutDetailScreen(props : Props) {
             label='Maksfart'
             content='X' />
 
-          <IconLabelContentPresenter 
+          {workout.calories && workout.calories !== null && <IconLabelContentPresenter 
             iconName='whatshot'
             iconColor='#f77a20'
             label='Kalorier'
-            content={workout.calories.toString()} />
+            content={workout.calories.toString()} />}
 
-          <IconLabelContentPresenter 
+          {workout.totalTimeSeconds && workout.totalTimeSeconds !== null && <IconLabelContentPresenter 
             iconName='water'
             iconType='entypo'
             iconColor='#3e9bc9'
             label='Væskebalanse'
-            content={secondsToWaterNeed(workout.totalTimeSeconds)} />
+            content={secondsToWaterNeed(workout.totalTimeSeconds)} />}
 
-          <IconLabelContentPresenter 
+          {workout.cadence && workout.cadence !== 0 && <IconLabelContentPresenter 
               iconName='timer'
               iconColor='#9d3ec9'
               label='Tråkkfrekvens'
-              content={workout.cadence.toString()} />
+              content={workout.cadence.toString()} />}
 
-          <IconLabelContentPresenter 
+          {workout.averageHeartRate && workout.averageHeartRate !== null && <IconLabelContentPresenter 
               iconName='favorite'
               iconColor='#bf5050'
               label='Gjennomsnittspuls'
-              content={workout.averageHeartRate.toString()} />
+              content={workout.averageHeartRate.toString()} />}
 
-          <IconLabelContentPresenter 
+          {workout.maximumHeartRate && workout.maximumHeartRate !== null && <IconLabelContentPresenter 
               iconName='favorite'
               iconColor='#c20000'
               label='Makspuls'
-              content={workout.maximumHeartRate.toString()} />
+              content={workout.maximumHeartRate.toString()} />}
 
           <IconLabelContentPresenter 
             iconName='terrain'
@@ -204,9 +237,8 @@ export default function WorkoutDetailScreen(props : Props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '100%',
+    alignItems: 'stretch',
+    justifyContent: 'flex-start',
   },
   title: {
     fontSize: 20,

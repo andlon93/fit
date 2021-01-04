@@ -11,7 +11,7 @@ import { ThemeProvider } from 'react-native-elements';
 
 // Initialize Apollo Client
 const client = new ApolloClient({
-  uri: 'http://localhost:32779/graphql', // TODO
+  uri: 'http:///10.0.0.25:32769/graphql', // TODO: http://localhost:32779/graphql
   cache: new InMemoryCache()
 });
 

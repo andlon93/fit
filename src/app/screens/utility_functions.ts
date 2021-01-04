@@ -1,9 +1,25 @@
+import { ChallengeType } from '../types';
+
 export function secondsToDuration(seconds : number, includeHour : boolean = true) {
     let hours = Math.floor(seconds / 60 / 60);
     seconds = seconds - hours * 60 * 60;
     let minutes = Math.floor(seconds / 60);
     seconds = seconds - minutes * 60;
-    return (hours == 0 ? '' : hours + ':') + minutes + ':' + seconds;
+    return (!includeHour && hours == 0 ? '' : timeWithLeadingZero(hours) + ':') + timeWithLeadingZero(minutes) + ':' + timeWithLeadingZero(seconds);
+}
+
+function minutesToDuration(minutes : number) {
+    let hours = Math.floor(minutes / 60);
+    minutes = minutes - hours * 60;
+    return hours + 't:' + minutes + 'm';
+}
+
+function timeWithLeadingZero(hourMinuteSecond : number) {
+    if (hourMinuteSecond < 10) {
+        return '0' + hourMinuteSecond;
+    } else {
+        return hourMinuteSecond;
+    }
 }
 
 export function secondsToWaterNeed(seconds : number, includeHour : boolean = true) {
@@ -22,13 +38,39 @@ function round(number : number, numberOfDecimals : number = 0) {
 export function dateToString(date : Date) {
     return convertDayToString(date.getDay()) + 
         ', ' + date.getDate() + '. ' + convertMonthToString(date.getMonth()) + ' ' + date.getFullYear() + 
-        ' kl. ' + date.getHours() + ':' + date.getMinutes();
+        ' kl. ' + date.getHours() + ':' + timeWithLeadingZero(date.getMinutes());
 }
 
 export function dateToStringMinimal(date : Date) {
     return date.getDate() + '. ' + convertMonthToString(date.getMonth()) + (date.getFullYear() === new Date().getFullYear() ? '' : ' ' + date.getFullYear()) + 
-    ' kl. ' + date.getHours() + ':' + date.getMinutes();
-  }
+    ' kl. ' + timeWithLeadingZero(date.getHours()) + ':' + timeWithLeadingZero(date.getMinutes());
+}
+
+export function daysLeftUntil(date : Date) {
+    let today = new Date();
+    return (Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) -
+    Date.UTC(today.getFullYear(), today.getMonth(), today.getDate())) / 86400000 + 1;
+}
+
+export function daysLeftUntilAsString(date : Date) {
+    let daysLeft = daysLeftUntil(date);
+    return daysLeft === 1 ? daysLeft + ' dag igjen' : daysLeft + ' dager igjen';
+}
+
+export function challengeScoreToString(type : string, score : number) {
+    switch(type) { 
+        case 'MOST_ACTIVE_MINUTES': { 
+           return minutesToDuration(score);
+        } 
+        case 'MOST_WORKOUTS': { 
+           return score === 1 ? score + ' treningsøkt' : score + ' treningsøkter';
+        } 
+        default: { 
+           return '-';
+        } 
+     } 
+     
+}
 
 const months = [
     'januar',

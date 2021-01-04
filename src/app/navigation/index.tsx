@@ -5,6 +5,7 @@ import { ColorSchemeName } from 'react-native';
 
 import NotFoundScreen from '../screens/NotFoundScreen';
 import WorkoutDetailScreen from '../screens/WorkoutDetailScreen';
+import AddManualEntryScreen from '../screens/AddManualEntryScreen';
 import { RootStackParamList } from '../types';
 import BottomTabNavigator from './BottomTabNavigator';
 import LinkingConfiguration from './LinkingConfiguration';
@@ -30,6 +31,7 @@ function RootNavigator() {
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Root" component={BottomTabNavigator} />
       <Stack.Screen name="WorkoutDetailScreen" component={WorkoutDetailScreen} />
+      <Stack.Screen name="AddManualEntryScreen" component={AddManualEntryScreen} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
     </Stack.Navigator>
   );
