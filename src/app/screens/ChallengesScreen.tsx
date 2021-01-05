@@ -55,10 +55,10 @@ export default function ChallengesScreen(props : Props) {
             <Text style={styles.cardHeader}>{challenge.name}</Text>
             {challenge.leaderboard.map((participant, i) => (
               <ListItem key={participant.user.id}>
-                <Icon reverse size={20} name='directions-run' color='#076263' />
+                <Icon reverse size={20} name='directions-run' color='#e69d17' />
                 <ListItem.Content>
                   <ListItem.Title>{participant.rank + '. ' + participant.user.firstName}</ListItem.Title>
-                  <ListItem.Subtitle>{challengeScoreToString(challenge.type, participant.score)}</ListItem.Subtitle>
+                  <Text style={{ color: 'grey' }}>{challengeScoreToString(challenge.type, participant.score)}</Text>
                 </ListItem.Content>
               </ListItem>
             ))}
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
   daysLeftTag: {
     fontWeight: 'bold',
     textTransform: 'uppercase',
-    backgroundColor: '#076263',
+    backgroundColor: '#e69d17',
     color: '#fff',
     paddingTop: 2,
     paddingBottom: 2,

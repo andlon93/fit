@@ -56,10 +56,10 @@ export default function FeedScreen(props : Props) {
             onPress={() => props.navigation.navigate('WorkoutDetailScreen', { id: workout.id })}>
             <Card>
               <ListItem>
-                <Icon reverse name='directions-run' color='#517fa4' />
+                <Icon reverse name='directions-run' color='#e69d17' />
                 <ListItem.Content>
                   <ListItem.Title>{dateToStringMinimal(new Date(workout.startTime))}</ListItem.Title>
-                  <ListItem.Subtitle>{convertToSubtitle(workout)}</ListItem.Subtitle>
+                  <Text style={{ color: 'grey' }}>{convertToSubtitle(workout)}</Text>
                 </ListItem.Content>
               </ListItem>
             </Card>
@@ -77,5 +77,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: '100%',
     paddingLeft: 20,
-  }
+  },
 });

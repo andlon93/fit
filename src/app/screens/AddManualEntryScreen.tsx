@@ -159,7 +159,7 @@ export default function AddManualEntryScreen(props : Props) {
 
       <IconLabelContentPresenter onPress={toggleDistancePicker} iconName='map-marker-distance' iconType='material-community' label='Lengde' content={metersToString(getDistanceMeters(), 2)} />
 
-      <Overlay isVisible={visibleSportPicker} onBackdropPress={toggleSportPicker}>
+      <Overlay fullScreen isVisible={visibleSportPicker} onBackdropPress={toggleSportPicker}>
         <View style={styles.sportPicker}>
           <Text style={styles.cardHeader}>Velg aktivitet</Text>
           <FlatList
@@ -170,31 +170,39 @@ export default function AddManualEntryScreen(props : Props) {
         </View>
       </Overlay>
 
-      <Overlay isVisible={visibleDurationPicker} onBackdropPress={toggleDurationPicker}>
-        <View style={styles.durationPicker}>
+      <Overlay overlayStyle={{width: '80%'}} isVisible={visibleDurationPicker} onBackdropPress={toggleDurationPicker}>
+        <View>
           <Text style={styles.cardHeader}>Varighet</Text>
-          <Input
-            keyboardType='numeric'
-            style={styles.durationPickerItem}
-            onChangeText={value => setHours(value.replace(/\D/g,''))}
-            value={hours}
-          />
-          <Text style={styles.durationPickerItem}>t</Text>
-          <Input
-            keyboardType='numeric'
-            style={styles.durationPickerItem}
-            onChangeText={value => setMinutes(value.replace(/\D/g,''))}
-            value={minutes}
-          />
-          <Text style={styles.durationPickerItem}>m</Text>
-          <Input
-            keyboardType='numeric'
-            style={styles.durationPickerItem}
-            onChangeText={value => setSeconds(value.replace(/\D/g,''))}
-            value={seconds}
-          />
-          <Text style={styles.durationPickerItem}>s</Text>
-        </View>
+          <View style={styles.durationPicker}>
+            <View style={{flex: 1}}>            
+              <Input
+                keyboardType='numeric'
+                style={styles.numberInput}
+                onChangeText={value => setHours(value.replace(/\D/g,''))}
+                value={hours}
+              />
+            </View>
+            <Text style={styles.textBetweenNumberInput}>t</Text>
+            <View style={{flex: 1}}>            
+              <Input
+                keyboardType='numeric'
+                style={styles.numberInput}
+                onChangeText={value => setMinutes(value.replace(/\D/g,''))}
+                value={minutes}
+              />
+            </View>
+            <Text style={styles.textBetweenNumberInput}>m</Text>
+            <View style={{flex: 1}}>
+              <Input
+                keyboardType='numeric'
+                style={styles.numberInput}
+                onChangeText={value => setSeconds(value.replace(/\D/g,''))}
+                value={seconds}
+              />
+            </View>
+            <Text style={styles.textBetweenNumberInput}>s</Text>
+          </View>
+        </View>        
       </Overlay>
 
       {visibleStartTimePicker && (
@@ -208,22 +216,30 @@ export default function AddManualEntryScreen(props : Props) {
         />
       )}
 
-      <Overlay isVisible={visibleDistancePicker} onBackdropPress={toggleDistancePicker}>
-        <View style={styles.durationPicker}>
+      <Overlay overlayStyle={{width: '80%'}} isVisible={visibleDistancePicker} onBackdropPress={toggleDistancePicker}>
+        <View>
           <Text style={styles.cardHeader}>Lengde</Text>
-          <Input
-            keyboardType='numeric'
-            style={styles.durationPickerItem}
-            onChangeText={value => setDistance(value.replace(/\D/g,''))}
-            value={distance}
-          />
-          <Text style={styles.durationPickerItem}>,</Text>
-          <Input
-            keyboardType='numeric'
-            style={styles.durationPickerItem}
-            onChangeText={value => setDistanceDecimal(value.replace(/\D/g,''))}
-            value={distanceDecimal}
-          />
+          <View style={styles.durationPicker}>
+            <View style={{flex: 1}}>
+              <Input
+                style={styles.numberInput}
+                selectTextOnFocus
+                keyboardType='numeric'
+                onChangeText={value => setDistance(value.replace(/\D/g,''))}
+                value={distance}
+              />
+            </View>
+            <Text style={styles.textBetweenNumberInput}>,</Text>
+            <View style={{flex: 1}}>
+              <Input
+                style={styles.numberInput}
+                selectTextOnFocus
+                keyboardType='numeric'
+                onChangeText={value => setDistanceDecimal(value.replace(/\D/g,''))}
+                value={distanceDecimal}
+              />
+            </View>
+          </View>
         </View>
       </Overlay>
     </View>
@@ -245,11 +261,14 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   durationPicker: {
-    flexDirection: "column",
-    width: 350,
+    flexDirection: 'row',
     padding: 20,
   },
-  durationPickerItem: {
-    flexShrink: 0.1,
+  numberInput: {
+    textAlign: 'center',
+    textAlignVertical: 'bottom',
+  },  
+  textBetweenNumberInput: {
+    textAlignVertical: 'center'
   },
 });

@@ -51,9 +51,13 @@ interface IconWithTextProps {
 
 const IconWithText = (props : IconWithTextProps) => {
   return (
-    <View style={styles.iconWithTextContainer}>
-      <Icon name={props.iconName} color={props.iconColor} type={props.iconType} />
-      <Text style={styles.subheaderItem}>{props.content}</Text>
+    <View style={{
+      flexDirection: 'row',
+      alignItems: 'center',
+    }}>
+      <Icon size={16} name={props.iconName} color={props.iconColor} type={props.iconType} />
+      <View style={{width: 2}} />
+      <Text>{props.content}</Text>
     </View>
   );
 };
@@ -78,14 +82,16 @@ export default function HistoryScreen(props : Props) {
         onPress={() => console.log('TODO: Expand/Collapse section: ' + section.header)}>
         <ListItem>
           <Text style={styles.numberOfWorkouts}>{section.number}</Text>
-          <ListItem.Content>
+          <View>
             <Text style={styles.title}>{section.header}</Text>
-            <ListItem.Subtitle>
-              <IconWithText iconName='place' iconColor='#0384fc' content={metersToString(section.distance)} />
-              <IconWithText iconName='timer' iconColor='#fc0303' content={secondsToDuration(section.duration)} />
+            <View style={{flexDirection: 'row'}}>
+              <IconWithText iconName='place' iconColor='#783ba1' content={metersToString(section.distance)} />
+              <View style={{width: 5}} />
+              <IconWithText iconName='timer' iconColor='#3285a8' content={secondsToDuration(section.duration)} />
+              <View style={{width: 5}} />
               <IconWithText iconName='fire' iconColor='#fc9804' iconType='material-community' content={section.calories + ' kcal'} />
-            </ListItem.Subtitle>
-          </ListItem.Content>
+            </View>
+          </View>
         </ListItem>
       </TouchableWithoutFeedback>
     )
@@ -102,10 +108,10 @@ export default function HistoryScreen(props : Props) {
         key={workout.item.id}
         onPress={() => props.navigation.navigate('WorkoutDetailScreen', { id: workout.item.id })}>
         <ListItem key={workout.item.id}>
-          <Icon name='rowing' color='#03cefc' reverse />
+          <Icon name='rowing' color='#e69d17' reverse />
           <ListItem.Content>
             <ListItem.Title>{dateToStringMinimal(new Date(workout.item.startTime))}</ListItem.Title>
-            <ListItem.Subtitle>{convertToSubtitle(workout.item)}</ListItem.Subtitle>
+            <Text style={{ color: 'grey' }}>{convertToSubtitle(workout.item)}</Text>
           </ListItem.Content>
         </ListItem>
       </TouchableWithoutFeedback>
@@ -140,7 +146,7 @@ export default function HistoryScreen(props : Props) {
           activeOpacity={0.7}
           onPress={() => props.navigation.navigate('AddManualEntryScreen')}
           style={styles.touchableOpacityStyle}>
-          <Icon name="add-circle" color="#BB3A87" size={50} />
+          <Icon name="add-circle" color="#e69d17" size={50} />
         </TouchableOpacity>
     </View>
   );
@@ -193,10 +199,6 @@ const styles = StyleSheet.create({
     paddingTop: 15,
     paddingLeft: 5,
     paddingBottom: 25,
-  },
-  iconWithTextContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
   },
   touchableOpacityStyle: {
     position: 'absolute',

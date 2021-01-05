@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ActivityIndicator, StyleSheet } from 'react-native';
+import { ActivityIndicator, StyleSheet, TouchableOpacity } from 'react-native';
 import {
   NavigationParams,
   NavigationScreenProp,
@@ -8,7 +8,7 @@ import {
 import { RouteProp } from '@react-navigation/native';
 import { gql, useQuery, useMutation } from '@apollo/client'
 
-import { Card, Header, ListItem, Button, Icon, Avatar } from 'react-native-elements';
+import { Card, Header, ListItem, Button, Icon, Overlay } from 'react-native-elements';
 import useColorScheme from '../hooks/useColorScheme';
 import { Text, View } from '../components/Themed';
 import { RootStackParamList, DetailsData, WorkoutDetails } from '../types';
@@ -56,7 +56,7 @@ const IconLabelContentPresenter = (props : IconLabelContentPresenterProps) => {
     <ListItem style={styles.summaryItem}>        
       <Icon name={props.iconName} type={props.iconType} color={props.iconColor} />
       <ListItem.Content>
-        <ListItem.Subtitle>{props.label}</ListItem.Subtitle>
+        <Text style={{ color: 'grey' }}>{props.label}</Text>
         <ListItem.Title>{props.content}</ListItem.Title>
       </ListItem.Content>
     </ListItem>
@@ -76,6 +76,16 @@ export default function WorkoutDetailScreen(props : Props) {
     { deleteWorkout: WorkoutDetails },
     { id: string }
   >(DELETE_WORKOUT);
+
+  const [isDialogVisible, setIsDialogVisible] = React.useState(false);
+
+  const closeDialog = () => {
+    setIsDialogVisible(false);
+  }
+
+  const showDeleteDialog = () => {
+    setIsDialogVisible(true);
+  }
   
   const handleDelete = async (): Promise<void> => {
     try {
@@ -113,7 +123,7 @@ export default function WorkoutDetailScreen(props : Props) {
               color="white"
             />
           }             
-          onPress={handleDelete}
+          onPress={showDeleteDialog}
         />}
         containerStyle={{
           justifyContent: 'space-around',
@@ -125,7 +135,7 @@ export default function WorkoutDetailScreen(props : Props) {
           <Icon reverse name='directions-run' color='#517fa4'/>
           <ListItem.Content>
             <ListItem.Title>{workout.sport}</ListItem.Title>
-            <ListItem.Subtitle>{dateToString(new Date(workout.startTime))}</ListItem.Subtitle>
+            <Text style={{ color: 'grey' }}>{dateToString(new Date(workout.startTime))}</Text>
           </ListItem.Content>
         </ListItem>
       </Card>
@@ -229,6 +239,21 @@ export default function WorkoutDetailScreen(props : Props) {
             content='X' />
         </View>
       </Card>
+
+      <Overlay overlayStyle={{width: '90%', backgroundColor: 'transparent', padding: 0}} isVisible={isDialogVisible} onBackdropPress={closeDialog}>
+        <View darkColor='#424242' style={styles.dialog}>
+          <Text style={styles.dialogMessage}>Vil du slette denne aktiviteten?</Text>
+          <View darkColor='#424242' style={{flexDirection: 'row', alignSelf: 'flex-end'}}>            
+            <TouchableOpacity style={styles.dialogBtn} onPress={closeDialog}>
+              <Text style={styles.dialogBtnText}>Avbryt</Text>
+            </TouchableOpacity>
+            <View style={{width: 20}} darkColor='#424242'></View>
+            <TouchableOpacity style={styles.dialogBtn} onPress={handleDelete}>
+              <Text style={styles.dialogBtnText}>Slett</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Overlay>
     </View>
   );
 }
@@ -256,5 +281,22 @@ const styles = StyleSheet.create({
   },
   summaryItem: {
     width: '50%'
+  },
+  dialog: {
+    padding: 20,
+    borderRadius: 10,
+  },
+  dialogMessage: {
+    fontSize: 16,
+  },
+  dialogBtn:{
+    alignItems:"center",
+    justifyContent:"center",
+    marginTop:10,
+  },
+  dialogBtnText:{
+    fontWeight: 'bold',
+    color: '#7b9fed',
+    fontSize: 16,
   },
 });

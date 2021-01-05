@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "application",
-    "slug": "application",
+    "name": "Fit",
+    "slug": "fit",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -19,9 +19,13 @@
       "**/*"
     ],
     "ios": {
+      "bundleIdentifier": "com.odandreas.fit",
+      "buildNumber": "1.0.0",
       "supportsTablet": true
     },
     "android": {
+      "package": "com.odandreas.fit",
+      "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
