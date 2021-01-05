@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, ScrollView } from 'react-native';
+import { ActivityIndicator, StyleSheet, ScrollView } from 'react-native';
 import { Card, ListItem, Icon } from 'react-native-elements';
 import {
   NavigationParams,
@@ -11,7 +11,6 @@ import { gql, useQuery } from '@apollo/client'
 import { Text } from '../components/Themed';
 import useColorScheme from '../hooks/useColorScheme';
 import { ChallengesData } from '../types';
-import { AppLoading } from 'expo';
 import { challengeScoreToString, daysLeftUntilAsString, minutesToDuration } from './utility_functions';
 
 const CHALLENGE_QUERY = gql`
@@ -44,7 +43,7 @@ export default function ChallengesScreen(props : Props) {
   const { data, loading } = useQuery<ChallengesData>(CHALLENGE_QUERY)
 
   if (loading) {
-    return <AppLoading />
+    return <ActivityIndicator />
   }
 
   return (

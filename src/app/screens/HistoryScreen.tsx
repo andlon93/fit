@@ -11,7 +11,6 @@ import { gql, useQuery } from '@apollo/client'
 import useColorScheme from '../hooks/useColorScheme';
 import { Text, View } from '../components/Themed';
 import { Section, WorkoutListItem, SectionListItem, Workout, HistoryData, WorkoutGroup } from '../types';
-import { AppLoading } from 'expo';
 import { dateToStringMinimal, metersToString, secondsToDuration } from './utility_functions';
 
 const HISTORY_QUERY = gql`
@@ -69,7 +68,7 @@ export default function HistoryScreen(props : Props) {
   const { data, loading } = useQuery<HistoryData>(HISTORY_QUERY)
 
   if (loading) {
-    return <AppLoading />
+    return <ActivityIndicator />
   }
 
   const sectionItem = (section: SectionListData<WorkoutListItem, SectionListItem>) => {

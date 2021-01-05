@@ -1,5 +1,8 @@
 import React from 'react';
-import { StyleSheet, TouchableWithoutFeedback, ScrollView } from 'react-native';
+import { 
+  ActivityIndicator,
+  StyleSheet,
+  TouchableWithoutFeedback, ScrollView } from 'react-native';
 import { Card, ListItem, Icon } from 'react-native-elements';
 import {
   NavigationParams,
@@ -11,7 +14,6 @@ import { gql, useQuery } from '@apollo/client'
 import useColorScheme from '../hooks/useColorScheme';
 import { Text, View } from '../components/Themed';
 import { WorkoutListItem, FeedData } from '../types';
-import { AppLoading } from 'expo';
 import { secondsToDuration, metersToString, dateToStringMinimal } from './utility_functions';
 
 const FEED_QUERY = gql`
@@ -43,7 +45,7 @@ export default function FeedScreen(props : Props) {
   const { data, loading } = useQuery<FeedData>(FEED_QUERY)
 
   if (loading) {
-    return <AppLoading />
+    return <ActivityIndicator />
   }
 
   return (

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
+import { ActivityIndicator, StyleSheet } from 'react-native';
 import {
   NavigationParams,
   NavigationScreenProp,
@@ -12,7 +12,6 @@ import { Card, Header, ListItem, Button, Icon, Avatar } from 'react-native-eleme
 import useColorScheme from '../hooks/useColorScheme';
 import { Text, View } from '../components/Themed';
 import { RootStackParamList, DetailsData, WorkoutDetails } from '../types';
-import { AppLoading } from 'expo';
 import { secondsToDuration, secondsToWaterNeed, metersToString, dateToString } from './utility_functions';
 
 const DETAILS_QUERY = gql`
@@ -91,7 +90,7 @@ export default function WorkoutDetailScreen(props : Props) {
   };
 
   if (loading || !data) {
-    return <AppLoading />
+    return <ActivityIndicator />
   }
 
   let workout = data.workouts[0];

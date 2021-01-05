@@ -1,5 +1,10 @@
 import * as React from 'react';
-import { GestureResponderEvent, StyleSheet, Platform, TouchableOpacity } from 'react-native';
+import { 
+  GestureResponderEvent,
+  StyleSheet,
+  Platform,
+  TouchableOpacity,
+  FlatList } from 'react-native';
 import {
   NavigationParams,
   NavigationScreenProp,
@@ -12,9 +17,8 @@ import { Card, Header, ListItem, Button, Icon, Avatar, Input, Overlay } from 're
 import useColorScheme from '../hooks/useColorScheme';
 import { Text, View } from '../components/Themed';
 import { RootStackParamList, Sport, WorkoutDetails, WorkoutInput } from '../types';
-import { AppLoading } from 'expo';
 import { secondsToDuration, metersToString, dateToString } from './utility_functions';
-// import DateTimePicker from '@react-native-community/datetimepicker';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 interface IconLabelContentPresenterProps {
   iconName: string;
@@ -71,26 +75,24 @@ export default function AddManualEntryScreen(props : Props) {
 
   const [visibleSportPicker, setVisibleSportPicker] = React.useState(false);
   const [visibleDurationPicker, setVisibleDurationPicker] = React.useState(false);
+  const [startTimePickerMode, setStartTimePickerMode] = React.useState<'date' | 'time'>('date');
   const [visibleStartTimePicker, setVisibleStartTimePicker] = React.useState(false);
   const [visibleDistancePicker, setVisibleDistancePicker] = React.useState(false);
 
-  const toggleSportPicker = () => {    
-    console.log('Show sport picker');
+  const toggleSportPicker = () => {
     setVisibleSportPicker(!visibleSportPicker);
   };
 
-  const toggleDurationPicker = () => {    
-    console.log('Show duration picker');
+  const toggleDurationPicker = () => {
     setVisibleDurationPicker(!visibleDurationPicker);
   };
-
-  const toggleStartTimePicker = () => {    
-    console.log('Show start time picker');
-    setVisibleStartTimePicker(!visibleStartTimePicker);
+  
+  const showStartTimePicker = (currentMode : 'date' | 'time') => {
+    setVisibleStartTimePicker(true);
+    setStartTimePickerMode(currentMode);
   };
 
-  const toggleDistancePicker = () => {    
-    console.log('Show distance picker');
+  const toggleDistancePicker = () => {
     setVisibleDistancePicker(!visibleDistancePicker);
   };
 
@@ -100,7 +102,7 @@ export default function AddManualEntryScreen(props : Props) {
 
   const getDistanceMeters = () => {
     let decimal = parseInt(distanceDecimal, 10);
-    return parseInt(distance, 10) * 1000 + decimal * 100 / Math.pow(10, Math.floor(Math.log(decimal)));
+    return parseInt(distance, 10) * 1000 + decimal * 100;
   };
 
   const onChange = (event : any, selectedDate : any) => {
@@ -111,7 +113,6 @@ export default function AddManualEntryScreen(props : Props) {
 
   const handleSave = async (): Promise<void> => {
     try {
-
       let response = await addWorkout({
         variables: {
           workoutInput:
@@ -152,78 +153,74 @@ export default function AddManualEntryScreen(props : Props) {
 
       <IconLabelContentPresenter onPress={toggleDurationPicker} iconName='timer' label='Varighet' content={secondsToDuration(getTotalTimeSeconds())} />
       
-      <IconLabelContentPresenter onPress={toggleStartTimePicker} iconName='calendar' iconType='antdesign' label='Starttid' content={dateToString(startTime)} />
+      <IconLabelContentPresenter onPress={() => showStartTimePicker('date')} iconName='calendar' iconType='antdesign' label='Dato' content={dateToString(startTime, 'date')} />
+
+      <IconLabelContentPresenter onPress={() => showStartTimePicker('time')} iconName='clockcircleo' iconType='antdesign' label='Tidspunkt' content={dateToString(startTime, 'time')} />
 
       <IconLabelContentPresenter onPress={toggleDistancePicker} iconName='map-marker-distance' iconType='material-community' label='Lengde' content={metersToString(getDistanceMeters(), 2)} />
 
       <Overlay isVisible={visibleSportPicker} onBackdropPress={toggleSportPicker}>
-        <View>
-          <Text>Velg aktivitet</Text>
-          {
-            Object.keys(Sport)
-            .filter((value) => isNaN(Number(value)) === true)
-            .map((key, i) => (
-              <IconLabelContentPresenter onPress={() => setSport(key)} iconName='home' iconColor='#CC5C70' label={key} />
-            ))
-          }
+        <View style={styles.sportPicker}>
+          <Text style={styles.cardHeader}>Velg aktivitet</Text>
+          <FlatList
+            data={Object.keys(Sport).filter((value) => isNaN(Number(value)) === true)}
+            renderItem={({item, index}) => <IconLabelContentPresenter onPress={() => {setSport(item); toggleSportPicker();}} iconName='home' iconColor='#CC5C70' content={item} />}
+            keyExtractor={(item) => item}>
+          </FlatList>
         </View>
       </Overlay>
 
       <Overlay isVisible={visibleDurationPicker} onBackdropPress={toggleDurationPicker}>
-        <View>
+        <View style={styles.durationPicker}>
+          <Text style={styles.cardHeader}>Varighet</Text>
           <Input
             keyboardType='numeric'
-            style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
+            style={styles.durationPickerItem}
             onChangeText={value => setHours(value.replace(/\D/g,''))}
             value={hours}
           />
+          <Text style={styles.durationPickerItem}>t</Text>
           <Input
             keyboardType='numeric'
-            style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
+            style={styles.durationPickerItem}
             onChangeText={value => setMinutes(value.replace(/\D/g,''))}
             value={minutes}
           />
+          <Text style={styles.durationPickerItem}>m</Text>
           <Input
             keyboardType='numeric'
-            style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
+            style={styles.durationPickerItem}
             onChangeText={value => setSeconds(value.replace(/\D/g,''))}
             value={seconds}
           />
+          <Text style={styles.durationPickerItem}>s</Text>
         </View>
       </Overlay>
 
-      <Overlay isVisible={visibleStartTimePicker} onBackdropPress={toggleStartTimePicker}>
-        <View>          
-          <Input
-            style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
-            onChangeText={text => setStartTime(new Date())}
-            value={startTime.toDateString()}
-          />
-        </View>
-      </Overlay>
-
-      {/* {visibleStartTimePicker && (
+      {visibleStartTimePicker && (
         <DateTimePicker
           testID="dateTimePicker"
           value={startTime}
-          mode='date'
+          mode={startTimePickerMode}
           is24Hour={true}
           display="default"
           onChange={onChange}
         />
-      )} */}
+      )}
 
       <Overlay isVisible={visibleDistancePicker} onBackdropPress={toggleDistancePicker}>
-        <View>
+        <View style={styles.durationPicker}>
+          <Text style={styles.cardHeader}>Lengde</Text>
           <Input
             keyboardType='numeric'
-            style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
+            style={styles.durationPickerItem}
             onChangeText={value => setDistance(value.replace(/\D/g,''))}
             value={distance}
           />
+          <Text style={styles.durationPickerItem}>,</Text>
           <Input
             keyboardType='numeric'
-            style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
+            style={styles.durationPickerItem}
             onChangeText={value => setDistanceDecimal(value.replace(/\D/g,''))}
             value={distanceDecimal}
           />
@@ -238,5 +235,21 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'stretch',
     justifyContent: 'flex-start',
+  },
+  cardHeader: {
+    fontWeight: 'bold',
+    textTransform: 'uppercase',
+    fontSize: 14,
+  },
+  sportPicker: {
+    padding: 20,
+  },
+  durationPicker: {
+    flexDirection: "column",
+    width: 350,
+    padding: 20,
+  },
+  durationPickerItem: {
+    flexShrink: 0.1,
   },
 });

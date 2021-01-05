@@ -35,10 +35,19 @@ function round(number : number, numberOfDecimals : number = 0) {
     return Math.round((number + Number.EPSILON) * factor) / factor;
 }
 
-export function dateToString(date : Date) {
-    return convertDayToString(date.getDay()) + 
-        ', ' + date.getDate() + '. ' + convertMonthToString(date.getMonth()) + ' ' + date.getFullYear() + 
-        ' kl. ' + date.getHours() + ':' + timeWithLeadingZero(date.getMinutes());
+export function dateToString(date : Date, mode : 'date' | 'time' | 'datetime' = 'datetime') {
+    let result = '';
+    if (mode === 'date' || mode === 'datetime') {
+        result += convertDayToString(date.getDay()) + 
+        ', ' + date.getDate() + '. ' + convertMonthToString(date.getMonth()) + ' ' + date.getFullYear();
+    }
+    if (mode === 'time' || mode === 'datetime') {
+        if (result !== '') {
+            result += ' ';
+        }
+        result += 'kl. ' + date.getHours() + ':' + timeWithLeadingZero(date.getMinutes());
+    }
+    return result;
 }
 
 export function dateToStringMinimal(date : Date) {
