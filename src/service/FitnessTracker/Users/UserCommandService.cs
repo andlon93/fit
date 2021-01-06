@@ -10,6 +10,11 @@ namespace FitnessTracker.Users
             _userRepository = userRepository;
         }
 
-        public Guid SaveOrUpdateUser(UserEntity user) => _userRepository.SaveOrUpdateUser(user);
+        public Guid SaveOrUpdateUser(UserEntity user)
+        {
+            if (string.IsNullOrEmpty(user.GoogleId)) { throw new Exception("Can not create a user without the users google authentication id."); }
+            
+            return _userRepository.SaveOrUpdateUser(user);
+        } 
     }
 }

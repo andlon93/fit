@@ -37,7 +37,7 @@ namespace FitnessTracker
                 _userCommandService.SaveOrUpdateUser(new UserEntity 
                 {
                     Id = Guid.NewGuid(),
-                    GoogleId = userFromFile.SiteConnections?.FirstOrDefault(e => e.Site != null && e.Site.ToLower().Trim().Equals("google"))?.Identifier ?? throw new Exception("User entity has no google Id. This is required."),
+                    GoogleId = userFromFile.SiteConnections?.FirstOrDefault(e => e.Site != null && e.Site.ToLower().Trim().Equals("google"))?.Identifier ?? string.Empty,
                     Country = userFromFile.Country,
                     Email = userFromFile.Email,
                     Gender = userFromFile.Gender,

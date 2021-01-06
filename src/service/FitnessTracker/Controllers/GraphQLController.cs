@@ -10,6 +10,7 @@ using GraphQL;
 using System;
 using GraphQL.DataLoader;
 using GraphQL.Validation;
+using FitnessTracker.Authentication;
 
 namespace FitnessTracker.Controllers
 {
@@ -54,6 +55,15 @@ namespace FitnessTracker.Controllers
                 options.Inputs = request.Variables.ToInputs();
                 options.Listeners.Add(_listener);
                 options.ValidationRules = DocumentValidator.CoreRules;
+
+                if (HttpContext.Items.TryGetValue(AuthorizationConstants.GoogleIdContextTitle, out var googleId) && googleId != null)
+                {
+                    options.UserContext.Add(AuthorizationConstants.GoogleIdContextTitle, googleId);
+                }
+                if (HttpContext.Items.TryGetValue(AuthorizationConstants.AuthorIdContextTitle, out var authorId) && authorId != null)
+                {
+                    options.UserContext.Add(AuthorizationConstants.AuthorIdContextTitle, authorId);
+                }
             });
 
             HttpContext.Response.ContentType = "application/json";
