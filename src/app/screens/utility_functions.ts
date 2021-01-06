@@ -8,10 +8,14 @@ export function secondsToDuration(seconds : number, includeHour : boolean = true
     return (!includeHour && hours == 0 ? '' : timeWithLeadingZero(hours) + ':') + timeWithLeadingZero(minutes) + ':' + timeWithLeadingZero(seconds);
 }
 
-function minutesToDuration(minutes : number) {
+export function minutesToDuration(minutes : number, includeLabel : boolean = false) {
     let hours = Math.floor(minutes / 60);
     minutes = minutes - hours * 60;
-    return hours + 't:' + minutes + 'm';
+    if (includeLabel) {        
+        return hours + 't:' + minutes + 'm';
+    } else {
+        return timeWithLeadingZero(hours) + ':' + timeWithLeadingZero(minutes);
+    }
 }
 
 function timeWithLeadingZero(hourMinuteSecond : number) {
@@ -66,10 +70,14 @@ export function daysLeftUntilAsString(date : Date) {
     return daysLeft === 1 ? daysLeft + ' dag igjen' : daysLeft + ' dager igjen';
 }
 
+export function percentageOfTimeSpan(from : Date, to : Date, current : Date = new Date()) {
+    return 100.0 * (1.0 * current.getTime() - from.getTime()) / (1.0 * to.getTime() - from.getTime());
+}
+
 export function challengeScoreToString(type : string, score : number) {
     switch(type) { 
         case 'MOST_ACTIVE_MINUTES': { 
-           return minutesToDuration(score);
+           return minutesToDuration(score, true);
         } 
         case 'MOST_WORKOUTS': { 
            return score === 1 ? score + ' treningsøkt' : score + ' treningsøkter';

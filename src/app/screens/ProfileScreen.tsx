@@ -1,32 +1,55 @@
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
+import { Card } from 'react-native-elements';
 
-import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
+import ProgressDiagram from '../components/ProgressDiagram';
+import { minutesToDuration, percentageOfTimeSpan } from './utility_functions';
 
 export default function ProfileScreen() {
+
+  const workouts = 2;
+  const workoutGoal = 100;
+
+  const minutes = 120;
+  const minutesGoal = 240;
+
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = today.getMonth();
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Tab Two</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="/screens/ProfileScreen.js" />
-    </View>
+    <Card>
+      <Text style={styles.cardHeader}>Målt</Text>
+      <View style={styles.container}>
+        <ProgressDiagram
+          percentage={(100.0 * workouts) / workoutGoal}
+          expectedPercentage={percentageOfTimeSpan(new Date(year, 0, 1), new Date(year, 11, 31, 23, 59, 59))}
+          textTop='I år'
+          textCenter={workouts.toString()}
+          textBottom={'av ' + workoutGoal + ' ganger'}
+          color='green' />
+        <ProgressDiagram
+          percentage={(100.0 * minutes) / minutesGoal}
+          expectedPercentage={percentageOfTimeSpan(new Date(year, month, 1), new Date(year, month + 1, 0, 23, 59, 59))}
+          textTop='Denne måneden'
+          textCenter={minutesToDuration(minutes)}
+          textBottom={'av ' + minutesToDuration(minutesGoal)} />
+      </View>
+    </Card>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
   },
-  title: {
-    fontSize: 20,
+  cardHeader: {
     fontWeight: 'bold',
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
+    textTransform: 'uppercase',
+    fontSize: 14,
+    marginBottom: 5,
   },
 });
