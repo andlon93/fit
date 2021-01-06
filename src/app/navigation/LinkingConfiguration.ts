@@ -36,6 +36,11 @@ export default {
               WorkoutDetailScreen: 'workoutDetails',
             },
           },
+          AddManualEntryScreen: {
+            screens: {
+              AddManualEntryScreen: 'addManualEntry',
+            },
+          },
         },
       },
       NotFound: '*',

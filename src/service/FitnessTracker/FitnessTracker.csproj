@@ -8,14 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Data\endomondo-2020-11-14\Profile\Profile.json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Data\endomondo-2020-11-14\Profile\Profile.json" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="GraphQL" Version="3.1.4" />
     <PackageReference Include="GraphQL.Server.Ui.Playground" Version="4.3.0" />
     <PackageReference Include="GraphQL.SystemTextJson" Version="3.1.4" />

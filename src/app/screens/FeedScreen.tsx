@@ -1,6 +1,9 @@
 import React from 'react';
-import { ActivityIndicator, SectionList, StyleSheet, TouchableWithoutFeedback, ScrollView } from 'react-native';
-import { Card, ListItem, Button, Icon, Avatar } from 'react-native-elements';
+import { 
+  ActivityIndicator,
+  StyleSheet,
+  TouchableWithoutFeedback, ScrollView } from 'react-native';
+import { Card, ListItem, Icon } from 'react-native-elements';
 import {
   NavigationParams,
   NavigationScreenProp,
@@ -10,8 +13,7 @@ import { gql, useQuery } from '@apollo/client'
 
 import useColorScheme from '../hooks/useColorScheme';
 import { Text, View } from '../components/Themed';
-import { Section, WorkoutListItem, Workout, HistoryData } from '../types';
-import { AppLoading } from 'expo';
+import { WorkoutListItem, FeedData } from '../types';
 import { secondsToDuration, metersToString, dateToStringMinimal } from './utility_functions';
 
 const FEED_QUERY = gql`
@@ -40,10 +42,10 @@ interface Props {
 export default function FeedScreen(props : Props) {
   const colorScheme = useColorScheme();
 
-  const { data, loading } = useQuery<HistoryData>(FEED_QUERY)
+  const { data, loading } = useQuery<FeedData>(FEED_QUERY)
 
   if (loading) {
-    return <AppLoading />
+    return <ActivityIndicator />
   }
 
   return (
@@ -53,10 +55,11 @@ export default function FeedScreen(props : Props) {
           <TouchableWithoutFeedback key={i}
             onPress={() => props.navigation.navigate('WorkoutDetailScreen', { id: workout.id })}>
             <Card>
-              <ListItem leftIcon={{reverse: true, name: 'rowing', color: '#517fa4' }}>
+              <ListItem>
+                <Icon reverse name='directions-run' color='#e69d17' />
                 <ListItem.Content>
                   <ListItem.Title>{dateToStringMinimal(new Date(workout.startTime))}</ListItem.Title>
-                  <ListItem.Subtitle>{convertToSubtitle(workout)}</ListItem.Subtitle>
+                  <Text style={{ color: 'grey' }}>{convertToSubtitle(workout)}</Text>
                 </ListItem.Content>
               </ListItem>
             </Card>
@@ -74,5 +77,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: '100%',
     paddingLeft: 20,
-  }
+  },
 });

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ActivityIndicator, SectionList, StyleSheet, TouchableWithoutFeedback } from 'react-native';
+import { ActivityIndicator, SectionList, StyleSheet, TouchableWithoutFeedback, TouchableOpacity, SectionListData } from 'react-native';
 import { ListItem, Icon } from 'react-native-elements';
 import {
   NavigationParams,
@@ -10,13 +10,12 @@ import { gql, useQuery } from '@apollo/client'
 
 import useColorScheme from '../hooks/useColorScheme';
 import { Text, View } from '../components/Themed';
-import { Section, WorkoutListItem, Workout, HistoryData, WorkoutGroup } from '../types';
-import { AppLoading } from 'expo';
+import { Section, WorkoutListItem, SectionListItem, Workout, HistoryData, WorkoutGroup } from '../types';
 import { dateToStringMinimal, metersToString, secondsToDuration } from './utility_functions';
 
 const HISTORY_QUERY = gql`
   query History {
-    firstGroup: groupedWorkouts(paging:{rows:1 offset:0} groupBy:MONTH ) {
+    firstGroup: groupedWorkouts(paging: { rows: 1, offset: 0 }, groupBy: MONTH) {
       title
       numberOfWorkouts
       durationInSeconds
@@ -31,7 +30,7 @@ const HISTORY_QUERY = gql`
         distance
       }
     }
-    otherGroups: groupedWorkouts(paging:{rows:4 offset:1} groupBy:MONTH ) {
+    otherGroups: groupedWorkouts(paging: { rows: 4, offset: 1 }, groupBy: MONTH) {
       title
       numberOfWorkouts
       durationInSeconds
@@ -43,6 +42,25 @@ const HISTORY_QUERY = gql`
     }
   }
 `
+interface IconWithTextProps {
+  iconName: string;
+  iconType?: string | undefined;
+  iconColor?: string | undefined;
+  content: string;
+}
+
+const IconWithText = (props : IconWithTextProps) => {
+  return (
+    <View style={{
+      flexDirection: 'row',
+      alignItems: 'center',
+    }}>
+      <Icon size={16} name={props.iconName} color={props.iconColor} type={props.iconType} />
+      <View style={{width: 2}} />
+      <Text>{props.content}</Text>
+    </View>
+  );
+};
 
 interface Props {
   navigation: NavigationScreenProp<NavigationState, NavigationParams>;
@@ -54,27 +72,26 @@ export default function HistoryScreen(props : Props) {
   const { data, loading } = useQuery<HistoryData>(HISTORY_QUERY)
 
   if (loading) {
-    return <AppLoading />
+    return <ActivityIndicator />
   }
 
-  const sectionItem = (section: Section) => {
+  const sectionItem = (section: SectionListData<WorkoutListItem, SectionListItem>) => {
     return (
       <TouchableWithoutFeedback
-        key={section.key.header}
-        onPress={() => console.log('TODO: Expand/Collapse section: ' + section.key.header)}>
+        key={section.header}
+        onPress={() => console.log('TODO: Expand/Collapse section: ' + section.header)}>
         <ListItem>
-          <Text style={styles.title}>{section.key.number}</Text>
-          <ListItem.Content>
-            <ListItem.Title>{section.key.header}</ListItem.Title>
-            <ListItem.Subtitle>
-              <Icon name='place' color='#0384fc' />
-              <Text style={styles.subheaderItem}>{metersToString(section.key.distance)}</Text>
-              <Icon name='timer' color='#fc0303' />
-              <Text style={styles.subheaderItem}>{secondsToDuration(section.key.duration)}</Text>
-              <Icon name='fire' color='#fc9804' type='material-community' />
-              <Text style={styles.subheaderItem}>{section.key.calories + ' kcal'}</Text>
-            </ListItem.Subtitle>
-          </ListItem.Content>
+          <Text style={styles.numberOfWorkouts}>{section.number}</Text>
+          <View>
+            <Text style={styles.title}>{section.header}</Text>
+            <View style={{flexDirection: 'row'}}>
+              <IconWithText iconName='place' iconColor='#783ba1' content={metersToString(section.distance)} />
+              <View style={{width: 5}} />
+              <IconWithText iconName='timer' iconColor='#3285a8' content={secondsToDuration(section.duration)} />
+              <View style={{width: 5}} />
+              <IconWithText iconName='fire' iconColor='#fc9804' iconType='material-community' content={section.calories + ' kcal'} />
+            </View>
+          </View>
         </ListItem>
       </TouchableWithoutFeedback>
     )
@@ -91,10 +108,10 @@ export default function HistoryScreen(props : Props) {
         key={workout.item.id}
         onPress={() => props.navigation.navigate('WorkoutDetailScreen', { id: workout.item.id })}>
         <ListItem key={workout.item.id}>
-          <Icon name='rowing' color='#03cefc' reverse />
+          <Icon name='rowing' color='#e69d17' reverse />
           <ListItem.Content>
             <ListItem.Title>{dateToStringMinimal(new Date(workout.item.startTime))}</ListItem.Title>
-            <ListItem.Subtitle>{convertToSubtitle(workout.item)}</ListItem.Subtitle>
+            <Text style={{ color: 'grey' }}>{convertToSubtitle(workout.item)}</Text>
           </ListItem.Content>
         </ListItem>
       </TouchableWithoutFeedback>
@@ -102,22 +119,22 @@ export default function HistoryScreen(props : Props) {
   };
 
   const ConvertToSection = (group: WorkoutGroup, mapData: boolean) => {
-    var section: Section = {
-      key: { header: group.title, number: group.numberOfWorkouts, distance: group.distanceInMeters, duration: group.durationInSeconds, calories: group.calories },
+    var section: SectionListData<WorkoutListItem, SectionListItem> = {
+      header: group.title, number: group.numberOfWorkouts, distance: group.distanceInMeters, duration: group.durationInSeconds, calories: group.calories,
       data: mapData ? group.workouts : []
     }
     return section;
   }
 
   const ConvertToSections = (data: HistoryData) => {
-    var sections: Section[] = [ConvertToSection(data.firstGroup[0], true)]
+    var sections: SectionListData<WorkoutListItem, SectionListItem>[] = [ConvertToSection(data.firstGroup[0], true)]
     sections = sections.concat(data.otherGroups.map(group => ConvertToSection(group, false)))
     return sections;
   }
 
   return (
     <View style={styles.container}>
-      {loading ? <ActivityIndicator /> : (
+      {loading && data ? <ActivityIndicator /> : (
         <SectionList
           sections={ConvertToSections(data)}
           renderItem={workoutItem}
@@ -125,6 +142,12 @@ export default function HistoryScreen(props : Props) {
           keyExtractor={(item: WorkoutListItem) => item.id}
         />
       )}
+      <TouchableOpacity
+          activeOpacity={0.7}
+          onPress={() => props.navigation.navigate('AddManualEntryScreen')}
+          style={styles.touchableOpacityStyle}>
+          <Icon name="add-circle" color="#e69d17" size={50} />
+        </TouchableOpacity>
     </View>
   );
 }
@@ -137,10 +160,15 @@ const styles = StyleSheet.create({
     width: '100%',
     paddingLeft: 20,
   },
-  title: {
+  numberOfWorkouts: {
     paddingBottom: 10,
     fontSize: 20,
     fontWeight: 'bold',
+  },
+  title: {
+    fontWeight: 'bold',
+    textTransform: 'uppercase',
+    fontSize: 14,
   },
   separator: {
     marginVertical: 30,
@@ -157,8 +185,8 @@ const styles = StyleSheet.create({
   },
   subheader: {
     flex: 1,
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     paddingTop: 15,
     paddingBottom: 25,
   },
@@ -172,7 +200,13 @@ const styles = StyleSheet.create({
     paddingLeft: 5,
     paddingBottom: 25,
   },
-  duration: {
-
+  touchableOpacityStyle: {
+    position: 'absolute',
+    width: 50,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    right: 10,
+    bottom: 10,
   },
 });

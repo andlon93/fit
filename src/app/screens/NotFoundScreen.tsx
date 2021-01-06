@@ -9,9 +9,10 @@ export default function NotFoundScreen({
 }: StackScreenProps<RootStackParamList, 'NotFound'>) {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>This screen doesn't exist.</Text>
-      <TouchableOpacity onPress={() => navigation.replace('Root')} style={styles.link}>
-        <Text style={styles.linkText}>Go to home screen!</Text>
+      <Text style={styles.logo}>Fit</Text>
+      <Text style={styles.message}>Denne siden eksisterer ikke.</Text>
+      <TouchableOpacity onPress={() => navigation.replace('Root')} style={styles.linkBtn}>
+        <Text style={styles.linkText}>Gå til forsiden</Text>
       </TouchableOpacity>
     </View>
   );
@@ -20,21 +21,36 @@ export default function NotFoundScreen({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#003f5c',
     alignItems: 'center',
     justifyContent: 'center',
     padding: 20,
   },
-  title: {
+  logo:{
+    fontWeight:"bold",
+    fontSize:50,
+    color:"#fb5b5a",
+    marginBottom:40
+  },
+  message: {
+    color:"white",
     fontSize: 20,
     fontWeight: 'bold',
   },
-  link: {
-    marginTop: 15,
-    paddingVertical: 15,
+  linkBtn: {
+    width:"80%",
+    backgroundColor:"#fb5b5a",
+    borderRadius:25,
+    height:50,
+    alignItems:"center",
+    justifyContent:"center",
+    marginTop:40,
+    marginBottom:10,
   },
   linkText: {
     fontSize: 14,
-    color: '#2e78b7',
+    color:"white",
+    textTransform: 'uppercase',
+    fontWeight: 'bold',
   },
 });

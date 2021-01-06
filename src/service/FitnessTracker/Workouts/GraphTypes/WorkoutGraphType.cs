@@ -33,7 +33,7 @@ namespace FitnessTracker.Workouts.GraphTypes
                 .Name(nameof(Workout.MaximumHeartRate))
                 .Description("Maximum heart rate in beats per minute (bpm)");
 
-            Field<StringGraphType, string>()
+            Field<SportTypeEnum, SportType>()
                 .Name(nameof(Workout.Sport))
                 .Description("");
 
@@ -48,6 +48,30 @@ namespace FitnessTracker.Workouts.GraphTypes
             Field<ListGraphType<TrackPointGraphType>, IEnumerable<TrackPoint>>()
                 .Name(nameof(Workout.Positions))
                 .Description("");
+
+            Field<DecimalGraphType, string>()
+                .Name(nameof(Workout.MaxAltitudeMeters))
+                .Description("Maximum altitude (meters above sea level)");
+
+            Field<DecimalGraphType, string>()
+                .Name(nameof(Workout.MinAltitudeMeters))
+                .Description("Minimum altitude (meters above sea level)");
+
+            Field<DecimalGraphType, string>()
+                .Name(nameof(Workout.MaximumPace))
+                .Description("Minumum pace (minutes per kilometer)");
+
+            Field<DecimalGraphType, string>()
+                .Name(nameof(Workout.AveragePace))
+                .Description("Average pace (minutes per kilometer)");
+
+            Field<DecimalGraphType, string>()
+                .Name(nameof(Workout.MaximumSpeed))
+                .Description("Maximum speed (km / h)");
+
+            Field<DecimalGraphType, string>()
+                .Name(nameof(Workout.AverageSpeed))
+                .Description("Average speed  (km / h)");
         }
     }
 }

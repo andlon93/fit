@@ -7,6 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="TCX\2020-09-19_11-52-42.0.json" />
+    <None Remove="TCX\2020-09-19_11-52-42.0.tcx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="TCX\2020-09-19_11-52-42.0.json" />
+    <EmbeddedResource Include="TCX\2020-09-19_11-52-42.0.tcx" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1" />
     <PackageReference Include="MSTest.TestAdapter" Version="2.1.1" />
     <PackageReference Include="MSTest.TestFramework" Version="2.1.1" />
