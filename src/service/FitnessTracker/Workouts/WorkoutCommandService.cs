@@ -24,10 +24,15 @@ namespace FitnessTracker.Workouts
             return savedWorkout;
         }
 
-        public Workout UpdateWorkout(Workout workout) => _workoutRepository.SaveOrUpdateWorkouts(new List<Workout> { workout }).First();
+        public Workout UpdateWorkout(Workout workout, Guid userId)
+        {
+            IsWorkoutConnectedToUser(userId, workout.Id, "update");
+            return _workoutRepository.SaveOrUpdateWorkouts(new List<Workout> { workout }).First();
+        } 
 
         public Workout? DeleteWorkout(Workout workout, Guid userId)
         {
+            IsWorkoutConnectedToUser(userId, workout.Id, "delete");
             if (_workoutRepository.DeleteWorkouts(new List<Workout> { workout }) == 1)
             {
                 _userRepository.RemoveWorkoutFromUser(userId, workout.Id);
@@ -43,6 +48,14 @@ namespace FitnessTracker.Workouts
             _workoutRepository.SaveOrUpdateWorkouts(mappedWorkouts);
 
             return mappedWorkouts.Select(w => w.Id);
-        }        
+        }
+
+        private void IsWorkoutConnectedToUser(Guid userId, Guid workoutId, string action)
+        {
+            if (!_userRepository.GetById(userId).WorkoutIds.Contains(workoutId))
+            {
+                throw new Exception($"The workout is not connected to the user which is trying to {action} it.");
+            }
+        } 
     }
 }
