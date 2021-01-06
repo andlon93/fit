@@ -18,13 +18,13 @@ const httpLink = createHttpLink({
 
 const authLink = setContext(async (_, { headers }) => {
   // get the authentication token from local storage if it exists
-  const authState = await getCachedAuthAsync();
-  const token = authState.idToken;
+  // const authState = await getCachedAuthAsync();
+  // const token = authState.idToken;
   // return the headers to the context so httpLink can read them
   return {
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${token}` : "",
+      authorization: "", // token ? `Bearer ${token}` : "",
     }
   }
 });
@@ -62,8 +62,8 @@ export default function App() {
 
   if (!isLoadingComplete) {
     return <ActivityIndicator />;
-  } else if (authState === null) {
-    return <LoginScreen onPress={signIn}/>;
+  // } else if (authState === null) {
+  //   return <LoginScreen onPress={signIn}/>;
   } else {
     return (
       <ApolloProvider client={client}>
