@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace FitnessTracker.Users
 {
@@ -35,6 +36,11 @@ namespace FitnessTracker.Users
                 workoutIds.Remove(workoutId);
                 user.WorkoutIds = workoutIds;
             }
+        }
+
+        public async Task<List<UserEntity>> GetUserByGoogleId(string id)
+        {
+            return await Task.FromResult(_userEntities.Values.Where(u => u.GoogleId == id).ToList());
         }
 
         public Guid SaveOrUpdateUser(UserEntity user)

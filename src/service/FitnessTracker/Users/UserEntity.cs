@@ -8,6 +8,8 @@ namespace FitnessTracker.Users
     {
         public Guid Id { get; init; } = new Guid("ae3db2eb-c260-473a-bc57-48e65946aa2d");
 
+        public string GoogleId { get; init; } = string.Empty;
+
         [JsonPropertyName("FirstName")]
         public string? FirstName { get; init; }
 

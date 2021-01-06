@@ -7,9 +7,9 @@ namespace FitnessTracker.Challenges
 {
     public class ChallengeService
     {
-        private readonly UserService _userService;
+        private readonly UserQueryService _userService;
 
-        public ChallengeService(UserService userService)
+        public ChallengeService(UserQueryService userService)
         {
             _userService = userService;
         }

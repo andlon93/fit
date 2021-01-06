@@ -1,14 +1,13 @@
+using FitnessTracker.Authentication;
 using FitnessTracker.Challenges;
 using FitnessTracker.GraphQLTypes;
 using FitnessTracker.Users;
 using FitnessTracker.Workouts;
-using FitnessTracker.Workouts.GraphTypes;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System.IO;
 
 namespace FitnessTracker
 {
@@ -42,6 +41,8 @@ namespace FitnessTracker
 
             GraphTypeRegistrator.Register(services);
 
+            services.AddHttpClient(AuthorizationConstants.GoogleAuthHttpClientName);
+
             // Workouts
             services.AddSingleton<WorkoutRepository>();
             services.AddSingleton<WorkoutQueryService>();
@@ -49,7 +50,8 @@ namespace FitnessTracker
 
             // Users
             services.AddSingleton<UserRepository>();
-            services.AddSingleton<UserService>();
+            services.AddSingleton<UserQueryService>();
+            services.AddSingleton<UserCommandService>();
 
             // Challenges
             services.AddSingleton<ChallengeService>();
@@ -67,13 +69,11 @@ namespace FitnessTracker
 
             app.UseGraphQLPlayground();
 
-            //app.UseHttpsRedirection();
-
             app.UseRouting();
 
             app.UseCors(MyAllowSpecificOrigins);
 
-            //app.UseAuthorization();
+            app.UseMiddleware<GoogleJwtAuthenticationMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {
