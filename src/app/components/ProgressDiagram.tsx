@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StyleSheet, StyleProp, ViewStyle } from 'react-native';
 
-import { Text, View } from '../components/Themed';
+import { Text, View } from './Themed';
 
 interface CircleProps {
   radius: number;

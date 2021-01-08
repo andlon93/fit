@@ -34,3 +34,17 @@ $ cd fit/src/service/FitnessTracker
 # Start the development server
 $ dotnet run
 ```
+
+## Integration
+
+### Polar
+
+Use the [Polar Open AccessLink API](https://www.polar.com/en/developers/api) to access the training and daily activity data recorded with Polar devices. See example application [here](https://github.com/polarofficial/accesslink-example-python).
+
+### Garmin
+
+[Documentation](https://developer.garmin.com/)
+
+### Fitbit
+
+[Documentation](https://www.fitbit.com/dev)
