@@ -29,10 +29,39 @@ const authLink = setContext(async (_, { headers }) => {
   }
 });
 
+const cache = new InMemoryCache({
+  typePolicies: {
+    Query: {
+      fields: {
+        workouts: {
+          // Don't cache separate results based on
+          // any of this field's arguments.
+          keyArgs: [],
+          // Concatenate the incoming list items with
+          // the existing list items.
+          // merge(existing, incoming, { args: { offset = 0 }}) {
+          //   // Slicing is necessary because the existing data is
+          //   // immutable, and frozen in development.
+          //   console.log('merge with offset: ' + offset);
+          //   const merged = existing ? existing.slice(0) : [];
+          //   for (let i = 0; i < incoming.length; ++i) {
+          //     merged[offset + i] = incoming[i];
+          //   }
+          //   return merged;
+          // },
+          merge(existing = [], incoming) {
+            return [...existing, ...incoming];
+          },          
+        }
+      }
+    }
+  }
+});
+
 // Initialize Apollo Client
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
-  cache: new InMemoryCache()
+  cache: cache,
 });
 
 export default function App() {
@@ -117,6 +146,9 @@ function checkIfTokenExpired({ accessTokenExpirationDate }) {
 }
 
 async function refreshAuthAsync({ refreshToken }) {
+  if (refreshToken === null) {
+    return null;
+  }
   let authState = await AppAuth.refreshAsync(config, refreshToken);
   console.log('refreshAuth', authState);
   await cacheAuthAsync(authState);
