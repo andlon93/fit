@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.30711.63
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FitnessTracker", "FitnessTracker\FitnessTracker.csproj", "{DC3D0988-00DE-4212-BAC9-78533B874FBB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitnessTrackerTests", "FitnessTrackerTests\FitnessTrackerTests.csproj", "{6C072685-5516-4F77-9A7B-D1FEA519BD5E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FitnessTrackerTests", "FitnessTrackerTests\FitnessTrackerTests.csproj", "{6C072685-5516-4F77-9A7B-D1FEA519BD5E}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{DFD908DE-4E46-4E0F-80E9-2F0DFDCEDDC6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{6C072685-5516-4F77-9A7B-D1FEA519BD5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C072685-5516-4F77-9A7B-D1FEA519BD5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6C072685-5516-4F77-9A7B-D1FEA519BD5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFD908DE-4E46-4E0F-80E9-2F0DFDCEDDC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFD908DE-4E46-4E0F-80E9-2F0DFDCEDDC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFD908DE-4E46-4E0F-80E9-2F0DFDCEDDC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFD908DE-4E46-4E0F-80E9-2F0DFDCEDDC6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

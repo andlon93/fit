@@ -1,0 +1,31 @@
+version: '3.4'
+
+services:
+  fitnesstracker:
+    image: ${DOCKER_REGISTRY-}fitnesstracker
+    build:
+      context: .
+      dockerfile: FitnessTracker/Dockerfile
+
+  mongo:
+    image: mongo
+    networks:
+      - dev
+    ports:
+      - "27017:27017"
+
+  mongo-express:
+    image: mongo-express
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=mongo
+      - ME_CONFIG_MONGODB_PORT=27017
+    networks:
+      - dev
+    depends_on:
+      - mongo
+    ports:
+      - "8081:8081"
+
+networks:
+  dev:
+    driver: bridge

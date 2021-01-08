@@ -34,9 +34,9 @@ namespace FitnessTracker.Workouts.GraphTypes
                 resolve: context =>
                 {
                     var arguments = context.GetArgument<Workout>("updateWorkoutRequest");
-                    _ = GetUserId(context, "update");
+                    var userId = GetUserId(context, "update");
 
-                    return _workoutCommandService.UpdateWorkout(new Workout { Id = arguments.Id, StartTime = arguments.StartTime, Sport = arguments.Sport, TotalTimeSeconds = arguments.TotalTimeSeconds });
+                    return _workoutCommandService.UpdateWorkout(new Workout { Id = arguments.Id, StartTime = arguments.StartTime, Sport = arguments.Sport, TotalTimeSeconds = arguments.TotalTimeSeconds }, userId);
                 }
             );
 
